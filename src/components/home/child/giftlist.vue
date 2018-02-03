@@ -1,12 +1,6 @@
 <template>
   <div>
-       <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="(val,index) in swiper" :key="index">
-                <router-link :to="/carousel/+index">
-                    <img :src="val.imgSrc">
-                </router-link>
-            </mt-swipe-item>
-        </mt-swipe>
+       <subcomment :commentId='swiper'></subcomment>
          <!-- 分类 -->
          <div class="flowerCategory">
           <ul>
@@ -40,10 +34,12 @@
 </template>
 
 <script>
+import subcomponent from '../../subcomponents/subcomponent';
+
 export default {
    data() {
         return {
-            swiper: [
+                 swiper: [
                 {
                     imgSrc: '../../../../static/images/p1.jpg'
                 },
@@ -135,7 +131,8 @@ export default {
         goCarousel(id){
             this.$router.push({name:'carousel',params:{carouselId:id}})
         }
-    }
+    },
+    components: { subcomment: subcomponent }
 }
 </script>
 

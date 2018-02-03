@@ -1,12 +1,6 @@
 <template>
     <div>
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="(val,index) in swiper" :key="index">
-                <router-link :to="/carousel/+index">
-                    <img :src="val.imgSrc">
-                </router-link>
-            </mt-swipe-item>
-        </mt-swipe>
+        <subcomment :commentId='swiper'></subcomment>
         <!-- 通告 -->
         <div class="annunciate">
             <img src="../../../../static/images/laba.png">
@@ -96,7 +90,7 @@
                         </div>
                     </li>
                     <div class="more">
-                        <p>查看更多</p>
+                        <p @click="pullMore">查看更多</p>
                         <img src="../../../../static/images/more.png">
                     </div>
                 </ul>
@@ -143,7 +137,7 @@
 
 <script>
 import { Toast } from 'mint-ui';
-
+import subcomponent from '../../subcomponents/subcomponent.vue';
 export default {
     data() {
         return {
@@ -261,7 +255,43 @@ export default {
             Toast('添加成功');
             this.$store.commit('addGoodsCar', val);
         },
-    }
+        pullMore() {
+            this.goods.push
+            (
+                {
+                    id: 1,
+                    imgSrc: '../../../../static/images/n1.jpg',
+                    sales: '62',
+                    title: '红玫瑰黄玫瑰白玫瑰都是好玫瑰',
+                    price: 23.44,
+                },
+                {
+                    id: 2,
+                    imgSrc: '../../../../static/images/n2.jpg',
+                    sales: '62',
+                    title: '红百合黄百合',
+                    price: 44,
+                },
+                {
+                    id: 3,
+                    imgSrc: '../../../../static/images/n3s.jpg',
+                    sales: '62',
+                    title: '巴拉拉小魔仙',
+                    price: 55,
+                },
+                {
+                    id: 4,
+                    imgSrc: '../../../../static/images/m4.jpg',
+                    sales: '62',
+                    title: '哆啦A梦',
+                    price: 66,
+                },
+            )
+        }
+    },
+    components: {
+        subcomment: subcomponent
+    },
 }
 </script>
 
@@ -472,7 +502,6 @@ export default {
 
 .productShow {
     width: 100%;
-    height: 952px;
     background-color: #fff;
     margin-top: 10px;
     .product {

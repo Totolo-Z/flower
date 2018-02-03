@@ -1,21 +1,15 @@
 <template>
     <div>
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="(val,index) in swiper" :key="index">
-                <router-link :to="/carousel/+index">
-                    <img :src="val.imgSrc">
-                </router-link>
-            </mt-swipe-item>
-        </mt-swipe>
+        <subcomment :commentId='swiper'></subcomment>
         <!-- 分类 -->
         <div class="flowerCategory">
-          <ul>
-              <li v-for="(item,index) in category" :key="index" @click="goGoodslist(item.id)">
-                  <img :src="item.src">
-                  <p>{{item.name}}</p>
-              </li>
-          </ul>
-      </div>
+            <ul>
+                <li v-for="(item,index) in category" :key="index" @click="goGoodslist(item.id)">
+                    <img :src="item.src">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
         <!-- 今日限量秒杀 -->
         <div class="products">
             <h3>今日限量秒杀</h3>
@@ -41,10 +35,10 @@
                 <ul>
                     <li v-for="(val,index) in goods" :key="index">
                         <router-link :to="/carousel/+index">
-                        <div class="icons">
-                            <img :src="val.imgSrc">
-                            <span class="sales">销量{{val.sales}}</span>
-                        </div>
+                            <div class="icons">
+                                <img :src="val.imgSrc">
+                                <span class="sales">销量{{val.sales}}</span>
+                            </div>
                         </router-link>
                         <p class="title">{{val.title}}</p>
                         <div class="item">
@@ -59,10 +53,11 @@
 </template>
 
 <script>
+import subcomment from '../../subcomponents/subcomponent.vue';
 export default {
     data() {
         return {
-            swiper: [
+             swiper: [
                 {
                     imgSrc: '../../../../static/images/p1.jpg'
                 },
@@ -203,7 +198,8 @@ export default {
         goGoodslist(id) {
             this.$router.push({ name: 'goodslist', params: { goodslistId: id } })
         },
-    }
+    },
+    components:{subcomment:subcomment}
 }
 </script>
 
@@ -217,26 +213,26 @@ export default {
     }
 }
 
-.flowerCategory{
+.flowerCategory {
     width: 100%;
     background-color: #fff;
-    ul{
+    ul {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        li{
+        li {
             width: 25%;
             height: 0.8rem;
             text-align: center;
-            padding-top:0.1rem;
-            img{
+            padding-top: 0.1rem;
+            img {
                 width: 0.44rem;
                 height: 0.44rem;
             }
-            p{
+            p {
                 font-size: 0.12rem;
-                color:#666;
+                color: #666;
             }
         }
     }

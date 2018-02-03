@@ -129,7 +129,7 @@ export default {
       color: #333;
       &.active {
         color: #f66;
-        border-bottom: 2px solid #f66;
+        border-bottom: 3px solid #f66;
       }
     }
     &:first-child {

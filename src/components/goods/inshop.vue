@@ -199,6 +199,7 @@ export default {
       width: 100%;
       font-size: 12px;
       line-height: 20px;
+      color: #666;
     }
     .distance {
       i {
@@ -211,21 +212,24 @@ export default {
 .mint-tab-container {
   background-color: #fff;
 }
+
 .mint-navbar {
   width: 100%;
-  height: 30px;
-  line-height: 30px;
+  height: 44px;
+  line-height: 44px;
   background-color: #fff;
   border-bottom: 1px solid #f0f0f0;
   .mint-tab-item {
+    display: block;
     color: #999;
   }
 }
 .mint-tab-item.is-selected {
-  border-width: 40px;
   color: #f66;
-  border-bottom: 2px solid #f66;
+  border-bottom:2px solid #f66;
+  margin-bottom: 0px;
 }
+
 .shopShow {
   width: 100%;
   display: flex;

@@ -70,6 +70,9 @@ export default {
       padding-top: 0.02rem;
       a {
         display: block;
+        &:hover{
+          color:#333;
+        }
         img {
           width: 0.25rem;
           height: 0.25rem;

@@ -59,7 +59,6 @@ i {
 }
 button,
 textarea,
-input,
 select {
   margin: 0;
   padding: 0;
@@ -72,6 +71,11 @@ select {
 }
 input[type="text"] {
   box-sizing: border-box;
+}
+input {
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
 div,
 span,
@@ -120,4 +124,7 @@ header a:last-child {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+.mint-tab-item-label {
+  font-size: 13px;
 }
