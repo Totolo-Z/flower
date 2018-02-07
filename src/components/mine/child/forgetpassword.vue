@@ -119,6 +119,7 @@ export default {
 
 ::-webkit-input-placeholder {
   color: #ccc;
+  padding-left:15px;
 }
 
 ::-moz-placeholder {

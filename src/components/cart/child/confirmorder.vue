@@ -16,8 +16,10 @@
                 </div>
                 <p>
                     <span> 【默认】</span>广东省深圳市宝安区共和工业路</p>
-                    <router-link to="/"></router-link>
-                <i class="iconfont">&#xe60a;</i>
+                <router-link to="/"></router-link>
+                <router-link to="/addressmanagement">
+                    <i class="iconfont">&#xe60a;</i>
+                </router-link>
             </div>
         </div>
         <!-- 商品信息 -->
@@ -53,11 +55,13 @@
         </div>
         <div class="commitOrder">
             <div class="account">
-            <p>合计: <i>￥299.00</i></p>
-            <p>共1件商品</p>
+                <p>合计:
+                    <i>￥299.00</i>
+                </p>
+                <p>共1件商品</p>
             </div>
             <router-link to="/checkstand">
-            <button>提交订单</button>
+                <button>提交订单</button>
             </router-link>
         </div>
     </div>
@@ -203,39 +207,41 @@
         }
     }
 }
-.commitOrder{
+
+.commitOrder {
     width: 100%;
     height: 49px;
     background-color: #fff;
-    border-top:1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
     display: flex;
     justify-content: flex-end;
-     .account{
-         width: 200px;
-         height: 100%;
-         text-align: right;
-         margin-top:5px;
-         p{
+    .account {
+        width: 200px;
+        height: 100%;
+        text-align: right;
+        margin-top: 5px;
+        p {
             font-size: 13px;
             line-height: 20px;
-            color:#333;
-         }
-         i{
-             font-size: 16px;
-             font-weight: 600;
-         }
-    }   
-    button{
+            color: #333;
+        }
+        i {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+    button {
         width: 100px;
         height: 40px;
         background-color: #e94f4d;
         border-radius: 5px;
         line-height: 40px;
-        color:#fff;
+        color: #fff;
         font-size: 17px;
-        margin:5px 10px;
-    }                                             
+        margin: 5px 10px;
+    }
 }
+
 ::-webkit-input-placeholder {
     color: #ccc
 }

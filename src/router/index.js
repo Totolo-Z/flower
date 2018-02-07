@@ -207,6 +207,10 @@ export default new Router({
       path: '/membercenter',
       component: membercenter,
     },
+     {
+      path: '/register',
+      component: register,
+    },
     {
       path: '/setup',
       component: setup,

@@ -1,44 +1,39 @@
 <template>
   <div>
-    <table>
-      <tr>购物篮
-        <i>编辑</i>
-      </tr>
-      <tr>
-        <td>
-          <input type="checkbox"><img src="../../../static/images/dianpu.png"> 小蝶鲜花花坊
-        </td>
-        <td v-for="(item,index) in goodsList" :key="index">
-          <input type="checkbox">
-          <div class="goodsContent">
-            <div class="imgInfo">
-              <img :src="item.imgSrc">
-            </div>
-            <div class="goodsRight">
-              <h4>{{item.title}}</h4>
-              <p>{{item.goodsSize}}</p>
-              <p class="price">￥{{item.price}}</p>
-            </div>
+    <div class="cartHead">
+      购物篮
+      <i>编辑</i>
+    </div>
+    <div class="cartGoodsContent" v-for="(val,index) in shop" :key="index">
+      <van-checkbox class="shopName">&nbsp;{{val.name}}</van-checkbox>
+      <van-checkbox v-for="(item, index2) in val.goodsList" :key="index2">
+        <div class="conten">
+          <div class="imgInfo">
+            <img :src="item.imgSrc">
           </div>
-        </td>
-      </tr>
-      <tr class="tatolMoney">
-        <td>
-          <input type="checkbox"> 全选
-        </td>
-        <td>
-          合计：
-          <span>￥{{ needPay }}</span>
-        </td>
-        <td>
-          <router-link to="/confirmorder">
-            <button>结算
-              <span>{{goodsList.length}}</span>
-            </button>
-          </router-link>
-        </td>
-      </tr>
-    </table>
+          <div class="goodsRight">
+            <h4>{{item.title}}</h4>
+            <p class="price">￥{{item.price}}</p>
+          </div>
+          <van-stepper v-model="item.value" />
+        </div>
+      </van-checkbox>
+    </div>
+    <div class="tatolMoney">
+      <div class="allCheck">
+        <van-checkbox>&nbsp;全选</van-checkbox>
+      </div>
+      <div class="total">
+        合计：
+        <span>￥{{ needPay }}</span>
+      </div>
+      <div class="accounts">
+        <router-link to="/confirmorder">
+          结算
+          <span>({{shop.length}})</span>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,58 +41,86 @@
 export default {
   data() {
     return {
-      goodsList: [],
+      value: 1,
+      result: [],
+      shop: [
+        {
+          name:'小蝶鲜花花坊',
+          goodsList: [],
+        }
+      ],
     };
   },
   mounted() {
-    // console.log(this.$store.getters.goodsList);
-    this.goodsList = this.$store.getters.goodsList;
+    this.shop[0].goodsList = this.$store.getters.goodsList;
   },
   computed: {
     needPay() {
       let sum = 0;
-      this.goodsList.forEach((val) => {
-        sum += Number(val.price);
-      })
+      this.shop.forEach((val) => {
+        val.goodsList.forEach((val2) => {
+          sum += Number(val2.price);
+        })
+      });
       return sum;
     },
+  },
+  shopList() {
+    let sum = 1;
+    this.shop.forEach((val) => {
+      val.goodsList.forEach((val2, index2) => {
+        sum += index2;
+      })
+    });
+    return sum;
   },
 }
 </script>
 
 
 <style lang="less" scoped>
-table {
+.cartHead {
   width: 100%;
-  tr {
+  height: 38px;
+  text-align: center;
+  background-color: #f66;
+  line-height: 38px;
+  font-size: 15px;
+  color: #fff;
+  position: relative;
+  i {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.cartGoodsContent {
+  width: 100%;
+  .shopName {
     width: 100%;
-    display: block;
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
     background-color: #fff;
-    &:nth-child(1) {
-      height: 38px;
-      text-align: center;
-      background-color: #f66;
-      line-height: 38px;
-      font-size: 15px;
-      color: #fff;
+  }
+  .van-checkbox {
+    width: 100%;
+    background-color: #fff;
+    .van-checkbox__input {
       position: relative;
-      i {
-        position: absolute;
-        right: 10px;
-      }
+      left: 5px;
     }
-    td {
-      padding-left: 10px;
-      display: flex;
-      border-bottom: 1px solid #f0f0f0;
-        input {
-          width: 14px;
-          height: 14px;
-        }
-      .goodsContent {
-        width: 92%;
+    .van-checkbox__label {
+      width: 100%;
+      .conten {
+        width: 100%;
         height: 100px;
+        border-top: 1px solid #f0f0f0;
         display: flex;
+        justify-content: space-around;
+        position: relative;
         .imgInfo {
           width: 100px;
           height: 100%;
@@ -108,22 +131,18 @@ table {
             position: absolute;
             top: 50%;
             left: 50%;
-            margin-top: -40px;
             margin-left: -40px;
+            margin-top: -40px;
           }
         }
         .goodsRight {
-          width: 70%;
+          width: 80%;
           height: 100%;
-          background-color: #fff;
-          padding-top: 10px;
           h4 {
             font-size: 13px;
             color: #333;
-          }
-          p {
-            line-height: 30px;
-            color: #999;
+            width: 100%;
+            line-height: 40px;
           }
           .price {
             color: #f00;
@@ -131,76 +150,47 @@ table {
             font-weight: 600;
           }
         }
-      }
-      &:nth-child(1) {
-        width: 100%;
-        display: flex;
-        height: 44px;
-        border-bottom: 1px solid #f0f0f0;
-        display: flex;
-        align-items: center;
-          input {
-            width: 14px;
-            height: 14px;
-          }
-        img {
-          width: 20px;
-          height: 21px;
-          margin: 0 10px;
+        .van-stepper {
+          position: absolute;
+          top: 50px;
+          right: 20px;
         }
       }
     }
   }
-  .tatolMoney {
-    width: 100%;
-    height: 44px;
-    top: 574px;
-    position: fixed;
-    display: flex;
-    border-bottom: 1px solid #f0f0f0;
-    td {
-      width: 100%;
-      height: 100%;
-      font-size: 12px;
-      color: #666;
-      &:nth-child(1) {
-        width: 42%;
-        height: 44px;
-        border-bottom: 1px solid #f0f0f0;
-          input {
-            width: 14px;
-            height: 14px;
-          }
-      }
-      &:nth-child(2) {
-        width: 30%;
-        line-height: 44px;
-        span {
-          color: #f00;
-          font-size: 13px;
-          font-weight: 600;
-        }
-      }
-      &:nth-child(3) {
-        width: 25%;
-        height: 39px;
-        margin: 2px auto;
-        padding: 0;
-        a {
-          width: 100%;
-          height: 100%;
-          button {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            line-height: 39px;
-            font-size: 15px;
-            color: #fff;
-            background-color: #e94f4d;
-            border-radius: 5px;
-          }
-        }
-      }
+}
+
+.tatolMoney {
+  background-color: #fff;
+  width: 100%;
+  height: 44px;
+  top: 573px;
+  position: fixed;
+  display: flex;
+  line-height: 44px;
+  font-size: 12px;
+  color: #666;
+  border-bottom: 1px solid #f0f0f0;
+  .allCheck {
+    width: 16%; // text-align: center;
+  }
+  .total {
+    width: 59%;
+    text-align: right;
+    margin-right: 5px;
+    span {
+      color: #f00;
+    }
+  }
+  .accounts {
+    width: 22%;
+    height: 40px;
+    background-color: #e94f4d;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    a {
+      color: #fff;
     }
   }
 }

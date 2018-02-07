@@ -8,7 +8,7 @@
     </div>
     <!-- 头像 -->
     <div class="icon">
-      <img src="../../../static/images/qx.jpg">
+      <img :src="userIcon.src">
     </div>
     <div class="userName">
       <input type="text" placeholder="请输入用户名/手机号" v-model="user.name">
@@ -60,6 +60,9 @@ export default {
         name: '',
         password: '',
       },
+      userIcon:{
+        src:'../../../static/images/qx.jpg',
+      }
     };
   },
   methods: {
@@ -106,6 +109,8 @@ export default {
   img {
     width: 90px;
     height: 90px;
+    background-color: #999;
+    border:1px solid #999;
     border-radius: 50%;
   }
 }

@@ -15,10 +15,16 @@
                 <span>支付方式</span>
             </div>
             <div class="payInfo">
-                <p><img src="../../../../static/images/weixin_weixuan.png"></p>
-                <p><img src="../../../../static/images/yinlian_weixuan.png"></p>
-                <mt-radio v-model="value" :options="['微信支付','银联支付']">
-                </mt-radio>
+                <div class="wechatPay">
+                    <img src="../../../../static/images/weixin_weixuan.png" v-show="show">
+                    <img src="../../../../static/images/weixin_xuanzhong.png" v-show="!show">
+                    <van-radio name="1" v-model="radio" @click="clickIcon">微信支付</van-radio>
+                </div>
+                <div class="unionPay">
+                    <img src="../../../../static/images/yinlian_weixuan.png" v-show="hide">
+                    <img src="../../../../static/images/yinlian_xuanzhong.png" v-show="!hide">
+                    <van-radio name="2" v-model="radio" @click="clickPay">银联支付</van-radio>
+                </div>
             </div>
         </div>
         <button @click="pay()">支付</button>
@@ -30,12 +36,20 @@ import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
-            value: '微信支付',
+            show: true,  
+            hide: true,
+            radio: '0',
         }
     },
     methods: {
-        pay(){
+        pay() {
             Toast('支付成功');
+        },
+        clickIcon() {
+            this.show = !this.show
+        },
+        clickPay() {
+            this.hide = !this.hide
         }
     }
 }
@@ -109,7 +123,7 @@ export default {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        p {
+        div {
             width: 50%;
             height: 60px;
             text-align: center;
@@ -118,14 +132,8 @@ export default {
                 width: 35px;
                 height: 35px;
             }
-        }
-        .mint-radiolist {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            .mint-cell {
-                display: block;
-                width: 50%;
+            .van-radio{
+                width: 100%;
             }
         }
     }
