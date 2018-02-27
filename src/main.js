@@ -1,6 +1,7 @@
 
 import Vue from 'vue';
 import router from './router';
+import VueResource from 'vue-resource'
 import Vant from 'vant';
 import Mint from 'mint-ui';
 import { getMD5 } from '@/utils/md5';
@@ -10,6 +11,8 @@ import App from './App';
 
 Vue.config.productionTip = false
 
+
+Vue.use(VueResource);
 Vue.use(Vant);
 Vue.use(Mint);
 

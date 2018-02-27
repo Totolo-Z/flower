@@ -2,7 +2,11 @@
   <div>
     <div class="cartHead">
       购物篮
-      <i>编辑</i>
+      <i @click="show=!show">编辑</i>
+    </div>
+    <div class="editChange" v-show="show">
+      <span>转入收藏夹</span>
+      <span>删除</span>
     </div>
     <div class="cartGoodsContent" v-for="(val,index) in shop" :key="index">
       <van-checkbox class="shopName">&nbsp;{{val.name}}</van-checkbox>
@@ -19,6 +23,7 @@
         </div>
       </van-checkbox>
     </div>
+
     <div class="tatolMoney">
       <div class="allCheck">
         <van-checkbox>&nbsp;全选</van-checkbox>
@@ -27,6 +32,7 @@
         合计：
         <span>￥{{ needPay }}</span>
       </div>
+
       <div class="accounts">
         <router-link to="/confirmorder">
           结算
@@ -41,6 +47,7 @@
 export default {
   data() {
     return {
+      show:false,
       value: 1,
       result: [],
       shop: [
@@ -93,7 +100,23 @@ export default {
     right: 10px;
   }
 }
-
+.editChange{
+  width: 100%;
+  height: 30px;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #f0f0f0;
+  span{
+    display: inline-block;
+    height:20px ;
+    border:1px solid #f66;
+    margin:5px 10px;
+    border-radius: 8px;
+    padding: 0 5px;
+    color:#f66;
+  }
+}
 .cartGoodsContent {
   width: 100%;
   .shopName {

@@ -6,13 +6,10 @@
       </router-link>
       <div class="title">会员登录</div>
     </div>
-    <!-- 头像 -->
-    <div class="icon">
-      <img :src="userIcon.src">
-    </div>
+
     <div class="userName">
-      <input type="text" placeholder="请输入用户名/手机号" v-model="user.name">
-      <i class="iconfont" @click="clearMsg('name')">&#xe615;</i>
+      <input type="text" placeholder="请输入用户名/手机号" v-model="user.username">
+      <i class="iconfont" @click="clearMsg('username')">&#xe615;</i>
     </div>
     <div class="password">
       <input type="password" placeholder="请输入密码" v-model="user.password">
@@ -53,22 +50,31 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       user: {
-        name: '',
+        username: '',
         password: '',
       },
-      userIcon:{
-        src:'../../../static/images/qx.jpg',
-      }
     };
+  },
+  mounted() {
+    this.getLoginInfo();
   },
   methods: {
     clearMsg(str) {
       this.user[str] = '';
     },
+    getLoginInfo() {
+      this.$http.get('http://www.huahudie.cc/mobile/webapi/login/actLogin', {
+
+
+      }).then((res)=>{
+        console.log(res)
+      }).catch()
+    }
   }
 }
 </script>
@@ -82,6 +88,7 @@ export default {
   color: #fff;
   position: relative;
   line-height: 38px;
+  margin-bottom: 10px;
   a {
     color: #fff;
     i {
@@ -100,28 +107,13 @@ export default {
   }
 }
 
-.icon {
-  width: 100%;
-  height: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 90px;
-    height: 90px;
-    background-color: #999;
-    border:1px solid #999;
-    border-radius: 50%;
-  }
-}
-
 .userName,
 .password {
   width: 100%;
   height: 44px;
   margin-bottom: 10px;
   position: relative;
-  border:none;
+  border: none;
   background-color: #fff;
   input {
     width: 98%;

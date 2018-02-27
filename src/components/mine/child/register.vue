@@ -16,15 +16,15 @@
                     <input type="text" placeholder="请输入验证码" v-model="user.yanzheng" @keyup="numInput('yanzheng')" :maxlength="6">
                     <button @click="sendYanzheng" v-text="buttonMsg" :disabled="buttonDisabled"></button>
                 </li>
-                <li><input type="password" placeholder="请输入密码" v-model="user.password">
+                <li><input type="password" placeholder="请输入密码" v-model="user.password" maxlength="12">
                     <i class="iconfont">&#xe6c7;</i>
                 </li>
                 <li v-show="canSee">
-                    <input type="password" placeholder="请再次确认密码" v-model="user.password2">
+                    <input type="password" placeholder="请再次确认密码" v-model="user.password2" maxlength="12">
                     <i class="iconfont" @click="canSee=false">&#xe666;</i>
                 </li>
                 <li v-show="!canSee">
-                    <input type="text" placeholder="请再次确认密码" v-model="user.password2" @blur="yanzheng">
+                    <input type="text" placeholder="请再次确认密码" v-model="user.password2" @blur="yanzheng" maxlength="12">
                     <i class="iconfont" @click="canSee=true">&#xe6c7;</i>
                 </li>
             </ul>
@@ -42,7 +42,7 @@
 
 <script>
 import { numberLimit } from '@/utils/inputLimit';
-
+import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
@@ -58,6 +58,9 @@ export default {
             // gender: 1,
         };
     },
+    mounted(){
+        this.sendYanzheng();
+    },
     methods: {
         clearMsg(phone) {
             this.user.phone = '';
@@ -69,9 +72,23 @@ export default {
         },
         numInput(str) { // 整数限制
             this.user[str] = numberLimit(this.user[str]);
+            
         },
         sendYanzheng() {
-            let time = 60;
+            var reg=11&& /^((13|14|15|17|18) [0-9] {1}\d{8})$/ //手机验证正则
+            var phoneNum=this.user.phone;
+            if(!phoneNum){ //未输入手机号
+                Toast('请输入手机号');
+                return;
+            }
+            if(!reg.test(phoneNum)){//手机号不合法
+                Toast('您输入的手机号不合法，请重新输入');
+            }
+            var url='http://www.huahudie.cc/mobile/webapi/sendSms/sendMobileCode';
+            this.$http.get(url,{mobile_phone:phoneNum}).then((res)=>{
+                console.log(res.body)
+            }).catch();
+            let time = 10;
             this.buttonDisabled = true;
             const timer = setInterval(() => {
                 time -= 1;
@@ -81,16 +98,7 @@ export default {
                 clearInterval(timer);
                 this.buttonMsg = '发送验证码';
                 this.buttonDisabled = false;
-            }, 60000);
-        },
-    },
-    filters: {
-        SexState(id) {
-            if (id === 0) {
-                return '男';
-            } else if (id === 1) {
-                return '女';
-            }
+            }, 10000);
         },
     },
 }
@@ -131,6 +139,7 @@ export default {
                 width: 100%;
                 height: 44px;
                 line-height: 44px;
+                margin-left: 10px;
             }
             i {
                 position: absolute;
@@ -162,7 +171,6 @@ export default {
 
 ::-webkit-input-placeholder {
     color: #ccc;
-    padding-left: 15px;
 }
 
 ::-moz-placeholder {
