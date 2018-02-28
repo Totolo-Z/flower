@@ -4,9 +4,7 @@
             <ul>
                 <li>
                     <span>头像</span>
-                    <div class="demo-avatar">
-                        <Avatar icon="person" size="large" />
-                    </div>
+                    
                     <i class="iconfont">&#xe60a;</i>
                 </li>
                 <li>

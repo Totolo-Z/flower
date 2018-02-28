@@ -9,11 +9,11 @@
         <div class="userRegister">
             <ul>
                 <li>
-                    <input type="text" placeholder="请输入手机号" v-model="user.phone" @keyup="numInput('phone')">
+                    <input type="number" placeholder="请输入手机号" v-model="user.phone" @blur="checkPhone">
                     <i class="iconfont" @click="clearMsg(user.phone)">&#xe615;</i>
                 </li>
                 <li>
-                    <input type="text" placeholder="请输入验证码" v-model="user.yanzheng" @keyup="numInput('yanzheng')" :maxlength="6">
+                    <input type="number" placeholder="请输入验证码" v-model="user.yanzheng" :maxlength="6">
                     <button @click="sendYanzheng" v-text="buttonMsg" :disabled="buttonDisabled"></button>
                 </li>
                 <li><input type="password" placeholder="请输入密码" v-model="user.password" maxlength="12">
@@ -30,7 +30,7 @@
             </ul>
         </div>
         <div class="register">
-            注册
+            <input type="submit" value="注册" class="submit" @click="submit()">
         </div>
         <div class="tips">
             <p>
@@ -58,7 +58,7 @@ export default {
             // gender: 1,
         };
     },
-    mounted(){
+    mounted() {
         this.sendYanzheng();
     },
     methods: {
@@ -70,29 +70,36 @@ export default {
                 alert('密码不一致');
             }
         },
-        numInput(str) { // 整数限制
-            this.user[str] = numberLimit(this.user[str]);
-            
+        checkPhone() {
+            var phoneNum=this.user.phone;
+            const url = 'http://www.huahudie.cc/mobile/webapi/register/checkMobileExist';
+            this.$http.post(url, { mobile_phone: phoneNum }, { emulateJSON: true })
+                .then((res) => {
+                    
+                    console.log(res.body)
+                })
         },
         sendYanzheng() {
-            var reg=11&& /^((13|14|15|17|18) [0-9] {1}\d{8})$/ //手机验证正则
-            var phoneNum=this.user.phone;
-            if(!phoneNum){ //未输入手机号
+            var reg = /^((13|14|15|17|18)[0-9]\d{8})$/ //手机验证正则
+            var phoneNum = this.user.phone;
+            if (!phoneNum) { //未输入手机号
                 Toast('请输入手机号');
                 return;
             }
-            if(!reg.test(phoneNum)){//手机号不合法
+            if (!reg.test(phoneNum)) {//手机号不合法
                 Toast('您输入的手机号不合法，请重新输入');
+                return;
             }
-            var url='http://www.huahudie.cc/mobile/webapi/sendSms/sendMobileCode';
-            this.$http.get(url,{mobile_phone:phoneNum}).then((res)=>{
-                console.log(res.body)
+            const url = 'http://www.huahudie.cc/mobile/webapi/sendSms/sendMobileCode';
+            this.$http.post(url, { mobile_phone: phoneNum }, { emulateJSON: true }).then((res) => {
+               
+                // console.log(res.body)
             }).catch();
             let time = 10;
             this.buttonDisabled = true;
             const timer = setInterval(() => {
                 time -= 1;
-                this.buttonMsg = time;
+                this.buttonMsg = time +'s后重新发送';
             }, 1000);
             setTimeout(() => {
                 clearInterval(timer);
@@ -100,6 +107,16 @@ export default {
                 this.buttonDisabled = false;
             }, 10000);
         },
+        submit(){
+            const url='http://www.huahudie.cc/mobile/webapi/register/actRegister';
+            this.$http.post(url,{username:this.user.phone,password:this.user.password},{emulateJSON:true}).then((res)=>{
+                 if(res.body.error===0){
+                     Toast('注册成功');
+                 }else{
+                     Toast('注册失败');
+                 }
+            })
+        }
     },
 }
 </script>
@@ -136,7 +153,7 @@ export default {
             margin-bottom: 10px;
             position: relative;
             input {
-                width: 100%;
+                width: 97%;
                 height: 44px;
                 line-height: 44px;
                 margin-left: 10px;
@@ -188,10 +205,13 @@ export default {
     border-radius: 10px;
     text-align: center;
     line-height: 40px;
-    color: #fff;
     font-size: 17px;
     background-color: #e94f4d;
     margin-left: 18px;
+    input{
+        width: 100%;
+        color: #fff;
+    }
 }
 
 .tips {
