@@ -17,16 +17,17 @@
                     <button @click="sendYanzheng" v-text="buttonMsg" :disabled="buttonDisabled"></button>
                 </li>
                 <li><input type="password" placeholder="请输入密码" v-model="user.password" maxlength="12">
-                    <i class="iconfont">&#xe6c7;</i>
+                    <i class="iconfont">&#xe666;</i>
                 </li>
                 <li v-show="canSee">
-                    <input type="password" placeholder="请再次确认密码" v-model="user.password2" maxlength="12">
-                    <i class="iconfont" @click="canSee=false">&#xe666;</i>
-                </li>
-                <li v-show="!canSee">
                     <input type="text" placeholder="请再次确认密码" v-model="user.password2" @blur="yanzheng" maxlength="12">
                     <i class="iconfont" @click="canSee=true">&#xe6c7;</i>
                 </li>
+                <li v-show="!canSee">
+                    <input type="password" placeholder="请再次确认密码" v-model="user.password2" maxlength="12">
+                    <i class="iconfont" @click="canSee=false">&#xe666;</i>
+                </li>
+                
             </ul>
         </div>
         <div class="register">
@@ -55,11 +56,9 @@ export default {
                 password: '',
                 password2: '',
             },
-            // gender: 1,
         };
     },
     mounted() {
-        this.sendYanzheng();
     },
     methods: {
         clearMsg(phone) {
@@ -71,29 +70,38 @@ export default {
             }
         },
         checkPhone() {
-            var phoneNum=this.user.phone;
-            const url = 'http://www.huahudie.cc/mobile/webapi/register/checkMobileExist';
-            this.$http.post(url, { mobile_phone: phoneNum }, { emulateJSON: true })
-                .then((res) => {
-                    
-                    console.log(res.body)
-                })
-        },
-        sendYanzheng() {
             var reg = /^((13|14|15|17|18)[0-9]\d{8})$/ //手机验证正则
             var phoneNum = this.user.phone;
             if (!phoneNum) { //未输入手机号
                 Toast('请输入手机号');
                 return;
+            }else if (!reg.test(phoneNum)) {//手机号不合法
+                Toast('您输入的手机号不合法，请重新输入');
+                return;
             }
-            if (!reg.test(phoneNum)) {//手机号不合法
+            const url = 'http://www.huahudie.cc/mobile/webapi/register/checkMobileExist';
+            this.$http.post(url, { mobile_phone: phoneNum }, { emulateJSON: true })
+                .then((res) => {
+                    if ( res.body == true ){
+                        Toast('手机号码已存在');
+                    }else{
+                        Toast('该手机号可以注册');
+                    }
+                }).catch()
+        },
+        sendYanzheng() {  
+            var reg = /^((13|14|15|17|18)[0-9]\d{8})$/ //手机验证正则
+             var phoneNum = this.user.phone;
+            if (!phoneNum) { //未输入手机号
+                Toast('请输入手机号');
+                return;
+            }else if (!reg.test(phoneNum)) {//手机号不合法
                 Toast('您输入的手机号不合法，请重新输入');
                 return;
             }
             const url = 'http://www.huahudie.cc/mobile/webapi/sendSms/sendMobileCode';
-            this.$http.post(url, { mobile_phone: phoneNum }, { emulateJSON: true }).then((res) => {
-               
-                // console.log(res.body)
+            this.$http.post(url, { mobile_phone: this.user.phone }, { emulateJSON: true }).then((res) => {
+            
             }).catch();
             let time = 10;
             this.buttonDisabled = true;
@@ -109,12 +117,13 @@ export default {
         },
         submit(){
             const url='http://www.huahudie.cc/mobile/webapi/register/actRegister';
-            this.$http.post(url,{username:this.user.phone,password:this.user.password},{emulateJSON:true}).then((res)=>{
-                 if(res.body.error===0){
-                     Toast('注册成功');
-                 }else{
-                     Toast('注册失败');
-                 }
+            this.$http.post(url,{
+                mobile_phone:this.user.phone,
+                mobile_code:this.user.yanzheng,
+                password:this.user.password
+                },{emulateJSON:true}).then((res)=>{
+                     Toast(res.body.content);
+                     console.log(res)
             })
         }
     },
@@ -168,9 +177,6 @@ export default {
             &:nth-child(1)>i {
                 font-size: 16px;
                 font-weight: 600;
-            }
-            &:nth-child(3)>i {
-                color: #ff6666;
             }
             &:nth-child(2)>button {
                 position: absolute;

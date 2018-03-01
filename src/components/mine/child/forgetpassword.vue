@@ -14,7 +14,7 @@
       <input type="number" name="quantity" max="6" placeholder="请输入验证码" v-model="user.yanzheng">
       <button class="securityCode" @click="sendSecurityCode" v-text="buttonMsg" :disabled='buttonDisabled'></button>
     </div>
-    <button class="nextStep">
+    <button class="nextStep" @click='nextstep'>
       <router-link to="/findpassword">
         下一步
       </router-link>
@@ -38,6 +38,7 @@ export default {
     this.user.phone='';
    },
    sendSecurityCode(){
+     var reg=/^((13|14|15|17|18)[0-9]\d{8})$/
      let time=60;
      this.buttonDisabled=true;
      const timer=setInterval(()=>{

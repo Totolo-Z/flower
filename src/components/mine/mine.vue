@@ -17,9 +17,7 @@
     </div>
     <!-- 登录 -->
     <button class="login">
-      <router-link to="/membercenter">
-        登录
-      </router-link>
+        <input type="submit" value="登录" class="actlogin" @click="actlogin()">
     </button>
     <div class="loginRegister">
       <div class="autoLogin">
@@ -50,7 +48,7 @@
 </template>
 
 <script>
-
+import { Toast } from 'mint-ui';
 export default {
   data() {
     return {
@@ -61,18 +59,22 @@ export default {
     };
   },
   mounted() {
-    this.getLoginInfo();
+    
   },
   methods: {
     clearMsg(str) {
       this.user[str] = '';
     },
-    getLoginInfo() {
-      this.$http.get('http://www.huahudie.cc/mobile/webapi/login/actLogin', {
-
-
-      }).then((res)=>{
-        console.log(res)
+    actlogin() {
+      this.$http.post('http://www.huahudie.cc/mobile/webapi/login/actLogin', {
+          username:'user.username',
+          password:'user.password'
+      },{emulateJSON:true}).then((res)=>{
+        if(res.body.error==0){
+          router.push('/membercenter')
+        }else{
+          Toast('用户名或密码错误');
+        }
       }).catch()
     }
   }
@@ -159,8 +161,9 @@ export default {
   font-size: 17px;
   background-color: #e94f4d;
   margin-left: 18px;
-  a {
-    color: #fff;
+ input {
+   width: 100%;
+   color: #fff;
   }
 }
 

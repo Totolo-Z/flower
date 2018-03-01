@@ -125,9 +125,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.mint-tab-item-label {
-  font-size: 13px;
-}
-.van-checkbox__input {
-  left: 8px;
-}

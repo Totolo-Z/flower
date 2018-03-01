@@ -33,7 +33,8 @@ export default {
   methods:{
     clearMsg(str){
         this.user[str]='';
-    }
+    },
+    
   }
 }
 </script>

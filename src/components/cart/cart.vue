@@ -195,10 +195,10 @@ export default {
   color: #666;
   border-bottom: 1px solid #f0f0f0;
   .allCheck {
-    width: 16%; // text-align: center;
+    width: 20%; // text-align: center;
   }
   .total {
-    width: 59%;
+    width: 53%;
     text-align: right;
     margin-right: 5px;
     span {
