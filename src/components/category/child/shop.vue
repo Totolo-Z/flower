@@ -36,35 +36,35 @@ export default {
                     imgSrc:'../../../../static/images/m2.jpg',
                     title:'小蝶鲜花花坊',
                     name:'小蝶儿',
-                    star:'★ ★ ★ ★',
+                    star:'★★★★',
                     far:'36.6',
                 },
                 {
                     imgSrc:'../../../../static/images/m3.jpg',
                     title:'小蝶鲜花花坊',
                     name:'小蝶儿',
-                    star:'★ ★ ★ ★',
+                    star:'★★★★',
                     far:'36.6',
                 },
                 {
                     imgSrc:'../../../../static/images/m4.jpg',
                     title:'小蝶鲜花花坊',
                     name:'小蝶儿',
-                    star:'★ ★ ★ ★',
+                    star:'★★★★',
                     far:'36.6',
                 },
                 {
                     imgSrc:'../../../../static/images/m5.jpg',
                     title:'小蝶鲜花花坊',
                     name:'小蝶儿',
-                    star:'★ ★ ★ ★',
+                    star:'★★★★',
                     far:'36.6',
                 },
                 {
                     imgSrc:'../../../../static/images/m6.jpg',
                     title:'小蝶鲜花花坊',
                     name:'小蝶儿',
-                    star:'★ ★ ★ ★',
+                    star:'★★★★',
                     far:'36.6',
                 },
             ]
@@ -75,16 +75,16 @@ export default {
 
 <style lang="less" scoped>
 .banner {
-    padding-right: 15px;
-    height: 60px;
+    padding-right: .4rem;
+    height: 1.6rem;
     img {
         width: 100%;
         height: 100%;
     }
 }
 .shop {
-    margin-top:5px;
-    margin-bottom: 50px;
+    margin-top:.133333rem;
+    margin-bottom: 1.333333rem;
     width: 100%;
     background-color: #fff;
     ul {
@@ -92,65 +92,50 @@ export default {
         li {
             display: flex;
             width: 100%;
-            height: 100px;
+            height: 2.666667rem;
             border-bottom: 1px solid #f0f0f0;
             .icon {
-                width: 20%;
+                width: 22%;
                 height: 100%;
                 position: relative;
                 img {
-                    width: 60px;
-                    height: 60px;
+                    width: 1.6rem;
+                    height: 1.6rem;
                     border-radius: 50%;
-                    position: absolute;
-                    top:50%; 
-                    left:50%;
-                    margin-top:-30px;
-                    margin-left: -30px;
+                   transform: translateY(.466667rem);
                 }
             }
             .item {
-                width: 50.33%;
+                width: 50%;
                 height: 100%;
-                padding-left: 5px;
+                padding-left:.133333rem;
+                font-size: .32rem;
+                line-height: .4rem;
+                color: #999;
                 .title{     
-                    width: 100%;
-                    font-size: 15px;
-                    line-height: 25px;
+                    font-size: .4rem;
+                    line-height: .666667rem;
+                    color:#333;
                 }
                 .name{
-                    width: 100%;
-                    line-height: 16px;
-                    font-size: 12px;
                     color: #666;
                 }
                 .grade{
-                    color: #999;
-                    line-height: 16px;
-                    font-size: 12px;
                     .star{
                         color: #ffa200;
-                        font-size: 14px;
+                        font-size: .373333rem;
                     }
                 }
                .safe{
-                   color: #999;
-                   font-size: 12px;
-                   line-height: 16px;                
                    img{
-                        width: 65px;
-                        height: 15px; 
+                        width: 1.733333rem;
+                        height: .4rem; 
                         vertical-align: middle;
                    }
                } 
-               .distance{
-                   line-height: 16px;
-                   font-size: 12px;
-                   color: #999;
-               }
             }
             .say {
-                width: 30%;
+                width: 28%;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
@@ -158,12 +143,12 @@ export default {
                 align-items: center;
                 img {
                     &:first-child {
-                        width: 26px;
-                        height: 30px;
+                        width: .693333rem;
+                        height: .8rem;
                     }
                     &:last-child {
-                        width: 30px;
-                        height: 30px;
+                        width: .8rem;
+                        height: .8rem;
                     }
                 }
             }

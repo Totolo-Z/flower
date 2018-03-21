@@ -4,7 +4,7 @@
             <router-link to="/index">
                 <i class="iconfont back">&#xe50d;</i>
             </router-link>
-            <input type="search" placeholder="搜索喜欢的宝贝">
+            <input type="search" placeholder="搜索喜欢的宝贝" class="custom">
             <i class="iconfont glass">&#xe607;</i>
         </div>
         <div class="hot-search">
@@ -52,9 +52,9 @@
 <style lang="less" scoped>
 .search {
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     color: #fff;
-    line-height: 38px;
+    line-height: 1.013333rem;
     position: relative;
     background-color: #ff6666;
     a {
@@ -62,30 +62,44 @@
         color:#fff;
         .back {
             position: absolute;
-            left: 10px;
-            font-size: 20px;
+            left: .266667rem;
+            font-size: .533333rem;
         }
     }
 
     input {
         width: 80%;
-        height: 100%;
-        line-height: 38px;
+        height: 85%;
+        line-height: 1.013333rem;
         text-align: left;
-        font-size: 14px;
-        margin-left:35px;
+        font-size: .373333rem;
+        margin-left:.933333rem;
         background-color: #ff6666;
+        caret-color:auto;
+        
+    }
+    input.custom{
+        caret-color:#fff;
     }
     .glass {
         position: absolute;
-        right: 13px;
+        right: .346667rem;
         top: 0px;
-        font-size: 13px;
+        font-size: .346667rem;
     }
 }
 
+
+input::-webkit-search-cancel-button{
+  display: none;
+  color:#fff;
+}
+
+input[type=search]::-ms-clear{
+  display: none;
+}
 ::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.5)
+    color: rgba(255, 255, 255, 0.5);
 }
 
 ::-moz-placeholder {
@@ -98,12 +112,12 @@
 
 .hot-search {
     width: 100%;
-    padding-left: 10px;
+    padding-left: .266667rem;
     .hot {
         width: 100%;
-        height: 30px;
-        font-size: 12px;
-        line-height: 30px;
+        height: .8rem;
+        font-size: .32rem;
+        line-height: .8rem;
         color: #b0b0b0;
     }
     .hot-search-tags {
@@ -111,9 +125,9 @@
         span {
             display: block;
             max-width: 100%;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            border-radius: 10px;
+            margin-right: .266667rem;
+            margin-bottom: .266667rem;
+            border-radius: .266667rem;
             float: left;
             border: 1px solid #e6e6e6;
             background-color: #f5f5f5;
@@ -126,15 +140,16 @@
             }
             a {
                 display: block;
-                height: 23px;
-                padding: 0 13px;
+                height: .613333rem;
+                padding: 0 .346667rem;
                 color: #000;
-                line-height: 23px;
+                line-height: .613333rem;
                 text-align: center;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 i {
+                    font-size: .346667rem;
                     display: block;
                     overflow: hidden;
                     white-space: nowrap;

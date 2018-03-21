@@ -15,14 +15,16 @@
                         <img :src="val.imgSrc">
                     </div>
                     <div class="item">
-                        <h3 class="title">{{val.title}}</h3>
+                        <p class="title">{{val.title}}</p>
                         <p class="name">会员名字: {{val.name}}</p>
                         <p class="grade">信誉等级:<span class="star"> {{val.star}}</span></p>
                         <p class="safe">安全认证: <img src="../../../../static/images/pinpaidianjia1.png"></p>
                         <p class="distance"><i class="iconfont">&#xe68b;</i> 距离: <span class="far">{{val.far}}公里</span></p>
                     </div>
                     <div class="say">
+                        <router-link :to="/inshop/+index">
                         <img src="../../../../static/images/dianpu.png">
+                        </router-link>
                         <img src="../../../../static/images/kefu.png">
                     </div>
                 </li>
@@ -41,13 +43,10 @@ export default {
                 {
                     imgSrc: '../../../../static/images/s2.jpg'
                 },
-                {
-                    imgSrc: '../../../../static/images/p3.jpg'
-                }
             ],
             shop:[
                 {
-                    imgSrc:'../../../../static/images/m2.jpg',
+                    imgSrc:'../../../../static/images/qx.jpg',
                     title:'小蝶鲜花花坊',
                     name:'小蝶儿',
                     star:'★ ★ ★ ★',
@@ -90,16 +89,16 @@ export default {
 <style lang="less" scoped>
 .mint-swipe {
     width: 100%;
-    height: 60px;
+    height: 1.6rem;
     img {
         width: 100%;
-        height: 60px;
+        height: 1.6rem;
     }
 }
 
 #shoplist {
-    margin-top:5px;
-    margin-bottom: 50px;
+    margin-top:.133333rem;
+    margin-bottom: 1.333333rem;
     width: 100%;
     background-color: #fff;
     ul {
@@ -107,15 +106,15 @@ export default {
         li {
             display: flex;
             width: 100%;
-            height: 120px;
+            height: 3.066667rem;
             border-bottom: 1px solid #f0f0f0;
             .icon {
                 width: 30%;
                 height: 100%;
                 position: relative;
                 img {
-                    width: 90px;
-                    height: 90px;
+                    width: 2.4rem;
+                    height: 2.4rem;
                     border-radius: 50%;
                     position: absolute;
                     top:50%;
@@ -127,39 +126,38 @@ export default {
             .item {
                 width: 40.33%;
                 height: 100%;
+                font-size: .32rem;
+                height: .54rem;
+                line-height: .54rem;
+                padding-left: .2rem;
                 .title{     
                     width: 100%;
-                    font-size: 15px;
-                    height: 35px;
-                    line-height: 35px;
+                    font-size: .4rem;
+                    height: .8rem;
+                    line-height: .8rem;
                 }
                 .name{
                     width: 100%;
-                    height: 18px;
-                    line-height: 18px;
+                    
                     color: #666666;
                 }
                 .grade{
                     color: #999999;
-                    height: 18px;
-                    line-height: 18px;
                     .star{
                         color: #ffa200;
-                        font-size: 13px;
+                        font-size: .32rem;
                     }
                 }
                .safe{
-                   color: #999999;
-                   height: 18px;
-                   line-height: 18px;                
+                   color: #999999;            
                    img{
-                        width: 65px;
-                        height: 18px; 
+                        width: 1.733333rem;
+                        height: .45rem; 
                         vertical-align: middle;
                    }
                } 
                .distance{
-                   line-height: 18px;
+                   font-size: .266667rem;
                    color: #999999;
                }
             }
@@ -172,12 +170,12 @@ export default {
                 align-items: center;
                 img {
                     &:first-child {
-                        width: 26px;
-                        height: 30px;
+                        width: .613333rem;
+                        height: .693333rem;
                     }
                     &:last-child {
-                        width: 30px;
-                        height: 30px;
+                        width: .693333rem;
+                        height: .706667rem;
                     }
                 }
             }

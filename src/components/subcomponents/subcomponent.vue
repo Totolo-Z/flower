@@ -17,10 +17,10 @@
     width: 100%;
     .mint-swipe {
         width: 100%;
-        height: 157px;
+        height: 4.186667rem;
         img {
             width: 100%;
-            height: 157px;
+            height: 4.186667rem;
         }
     }
 }

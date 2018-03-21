@@ -32,7 +32,7 @@
         </li>
 
         <li>
-          <router-link to="/mine">
+            <router-link to="/mine">
             <img src="../static/images/my.png">
             <p>我的</p>
           </router-link>
@@ -53,11 +53,12 @@ export default {
 <style lang="less" scoped>
 .navBar {
   width: 100%;
-  height: 0.5rem;
+  height: 1.333333rem;
   position: absolute;
   bottom: 0px;
   background-color: #fff;
   position: fixed;
+  border-top:1px solid #f0f0f0;
   ul {
     width: 100%;
     height: 100%;
@@ -67,15 +68,21 @@ export default {
       width: 20%;
       height: 100%;
       text-align: center;
-      padding-top: 0.02rem;
+      padding-top:.066667rem;
+      font-size: .32rem;
       a {
         display: block;
         &:hover{
           color:#333;
         }
         img {
-          width: 0.25rem;
-          height: 0.25rem;
+          width: .666667rem;
+          height:.666667rem;
+          
+        }
+        p{
+          line-height: 0px;
+          
         }
       }
     }

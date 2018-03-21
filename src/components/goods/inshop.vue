@@ -19,7 +19,6 @@
       <mt-tab-item id="1">全部商品</mt-tab-item>
       <mt-tab-item id="2">基本资料</mt-tab-item>
       <mt-tab-item id="3">店铺等级</mt-tab-item>
-      <mt-tab-item id="4">店铺海报</mt-tab-item>
     </mt-navbar>
 
     <mt-tab-container v-model="selected">
@@ -82,9 +81,6 @@
             <div slot="end" class="progress">80%</div>
           </mt-progress>
         </div>
-      </mt-tab-container-item>
-      <mt-tab-container-item id="4">
-        hahahah
       </mt-tab-container-item>
     </mt-tab-container>
   </div>
@@ -169,7 +165,7 @@ export default {
 <style lang="less" scoped>
 .shopinfos {
   width: 100%;
-  height: 150px;
+  height: 4rem;
   background-color: rgba(249, 204, 194, 0.4);
   display: flex;
   align-items: center;
@@ -180,8 +176,8 @@ export default {
     justify-content: center;
     align-items: center;
     img {
-      width: 90px;
-      height: 90px;
+      width: 2.4rem;
+      height: 2.4rem;
       border-radius: 50%;
     }
   }
@@ -189,21 +185,21 @@ export default {
     width: 70%;
     height: 80%;
     .name {
-      font-size: 15px;
-      line-height: 30px;
+      font-size: .4rem;
+      line-height: .8rem;
     }
     .member,
     .order,
     .overbooking,
     .distance {
       width: 100%;
-      font-size: 12px;
-      line-height: 20px;
+      font-size: .32rem;
+      line-height: .6rem;
       color: #666;
     }
     .distance {
       i {
-        font-size: 12px;
+        font-size: .32rem;
       }
     }
   }
@@ -215,8 +211,8 @@ export default {
 
 .mint-navbar {
   width: 100%;
-  height: 44px;
-  line-height: 44px;
+  height: 1.173333rem;
+  line-height: 1.173333rem;
   background-color: #fff;
   border-bottom: 1px solid #f0f0f0;
   .mint-tab-item {
@@ -224,10 +220,12 @@ export default {
     color: #999;
   }
 }
+
 .mint-tab-item.is-selected {
   color: #f66;
-  border-bottom:2px solid #f66;
+  border-bottom: 2px solid #f66;
   margin-bottom: 0px;
+
 }
 
 .shopShow {
@@ -237,26 +235,26 @@ export default {
   align-content: flex-start;
   li {
     width: 33.33%;
-    height: 150px;
+    height: 4rem;
     text-align: center;
-    padding-top: 6px;
+    padding-top: .16rem;
     border-bottom: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
     img {
-      width: 105px;
-      height: 100px;
+      width: 2.8rem;
+      height: 2.666667rem;
     }
     .shopName {
-      padding: 0 15px;
-      font-size: 12px;
-      line-height: 16px;
+      padding: 0 .4rem;
+      font-size: .32rem;
+      line-height: .426667rem;
       color: #333;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     .price {
-      font-size: 14px;
+      font-size: .373333rem;
       color: #ff0000;
     }
   }
@@ -265,45 +263,41 @@ export default {
 .basicinformation {
   width: 100%;
   height: 100%;
-  padding-left: 10px;
+  padding-left: .266667rem;
   li {
-    height: 50px;
-    line-height: 50px;
-    font-size: 13px;
+    height: 1.333333rem;
+    line-height: 1.333333rem;
+    font-size: .346667rem;
     color: #666;
     span {
-      font-size: 12px;
+      font-size: .32rem;
       color: #999;
     }
     &:nth-child(3) {
       img {
-        width: 85px;
-        height: 15px;
+        width: 2.266667rem;
+        height: .4rem;
         vertical-align: middle;
         &:nth-child(1),
         &:nth-child(2) {
-          width: 65px;
-          height: 15px;
+          width: 1.733333rem;
+          height: .4rem;
         }
       }
     }
     &:nth-child(4) {
       span {
-        font-size: 18px;
+        font-size: .48rem;
         color: #ffa200;
       }
     }
 
     &:last-child {
-      //  overflow: hidden;
-      //   text-overflow: ellipsis;
-      //   white-space: nowrap;    
-      line-height: 0px;
-      height: 80px;
+      height: 2.133333rem;
       .shopAdd {
-        font-size: 13px;
+        font-size: .346667rem;
         color: #666;
-        line-height: 50px;
+        line-height: 1.333333rem;
       }
     }
   }
@@ -311,17 +305,17 @@ export default {
 
 .lever {
   width: 100%;
-  height: 900px;
+  height: 11rem;
   .storelevel {
     width: 100%;
-    height: 60px;
-    padding-left: 10px;
+    height: 1.6rem;
+    padding-left: .266667rem;
     p {
-      line-height: 60px;
-      font-size: 13px;
+      line-height: 1.6rem;
+      font-size: .346667rem;
       color: #666;
       span {
-        font-size: 14px;
+        font-size: .373333rem;
         color: #ffa200;
       }
     }
@@ -329,20 +323,13 @@ export default {
 
   .mt-progress {
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: .853333rem;
     padding-right: 50%;
-    padding-left: 10px;
+    padding-left: .266667rem;
     color: #666;
+    font-size: .32rem;
     .title {
-      font-size: 12px;
-      margin-right: 10px;
-    }
-    .mt-progress-runway {
-      height: 10px;
-      .mt-progress-progress {
-        height: 10px;
-        background-color: #ff6666;
-      }
+      margin-right: .266667rem;
     }
   }
 }

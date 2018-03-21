@@ -6,41 +6,7 @@
             <img src="../../../../static/images/laba.png">
             <marquee direction="left" scrolldelay='20'>2018年情人节花束即日起可提前预定了！</marquee>
         </div>
-        <div class="ad" @click="goCarousel(0)">
-            <img src="../../../../static/images/p4.png">
-        </div>
-        <!-- 分类 -->
-        <div class="category">
-            <ul class="category_t">
-                <li>
-                    <router-link to="/inhand">
-                        <img src="../../../../static/images/huasu_shouye.png">
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="/cakelist">
-                        <img src="../../../../static/images/dangao_shouye.png">
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="/find">
-                        <img src="../../../../static/images/gonglue_shouye.png">
-                    </router-link>
-                </li>
-            </ul>
-            <ul class="category_d">
-                <li>
-                    <router-link to="/shoplist">
-                        <img src="../../../../static/images/pinpai_shouye.png">
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="/packlist">
-                        <img src="../../../../static/images/huacai_shouye.png">
-                    </router-link>
-                </li>
-            </ul>
-        </div>
+       
         <!-- 精品 -->
         <div class="products">
             <h3>节日精品</h3>
@@ -95,11 +61,6 @@
                     </div>
                 </ul>
             </div>
-        </div>
-        <div class="shop">
-            <a href="http://www.huahudie.cc/apply_index.php">
-                <mt-button type="danger" size='large'>我也要开店</mt-button>
-            </a>
         </div>
         <div class="footer">
             <div class="user">
@@ -175,14 +136,14 @@ export default {
             presell: [
                 {
                     imgSrc: '../../../../static/images/banner (2).jpg',
-                    title: '双十二火爆预售',
-                    description: '全场超低价，快来抢吧！',
+                    title: '包月鲜花',
+                    description: '春暖花开，美好如约而至！',
                     price: 42,
                 },
                 {
                     imgSrc: '../../../../static/images/banner (1).jpg',
-                    title: '节日有不同，感恩无国界',
-                    description: '今天虽是外国节日，但遇见你是我最大的财富',
+                    title: '单品鲜花',
+                    description: '一花一意，纯简之美',
                     price: 250,
                 }
             ],
@@ -274,7 +235,7 @@ export default {
                 },
                 {
                     id: 3,
-                    imgSrc: '../../../../static/images/n3s.jpg',
+                    imgSrc: '../../../../static/images/n3.jpg',
                     sales: '62',
                     title: '巴拉拉小魔仙',
                     price: 55,
@@ -297,158 +258,91 @@ export default {
 
 
 <style lang="less" scoped>
-.mint-swipe {
-    width: 100%;
-    height: 157px;
-    img {
-        width: 100%;
-        height: 157px;
-    }
-}
 
 .annunciate {
     width: 100%;
-    height: 28px;
-    line-height: 28px;
+    height:.746667rem;
+    line-height: .746667rem;
     background-color: #ffffff;
-    margin-bottom: 5px;
+    margin-bottom: .066667rem;
     img {
         width: 3%;
-        height: 13px;
+        height: .28rem;
         vertical-align: middle;
-        margin-left: 10px;
+        margin-left: .266667rem;
     }
     marquee {
         width: 94%;
         float: right;
-        font-size: 12px;
+        font-size: .266667rem ;
         font-weight: 500;
         color: #ff6666;
-        line-height: 28px;
-    }
-}
-
-.ad {
-    border-bottom: 10px;
-    img {
-        width: 100%;
-        height: 157px;
-    }
-}
-
-.category {
-    width: 100%;
-    height: 194px;
-    margin-top: 5px;
-    background-color: #ffffff;
-    .category_t {
-        width: 100%;
-        height: 106px;
-        display: flex;
-        justify-content: flex-start;
-        align-content: space-between;
-        li {
-            width: 100%;
-            border-right: 1px solid #f0f0f0;
-            &:nth-child(1),
-            &:nth-child(2),
-            &:nth-child(3) {
-                img {
-                    width: 100%;
-                    height: 106px;
-                }
-            }
-            &:nth-child(3) {
-                border-right: none;
-            }
-        }
-    }
-    .category_d {
-        width: 100%;
-        height: 88px;
-        display: flex;
-        justify-content: flex-start;
-        border-top: 1px solid #f0f0f0;
-        li {
-            width: 100%;
-            border-right: 1px solid #f0f0f0;
-            &:nth-child(1),
-            &:nth-child(2) {
-                img {
-                    width: 100%;
-                    height: 88px;
-                }
-            }
-            &:nth-child(2) {
-                border-right: none;
-            }
-        }
+        line-height: .746667rem;
     }
 }
 
 .products {
     width: 100%;
-    height: 215px;
+    height: 5.733333rem;
     background-color: #ffffff;
-    margin-top: 10px;
+    margin-top: .266667rem;
     h3 {
-        font-size: 17px;
-        font-weight: 800;
+        font-size: .453333rem;
         text-align: center;
-        line-height: 32px;
+        line-height: .853333rem;
     }
     .goodGoods {
         width: 100%;
-        height: 183px;
+        height: 4.88rem;
         overflow-x: auto;
         ul {
             width: 300%;
             height: 100%;
             display: flex;
             li {
-                width: 125px;
+                width: 3.333333rem;
                 height: 100%;
-                margin-left: 10px;
+                margin-left: .266667rem;
                 position: relative;
                 img {
-                    width: 125px;
-                    height: 125px;
+                    width: 3.333333rem;
+                    height:3.333333rem;
                 }
                 .sales {
                     display: block;
                     position: absolute;
-                    bottom: 58px;
+                    bottom: 1.546667rem;
                     right: 0px;
-                    width: 59px;
-                    height: 20px;
-                    font-size: 12px;
+                    width: 1.573333rem;
+                    height: .533333rem;
+                    font-size: .32rem;
                     text-align: center;
-                    line-height: 20px;
+                    line-height: .533333rem;
                     color: #ffffff;
                     background-color: rgba(51, 51, 51, 0.7);
                 }
                 p {
                     width: 100%;
-                    height: 25px;
-                    line-height: 25px;
-                    font-size: 14px;
+                    height: .666667rem;
+                    line-height: .666667rem;
+                    font-size: .373333rem;
                     color: #333333;
-                    padding-left: 10px;
+                    padding-left: .266667rem;
                 }
                 .item {
                     width: 100%;
-                    height: 25px;
+                    height: .666667rem;
                     display: flex;
                     justify-content: space-between;
                     span {
-                        padding-left: 10px;
-                        font-size: 14px;
-                        line-height: 24px;
+                        padding-left:.266667rem;
+                        font-size: .373333rem;
+                        line-height: .64rem;
                         color: #ff0000;
                     }
                     img {
-                        width: 22px;
-                        height: 22px;
+                        width: .586667rem;
+                        height:.586667rem;
                     }
                 }
             }
@@ -457,44 +351,43 @@ export default {
 }
 
 .presell {
-    margin-top: 10px;
+    margin-top: .266667rem;
     width: 100%;
     background-color: #fff;
     h3 {
-        font-size: 17px;
-        font-weight: 800;
+        font-size: .453333rem;
         text-align: center;
-        line-height: 30px;
+        line-height: .8rem;
     }
     .banner {
-        padding: 0px 10px;
+        padding: 0   .266667rem;
         border-bottom: 1px solid #f0f0f0;
         &:last-child {
-            margin-top: 10px;
+            margin-top: .133333rem;
             border: none;
         }
         img {
             width: 100%;
-            height: 157px;
+            height: 4.186667rem;
         }
         p {
-            height: 15px;
-            margin-top: 5px;
-            font-size: 14px;
-            line-height: 15px;
+            height: .4rem;
+            margin-top: .133333rem;
+            font-size: .373333rem;
+            line-height: .4rem;
         }
         .item {
             width: 100%;
-            line-height: 30px;
+            line-height: .8rem;
             display: flex;
             justify-content: space-between;
             .description {
-                font-size: 11px;
+                font-size: .293333rem;
                 color: #999999;
             }
             .price {
                 color: #ff0000;
-                font-size: 12px;
+                font-size: .32rem;
             }
         }
     }
@@ -503,7 +396,7 @@ export default {
 .productShow {
     width: 100%;
     background-color: #fff;
-    margin-top: 10px;
+    margin-top: .266667rem;
     .product {
         width: 100%;
         height: 100%;
@@ -514,79 +407,80 @@ export default {
             flex-wrap: wrap;
             li {
                 width: 50%;
-                height: 238px;
+                height: 6.346667rem;
                 text-align: center;
                 border-right: 1px solid #f0f0f0;
                 border-bottom: 1px solid #f0f0f0;
-                padding-top: 10px;
+                padding-top: .266667rem;
                 &:nth-child(even) {
                     border-right: none;
                 }
                 .icons {
-                    width: 154px;
-                    height: 154px;
+                    width: 4.106667rem;
+                    height: 4.106667rem;
                     margin: 0 auto;
                     position: relative;
                     img {
-                        width: 154px;
-                        height: 154px;
+                        width: 4.106667rem;
+                        height: 4.106667rem;
                     }
                     .sales {
                         position: absolute;
-                        width: 59px;
-                        height: 20px;
+                        width: 1.573333rem;
+                        height: .533333rem;
                         right: 0px;
                         bottom: 0px;
-                        font-size: 12px;
+                        font-size: .32rem;
                         text-align: center;
-                        line-height: 20px;
+                        line-height: .533333rem;
                         color: #ffffff;
                         background-color: rgba(51, 51, 51, 0.7);
                     }
                 }
                 p {
-                    width: 154px;
-                    height: 30px;
-                    line-height: 30px;
-                    margin: 0 auto;
-                    font-size: 14px;
+                    width: 4.106667rem;
+                    height: .8rem;
+                    line-height: .8rem;
+                    margin:0 auto;
+                    font-size: .373333rem;
                     color: #333333;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+                    text-align: left;
                 }
                 .item {
-                    width: 154px;
-                    height: 40px;
+                    width: 4.106667rem;
+                    height: 1.066667rem;
                     margin: 0 auto;
                     display: flex;
                     justify-content: space-between;
                     span {
-                        font-size: 15px;
-                        line-height: 30px;
+                        font-size: .4rem;
+                        line-height: .8rem;
                         color: #ff0000;
                     }
                     img {
-                        width: 30px;
-                        height: 31px;
+                        width: .8rem;
+                        height:.813333rem;
                     }
                 }
             }
             .more {
                 width: 100%;
-                height: 45px;
+                height:1.2rem;
                 background-color: #ffffff;
                 text-align: center;
-                margin-bottom: 10px;
+                margin-bottom: .266667rem;
                 p {
-                    line-height: 30px;
+                    line-height: 1.026667rem;
                     margin: 0px;
-                    font-size: 14px;
+                    font-size:.28rem;
                     color: #666666;
                 }
                 img {
-                    width: 9px;
-                    height: 8px;
+                    width: .24rem;
+                    height: .213333rem;
                     vertical-align: top;
                 }
             }
@@ -594,36 +488,20 @@ export default {
     }
 }
 
-.shop {
-    width: 95%;
-    height: 40px;
-    margin: 60px 17px 0 17px;
-    a {
-        display: block;
-        width: 95%;
-        height: 40px;
-    }
-    .mint-button.mint-button--danger.mint-button--large {
-        height: 100%;
-        border-radius: 10px;
-        font-size: 17px;
-        color: #ffffff;
-    }
-}
-
 .footer {
     width: 100%;
-    height: 230px;
+    height: 6.133333rem;
     border-bottom: 1px solid #cccccc;
     text-align: center;
-    margin-top: 20px;
+    margin-top: .533333rem;
     .user {
-        height: 20px;
-        padding-top: 10px;
+        height: .533333rem;
+        padding-top: .266667rem;
         color: #999999;
+        font-size: .32rem;
         span {
-            margin: 0 15px;
-            line-height: 20px;
+            margin: 0 .2rem;
+            line-height: .533333rem;
             a {
                 display: inline-block;
                 color: #999;
@@ -631,13 +509,13 @@ export default {
         }
     }
     .icon {
-        margin-top: 30px;
+        margin-top: .8rem;
         width: 100%;
         img {
-            width: 35px;
-            height: 35px;
+            width: .933333rem;
+            height: .933333rem;
             &:nth-child(2) {
-                margin: 0 40px;
+                margin: 0 .533333rem;
             }
         }
         p {
@@ -649,15 +527,15 @@ export default {
                 }
             }
             span:nth-child(2) {
-                margin: 0 40px;
+                margin: 0 1.066667rem;
                 color: #e94f4d;
             }
         }
     }
     p {
         color: #999;
-        font-size: 12px;
-        line-height: 30px;
+        font-size: .32rem;
+        line-height: .8rem;
     }
 }
 </style>

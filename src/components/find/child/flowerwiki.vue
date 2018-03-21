@@ -67,29 +67,29 @@ export default {
     background-color: #fff;
     .head{
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #ff6666;
     position: relative;
     text-align: center;
-    line-height: 38px;
-    font-size: 15px;
+    line-height: 1.013333rem;
+    font-size: .4rem;
     color:#fff;
     i{
         position: absolute;
-        left:10px;
-        font-size: 20px;
+        left:.266667rem;
+        font-size: .533333rem;
         color:#fff;
     }
 }
 .focusPic{
     width: 100%;
     background-color: #fff;
-    padding:0 10px;
+    padding:0 .266667rem;
     .focus-title{
         width: 100%;
-        height: 35px;
-        line-height: 35px;
-        font-size: 15px;
+        height:.933333rem;
+        line-height: .933333rem;
+        font-size: .4rem;
         color:#333;
     }
     .focus-container{
@@ -100,22 +100,22 @@ export default {
             background-color: #fff;
             li{
                 width: 100%;
-                height: 300px;
+                height: 8rem;
                 border-bottom: 1px solid #f0f0f0;
-                margin-bottom: 10px;
+                margin-bottom: .266667rem;
                 background-color: #fff;
                 
                 img{
                     width: 100%;
-                    height: 250px;
+                    height:6.666667rem;
                 }
                 .imgItem{
-                    font-size: 13px;
+                    font-size: .346667rem;
                     color:#666;
-                    line-height: 23px;
+                    line-height: .613333rem;
                 }
                 .imgtitle{
-                    font-size: 12px;
+                    font-size: .32rem;
                     color:#999;
                 }
             }

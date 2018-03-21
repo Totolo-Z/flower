@@ -95,51 +95,51 @@ export default {
 }
 .head {
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #ff6666;
     position: relative;
     text-align: center;
-    line-height: 38px;
-    font-size: 15px;
+    line-height: 1.013333rem;
+    font-size: .4rem;
     color: #fff;
     a {
         display: block;
         color: #fff;
         i {
             position: absolute;
-            line-height: 38px;
-            left: 10px;
-            font-size: 20px;
+            line-height: 1.013333rem;
+            left: .266667rem;
+            font-size: .533333rem;
         }
     }
 }
 .bulletin{
     width: 100%;
-    height: 25px;
+    height: .666667rem;
     background-color: #999;
     color:#fff;
-    font-size: 12px;
+    font-size: .32rem;
     text-align: center;
-    line-height: 25px;
+    line-height: .666667rem;
 }
 .currentArea{
     width: 100%;
-    height: 30px;
+    height: .8rem;
     background-color: #f0f0f0;
-    font-size: 12px;
-    line-height: 30px;
-    padding-left: 10px;
+    font-size: .32rem;
+    line-height: .8rem;
+    padding-left: .266667rem;
 }
 .currentPosition{
-    width: 90px;
-    height: 38px;
+    width: 2.4rem;
+    height: 1.013333rem;
     border: #e94f4d;
     background-color: #f66;
-    line-height: 38px;
-    font-size: 14px;
+    line-height: 1.013333rem;
+    font-size: .373333rem;
     color:#fff;
     text-align: center;
-    margin-left: 10px;
+    margin-left: .266667rem;
 }
 </style>
 

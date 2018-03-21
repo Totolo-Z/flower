@@ -7,13 +7,14 @@
             用户注册
         </div>
         <div class="userRegister">
+            <form name="register" id="register">
             <ul>
                 <li>
-                    <input type="number" placeholder="请输入手机号" v-model="user.phone" @blur="checkPhone">
+                    <input type="number" oninput="if(value.length>11)value=value.slice(0,11)" placeholder="请输入手机号" v-model="user.phone" @blur="checkPhone">
                     <i class="iconfont" @click="clearMsg(user.phone)">&#xe615;</i>
                 </li>
                 <li>
-                    <input type="number" placeholder="请输入验证码" v-model="user.yanzheng" :maxlength="6">
+                    <input type="number" placeholder="请输入验证码" v-model="user.yanzheng" oninput="if(value.length>6)value=value.slice(0,6)">
                     <button @click="sendYanzheng" v-text="buttonMsg" :disabled="buttonDisabled"></button>
                 </li>
                 <li><input type="password" placeholder="请输入密码" v-model="user.password" maxlength="12">
@@ -26,12 +27,12 @@
                 <li v-show="!canSee">
                     <input type="password" placeholder="请再次确认密码" v-model="user.password2" maxlength="12">
                     <i class="iconfont" @click="canSee=false">&#xe666;</i>
-                </li>
-                
+                </li>             
             </ul>
+            </form>
         </div>
         <div class="register">
-            <input type="submit" value="注册" class="submit" @click="submit()">
+            <input type="submit" value="注册" class="submit" @click="submit">
         </div>
         <div class="tips">
             <p>
@@ -79,19 +80,10 @@ export default {
                 Toast('您输入的手机号不合法，请重新输入');
                 return;
             }
-            const url = 'http://www.huahudie.cc/mobile/webapi/register/checkMobileExist';
-            this.$http.post(url, { mobile_phone: phoneNum }, { emulateJSON: true })
-                .then((res) => {
-                    if ( res.body == true ){
-                        Toast('手机号码已存在');
-                    }else{
-                        Toast('该手机号可以注册');
-                    }
-                }).catch()
         },
         sendYanzheng() {  
             var reg = /^((13|14|15|17|18)[0-9]\d{8})$/ //手机验证正则
-             var phoneNum = this.user.phone;
+            var phoneNum = this.user.phone;
             if (!phoneNum) { //未输入手机号
                 Toast('请输入手机号');
                 return;
@@ -99,9 +91,10 @@ export default {
                 Toast('您输入的手机号不合法，请重新输入');
                 return;
             }
-            const url = 'http://www.huahudie.cc/mobile/webapi/sendSms/sendMobileCode';
-            this.$http.post(url, { mobile_phone: this.user.phone }, { emulateJSON: true }).then((res) => {
-            
+            const url = 'http://192.168.0.126/api/user/Verification_Code/send';
+            this.$http.post(url, {
+                 username : this.user.phone ,
+            }, { emulateJSON: true }).then((res) => {  
             }).catch();
             let time = 10;
             this.buttonDisabled = true;
@@ -116,14 +109,15 @@ export default {
             }, 10000);
         },
         submit(){
-            const url='http://www.huahudie.cc/mobile/webapi/register/actRegister';
+            const url='http://192.168.0.126/api/user/public/register';
             this.$http.post(url,{
-                mobile_phone:this.user.phone,
-                mobile_code:this.user.yanzheng,
-                password:this.user.password
+                username :this.user.phone,
+                verification_code:this.user.yanzheng,
+                password:this.user.password,
+                confirm_password:this.user.password2,
                 },{emulateJSON:true}).then((res)=>{
-                     Toast(res.body.content);
-                     console.log(res)
+                     Toast(res.body.msg);
+                    
             })
         }
     },
@@ -133,19 +127,19 @@ export default {
 <style lang="less" scoped>
 .head {
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #ff6666;
     text-align: center;
-    line-height: 38px;
+    line-height: 1.013333rem;
     position: relative;
     color: #fff;
-    font-size: 15px;
+    font-size: .4rem;
     a {
         color: #fff;
         i {
             position: absolute;
-            left: 10px;
-            font-size: 20px;
+            left: .266667rem;
+            font-size: .533333rem;
         }
     }
 }
@@ -156,33 +150,34 @@ export default {
         width: 100%;
         li {
             width: 100%;
-            height: 44px;
-            line-height: 44px;
+            height: 1.173333rem;
+            line-height: 1.173333rem;
             background-color: #fff;
-            margin-bottom: 10px;
+            margin-bottom:.266667rem;
             position: relative;
             input {
-                width: 97%;
-                height: 44px;
-                line-height: 44px;
-                margin-left: 10px;
+                width: 90%;
+                height:.666667rem;
+                line-height: .666667rem;
+                margin-left:.266667rem;
+                font-size: .32rem;
             }
             i {
                 position: absolute;
-                font-size: 20px;
+                font-size: .533333rem;
                 color: #ccc;
-                right: 10px;
+                right:.266667rem;
                 top: 0px;
             }
             &:nth-child(1)>i {
-                font-size: 16px;
+                font-size: .426667rem;
                 font-weight: 600;
             }
             &:nth-child(2)>button {
                 position: absolute;
-                font-size: 12px;
-                width: 90px;
-                height: 44px;
+                font-size: .32rem;
+                width: 2.4rem;
+                height: 1.173333rem;
                 background-color: #ff6666;
                 color: #fff;
                 right: 0px;
@@ -205,15 +200,15 @@ export default {
 }
 
 .register {
-    margin-top: 20px;
+    margin-top: .533333rem;
     width: 90%;
-    height: 40px;
+    height: 1.066667rem;
     border-radius: 10px;
     text-align: center;
-    line-height: 40px;
-    font-size: 17px;
+    line-height: 1.066667rem;
+    font-size: .453333rem;
     background-color: #e94f4d;
-    margin-left: 18px;
+    margin-left: .48rem;
     input{
         width: 100%;
         color: #fff;
@@ -221,11 +216,11 @@ export default {
 }
 
 .tips {
-    margin-top: 10px;
-    padding-left: 18px;
+    margin-top: .266667rem;
+    padding-left: .48rem;
     p {
-        font-size: 12px;
-        line-height: 15px;
+        font-size:.32rem;
+        line-height: .4rem;
         color: #ccc;
         span {
             color: #ff6666;

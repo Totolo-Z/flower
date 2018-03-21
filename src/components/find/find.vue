@@ -38,17 +38,7 @@
         </ul>
       </div>
     </div>
-    <!-- 推荐/直播-->
-    <div class="enjoy">
-      <div class="tab">
-        <router-link to="/advice">
-          <span :class="{'active': $route.path == '/advice'}">推荐</span>
-        </router-link>
-        <router-link to="/live">
-          <span :class="{'active': $route.path == '/live'}">直播</span>
-        </router-link>
-      </div>
-      <router-view></router-view>
+     
     </div>
   </div>
 </template>
@@ -73,7 +63,7 @@ export default {
       ],
       picList: [
         {
-          src: '../../../static/images/m3.jpg',
+          src: '../../../static/images/x1.jpg',
           name: '一抹淡淡的清香，是冬日里的小确幸',
         },
         {
@@ -94,61 +84,61 @@ export default {
 <style lang="less" scoped>
 .findHead {
   width: 100%;
-  height: 38px;
-  line-height: 38px;
+  height: 1.013333rem;
+  line-height: 1.013333rem;
   color: #fff;
-  font-size: 15px;
+  font-size: .4rem;
   text-align: center;
   background-color: #ff6666;
 }
 
 .findToday {
   width: 100%;
-  height: 135px;
+  height:3.6rem;
   background-color: #fff;
   .focus {
     width: 100%;
-    height: 34px;
+    height: .906667rem;
     span {
-      font-size: 15px;
-      line-height: 34px;
+      font-size: .4rem;
+      line-height: .906667rem;
       color: #333;
-      padding-left: 10px;
+      padding-left: .266667rem;
     }
     a {
       display: block;
-      width: 20px;
+      width: .533333rem;
       height: 100%;
       float: right;
-      margin-right: 5px;
+      margin-right: .133333rem;
       color: #333;
       i {
 
-        line-height: 34px;
-        font-size: 15px;
+        line-height: .906667rem;
+        font-size: .4rem;
         font-weight: 500;
       }
     }
   }
   .pic {
     width: 100%;
-    height: 86px;
+    height: 2.293333rem;
     overflow-x: auto;
-    margin-top: 4px;
+    margin-top: .106667rem;
     ul {
       width: 200%;
       height: 100%;
       display: flex;
       li {
-        width: 150px;
-        height: 86px;
-        margin-left: 5px;
+        width: 4rem;
+        height:2.293333rem;
+        margin-left: .133333rem;
         img {
           width: 100%;
           height: 100%;
         }
         &:first-child {
-          padding-left: 5px;
+          padding-left: .133333rem;
         }
       }
     }
@@ -157,112 +147,78 @@ export default {
 
 .encyclopedia {
   width: 100%;
-  height: 275px;
-  margin-top: 10px;
+  margin-top: .266667rem;
   background-color: #fff;
   .flower {
     width: 100%;
     width: 100%;
-    height: 34px;
+    height:.906667rem;
     background-color: #fff;
     span {
-      font-size: 15px;
-      line-height: 34px;
+      font-size: .4rem;
+      line-height: .906667rem;
       color: #333;
-      padding-left: 10px;
+      padding-left:.266667rem;
     }
     a {
       display: block;
-      width: 20px;
+      width: .533333rem;
       height: 100%;
       float: right;
       color: #333;
       i {
         float: right;
-        line-height: 34px;
-        font-size: 15px;
+        line-height: .906667rem;
+        font-size: .4rem;
         font-weight: 500;
-        padding-right: 10px;
+        padding-right: .266667rem;
       }
     }
   }
   .pic {
     width: 100%;
-    height: 224px;
-    margin-top:4px;
-    ul {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      li {
-        position: absolute;
-        width: 177px;
-        height: 114px;
-        font-size: 12px;
-        line-height: 25px;
-        img {
-          width: 170px;
-          height: 88px;
-          vertical-align: bottom;
-        }
-        p {
-          width: 177px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-        &:nth-child(1) {
-          width: 198px;
-          height: 230px;
-          padding-left: 10px;
-          img {
-            width: 180px;
-            height: 202px;
-          }
-          p {
-            line-height: 25px;
-          }
-        }
-        &:nth-child(2) {
-          right: 0px;
-        }
-        &:nth-child(3) {
-          right: 0px;
-          bottom: -5px;
-        }
-      }
-    }
+    margin-top:.106667rem;
+   ul{
+     width: 100%;
+     position: relative;
+     margin-bottom: 1.066667rem;
+     li{
+       width: 50%;
+       height: 4.5rem;
+        padding: 0 .266667rem;
+        text-align: center;
+       img{
+         width: 4.453333rem;
+         height: 3.333333rem;
+       }
+       p{
+         font-size: .32rem;
+         height: .666667rem;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         text-align: left;
+       }
+       &:nth-child(1){
+         width: 100%;
+         height: 5.133333rem;
+         padding: 0 .266667rem;
+         margin-bottom: .133333rem;
+         img{
+           width: 100%;
+           height: 4.453333rem;
+         }
+       }
+       &:nth-child(3){
+         position: absolute;
+         right: 0px;
+         bottom:0px;
+       }
+     }
+   }
   }
 }
 
-.enjoy {
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  overflow-y: auto;
-  .tab {
-    width: 100%;
-    height: 38px;
-    background-color: #fff;
-    line-height: 38px;
-    border-bottom: 1px solid #f0f0f0;
-    display: flex;
-    justify-content: space-around;
-    font-size: 15px;
-    a {
-      color: #333;
-      span {
-        display: block;
-        width: 50px;
-        height: 100%;
-        text-align: center;
-        &.active {
-          color: #f66;
-          border-bottom: 2px solid #f66;
-        }
-      }
-    }
-  }
-}
+
 </style>
 

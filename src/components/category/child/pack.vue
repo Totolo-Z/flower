@@ -1,7 +1,7 @@
 <template>
     <div class="style">
         <div class="banner">
-            <img src="../../../../static/images/p4.png">
+            <img src="../../../../static/images/p1.jpg">
         </div>
         <!-- 分类 -->
          <div class="flowerCategory">
@@ -145,34 +145,33 @@ export default {
         justify-content: space-around;
         li{
             width: 25%;
-            height: 0.8rem;
+            height: 2.4rem;
             text-align: center;
-            padding-top:0.1rem;
+            padding-top:.3rem;
             img{
-                width: 0.44rem;
-                height: 0.44rem;
+                width: 1.2rem;
+                height: 1.2rem;
             }
             p{
-                font-size: 0.12rem;
+                font-size: .32rem;
                 color:#666;
             }
         }
     }
 }
-
 .productShow {
     width: 100%;
     ul {
         width: 100%;
         li {
             width: 100%;
-            height: 100px;
+            height: 2.666667rem;
             display: flex;
             border-bottom: 1px solid #f0f0f0;
-            padding: 5px 0;
+            padding: .133333rem 0;
             .icons {
-                width: 90px;
-                height: 90px;
+                width: 2.4rem;
+                height: 2.4rem;
                 position: relative;
                 img {
                     width: 100%;
@@ -180,55 +179,59 @@ export default {
                 }
                 .sales {
                     position: absolute;
-                    width: 45px;
-                    height: 18px;
+                    width: 1.2rem;
+                    height: .48rem;
                     right: 0px;
                     bottom: 0px;
-                    font-size: 12px;
+                    font-size: .32rem;
                     text-align: center;
-                    line-height: 20px;
+                    line-height: .533333rem;
                     color: #fff;
                     background-color: rgba(51, 51, 51, 0.7);
                 }
             }
             .item {
+                width: 100%;
                 flex: 1;
-                padding-left: 5px;
-                padding-right: 10px;
+                padding-left: .133333rem;
+                padding-right: .266667rem;
                 .title {
-                    font-size: 15px;
+                    font-size:.4rem;
+                    height: .533333rem;
                     color: #333;
-                    line-height: 20px;
+                    line-height: .533333rem;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                 }
                 .local {
-                    font-size: 12px;
-                    line-height: 15px;
+                    height: .4rem;
+                    font-size: .32rem;
+                    line-height: .533333rem;
                     color: #999;
                 }
                 .post {
-                    width: 30px;
-                    height: 15px;
+                    width: .8rem;
+                    height: .4rem;
                     border-radius: 5px;
                     text-align: center;
-                    line-height: 15px;
+                    margin-top:.266667rem;
                     color: #fff;
                     background-color: #ffa800;
+                    font-size: .32rem;
                 }
                 .buy {
                     display: flex;
                     justify-content: space-between;
                     .price {
-                        font-size: 15px;
+                        font-size: .4rem;
                         color: #ff0000;
-                        line-height: 30px;
+                        line-height: .8rem;
                         font-weight: 600;
                     }
                     img {
-                        width: 30px;
-                        height: 30px;
+                        width: .8rem;
+                        height: .8rem;
                         vertical-align: middle;
                     }
                 }

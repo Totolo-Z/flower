@@ -77,31 +77,31 @@ export default {
 .header {
   background-color: #ff6666;
   width: 100%;
-  height: 0.38rem;
+  height:1.013333rem;
   position: relative;
   .local {
     margin: 0 auto;
-    width: 0.65rem;
-    height: 0.38rem;
+    width: 1.733333rem;
+    height: 1.013333rem;
     color: #fff;
-    line-height: 0.38rem;
-    font-size: 0.15rem;
+    line-height: 1.013333rem;
+    font-size: .373333rem;
     text-align: center;
     i {
-      font-size: 0.14rem;
+      font-size: .4rem;
     }
   }
   .search {
     position: absolute;
     right: 0px;
     top: 0px;
-    width: 0.35rem;
+    width: .933333rem;
     height: 100%;
     color: #fff;
-    line-height:0.38rem;
+    line-height:1.013333rem;
     text-align: center;
     i {
-      font-size: 0.12rem;
+      font-size: .373333rem;
       font-weight: 600;
     }
   }
@@ -112,28 +112,29 @@ export default {
 
 .tab {
   width: 100%;
-  height: 0.4rem;
+  height: 1.04rem;
   background-color: #fff;
   border-bottom: 1px solid #f0f0f0;
-  margin-bottom: 0.04rem;
+  margin-bottom: .133333rem;
   overflow-x: auto;
   ul {
     width: 180%;
-    height: 0.4rem;
+    height: 1.04rem;
     display: flex;
     justify-content: space-around;
     li {
       height: 100%;
-      font-size: 0.13rem; 
-      line-height: 0.4rem;
+      font-size: .346667rem; 
+      line-height: 1.04rem;
       color: #333;
+      
       &.active {
         color: #f66;
         border-bottom: 3px solid #f66;
       }
     }
     &:first-child {
-      margin-left: 10px;
+      margin-left: .133333rem;
     }
   }
 }

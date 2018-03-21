@@ -79,7 +79,7 @@ export default {
                     date: '2017.12.25',
                     style: '红玫瑰',
                     content: '首先值得肯定的是他们家的服务，是我遇见的服务态度最好的一家！因为第一次送花闹了点小插曲，但是客服很有耐心的帮我调解，最后花店重新把花抱回去重新插过了，第二次明显比第一次好了很多！花很新鲜，总的来说值得购买，下次还会来',
-                }
+                },
             ],
             commentPic: [
                 {
@@ -87,7 +87,10 @@ export default {
                 },
                  {
                     commentImg: '../../../static/images/x1.jpg',
-                }
+                },
+                {
+                    commentImg: '../../../static/images/x1.jpg',
+                },
             ],
         }
     },
@@ -101,69 +104,67 @@ export default {
 <style lang="less" scoped>
 .back {
     width: 100%;
-    height: 60px;
+    height: 1.6rem;
     background-color: #ccc;
     position: relative;
-    padding-left: 10px;
+    padding-left: .266667rem;
     display: table;
     .back-icon {
-        font-size: 25px;
-        line-height: 60px;
+        position: absolute;
+        left: .266667rem;
+        font-size: .666667rem;
+        line-height: 1.6rem;
         color: #fff;
     }
     .back-img {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        top: 50%;
-        left: 50%;
-        margin-left: -25px;
-        margin-top: -25px;
+        margin:0 auto;
+        width: 2rem;
+        height: 1.6rem;
         img {
-            width: 50px;
-            height: 50px;
+            width: 1.333333rem;
+            height: 1.333333rem;
+            transform: translate(.266667rem,.133333rem)
         }
     }
 }
 
 .evaluate {
     width: 100%;
-    // background-color: #fff;
     .evaluate-head {
         width: 100%;
-        height: 43px;
-        line-height: 43px;
-        padding-left: 10px;
-        font-size: 15px;
+        height: 1.146667rem;
+        line-height: 1.146667rem;
+        padding-left: .266667rem;
+        font-size: .4rem;
         font-weight: 500;
         background-color: #fff;
         border-bottom: 1px solid #f0f0f0;
         span {
-            width: 100px;
+            width: 2.666667rem;
             height: 100%;
         }
     }
     .evaluate-tag {
         width: 100%;
-        height: 80px;
-        padding-left: 10px;
+        height: 2.133333rem;
+        padding-left: .266667rem;
         background-color: #fff;
         border-bottom: 1px solid #f0f0f0;
         span {
             display: block;
             max-width: 100%;
-            height: 23px;
+            height:.613333rem;
             border-radius: 10px;
             float: left;
-            margin-right: 5px;
-            margin-top: 10px;
+            margin-right: .133333rem;
+            margin-top: .266667rem;
             a {
                 display: block;
-                height: 23px;
-                padding: 0 13px;
-                line-height: 23px;
+                height:.613333rem;
+                padding: 0 .346667rem;
+                line-height:.613333rem;
                 text-align: center;
-                font-size: 12px;
+                font-size: .32rem;
             }
         }
         .tag-posi {
@@ -181,71 +182,67 @@ export default {
     }
     .evaluate-content {
         width: 100%;
-        padding-top:10px;
+        padding-top:.266667rem;
         background-color: #fff;
         .comment-list {
             width: 100%;
-            margin-bottom:10px;
+            margin-bottom:.266667rem;
             .comment-item-info {
                 width: 100%;
-                height: 30px;
+                height: .82rem;
                 display: flex;
                 .comment-item-icon {
                     width: 10%;
-                    height: 30px;
+                    height: .82rem;
                     position: relative;
                     img {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        margin-left: -12px;
-                        margin-top: -12px;
-                        width: 25px;
-                        height: 25px;
+                        width: .666667rem;
+                        height: .666667rem;
                         border-radius: 50%;
+                        transform: translate(.2rem,.066667rem);
                     }
                 }
                 .comment-item-author {
                     width: 90%;
-                    height: 30px;
+                    height:.8rem;
                     .name {
                         width: 100%;
-                        height: 13px;
-                        line-height: 13px;
-                        font-size: 13px;
+                        height: .346667rem;
+                        line-height: .346667rem;
+                        font-size: .346667rem;
                         color: #333;
                         font-weight: 600;
                     }
                     .date,
                     .style {
-                        font-size: 12px;
-                        line-height: 12px;
+                        font-size: .32rem;
+                        line-height: .32rem;
                         color: #ccc;
                     }
                 }
             }
             .comment-item-content {
                 width: 100%;
-                padding: 10px;
-                line-height: 16px;
+                padding: .266667rem;
+                line-height: .426667rem;
                 color: #333;
+                font-size: .32rem;
             }
             .comment-img-container {
                 width: 100%;
-                height: 110px;
-               
+                height: 2.933333rem;
                 ul {
                     width: 100%;
-                    height: 100px;
+                    height: 2.666667rem;
                     display: flex;
-                    padding-left: 10px;
+                    padding-left: .266667rem;
                     li {
-                        width: 33.33%;
-                        height: 100px;
-
+                        width: 30%;
+                        height: 2.666667rem;  
+                        margin-right: .133333rem;                  
                         img {
-                            width: 100px;
-                            height: 100px;
+                            width: 2.666667rem;
+                            height: 2.666667rem;
                         }
                     }
                 }

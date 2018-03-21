@@ -6,7 +6,6 @@
                 <div class="picIcon">
                     <i class="iconfont" @click="$router.back()">&#xe50d;</i>
                 </div>
-                <span class="collect"><img src="../../../static/images/weishoucang.png"></span>
                 <img :src="shopPic.imgPic">
                 <span class="picSales">销量{{shopPic.sales}}</span>
             </div>
@@ -81,27 +80,7 @@
                 </div>
             </div>
         </div>
-        <!-- 商铺位置 -->
-        <div class="location">
-            <div class="location-head">
-                店铺实时位置
-            </div>
-            <div class="shopinfo">
-                <div class="location-shop">
-                    <i class="iconfont">&#xe68b;</i>
-                    <h3 class="shopsname">{{shopinfo.shopsname}}</h3>
-                    <span class="distanceNum">{{shopinfo.distanceNum}}km</span>
-                </div>
-            </div>
-            <div class="shopmap">
-                <p class="site">{{shopinfo.site}}</p>
-                <div class="checkshop">
-                    <router-link to="/shopinfo/1">
-                        <p>查看店铺门面</p>
-                    </router-link>
-                </div>
-            </div>
-        </div>
+       
         <!-- 商品详情 -->
         <div class="goodsinfo">
             <div class="goodsinfo-head">
@@ -190,12 +169,6 @@ export default {
                 imgIcon: '../../../static/images/qx.jpg',
                 name: '小雪人',
                 content: '首先值得肯定的是他们家的服务，是我遇见的服务态度最好的一家！因为第一次送花闹了点小插曲，但是客服很有耐心的帮我调解，最后花店重新把花抱回去重新插过了，第二次明显比第一次好了很多！花很新鲜，总的来说值得购买，下次还会来'
-            },
-            shopinfo:
-            {
-                shopsname: '小蝶鲜花花坊',
-                distanceNum: '8.3',
-                site: '宝安区西乡共和华丰互联网创意园',
             },
             goodsinfo: [
                 {
@@ -288,151 +261,131 @@ export default {
 <style lang="less" scoped>
 .pic {
     width: 100%;
-    height: 410px;
+    height: 10.933333rem;
     background-color: #fff;
     .picinfo {
         width: 100%;
-        height: 320px;
+        height: 8.533333rem;
         position: relative;
         .picIcon {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: .8rem;
+            height: .8rem;
             background-color: rgba(51, 51, 51, 0.3);
-            top: 10px;
-            left: 10px;
+            top: .266667rem;
+            left: .266667rem;
             text-align: center;
-            line-height: 30px;
+            line-height: .8rem;
             border-radius: 50%;
             i {
-                font-size: 25px;
+                font-size: .666667rem;
                 color: #fff;
-            }
-        }
-        .collect {
-            width: 30px;
-            height: 30px;
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            img {
-                width: 25px;
-                height: 25px;
             }
         }
         img {
             width: 100%;
-            height: 320px;
+            height: 8.533333rem;
         }
         .picSales {
             display: block;
             position: absolute;
             bottom: 0px;
             right: 0px;
-            width: 100px;
-            height: 30px;
-            font-size: 16px;
+            width: 2.666667rem;
+            height: .8rem;
+            font-size: .426667rem;
             text-align: center;
-            line-height: 30px;
+            line-height: .8rem;
             color: #ffffff;
             background-color: rgba(51, 51, 51, 0.7);
         }
     }
     .item {
         width: 100%;
-        height: 89px;
-        padding-left: 10px;
+        height: 2.373333rem;
+        padding-left: .266667rem;
         .name {
-            height: 50px;
-            line-height: 25px;
-            font-size: 17px;
+            height: 1.333333rem;
+            line-height: .666667rem;
+            font-size: .453333rem;
         }
         .price {
             width: 100%;
-            height: 38px;
-            line-height: 36px;
-            font-size: 18px;
+            height: 1.013333rem;
+            line-height: .96rem;
+            font-size:.48rem;
             color: #ff0000;
         }
     }
 }
 
 .shopMsg {
-    margin-top: 5px;
+    margin-top: .133333rem;
     width: 100%;
-    height: 142px;
-    margin-bottom: 10px;
+    height: 3.786667rem;
+    margin-bottom: .266667rem;
     background-color: #fff;
     .shopinfo {
         display: flex;
         width: 100%;
-        height: 110px;
+        height: 2.933333rem;
         border-bottom: 1px solid #f0f0f0;
         .icon {
             width: 24%;
             height: 100%;
             position: relative;
             img {
-                width: 60px;
-                height: 60px;
+                width: 1.6rem;
+                height:1.6rem;
                 border-radius: 50%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                margin-top: -30px;
-                margin-left: -30px;
+                transform: translate(.466667rem,.533333rem);
             }
         }
         .item {
             width: 70%;
             height: 100%;
+            font-size: .32rem;
+            line-height: .533333rem;
+            color: #666;
             .title {
                 width: 100%;
-                font-size: 15px;
-                line-height: 30px;
+                font-size: .4rem;
+                line-height: .8rem;
+                color:#333;
             }
             .name {
                 width: 100%;
-                line-height: 16px;
-                color: #666666;
-                font-size: 12px;
             }
             .grade {
-                color: #999999;
-                line-height: 16px;
-                font-size: 12px;
                 .star {
                     color: #ffa200;
-                    font-size: 14px;
+                    font-size: .373333rem;
                 }
             }
             .safe {
-                color: #999999;
-                line-height: 16px;
-                height: 16px;
-                font-size: 12px;
                 img {
-                    width: 65px;
-                    height: 13px;
+                    width: 1.733333rem;
+                    height: .306667rem;
                     vertical-align: middle;
                 }
             }
             .postageinfo {
                 width: 100%;
-                height: 16px;
-                line-height: 16px;
+                height: .426667rem;
+                line-height: .426667rem;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                font-size: 12px;
+                font-size: .32rem;
+                color: #999999;
             }
             .distance {
-                height: 16px;
-                line-height: 16px;
+                height: .426667rem;
+                line-height: .426667rem;
                 color: #999999;
                 img {
                     width: 10px;
-                    height: 13px;
+                    height: .346667rem;
                     vertical-align: middle;
                 }
             }
@@ -440,21 +393,19 @@ export default {
     }
     .say {
         width: 100%;
-        height: 32px;
+        height: .853333rem;
         text-align: center;
-        line-height: 32px;
-
+        line-height: .853333rem;
         img {
-            width: 18px;
-            height: 19px;
-            font-size: 12px;
+            width: .48rem;
+            height: .506667rem;
+            font-size: .32rem;
             vertical-align: middle;
-            margin-right: 10px;
+            margin-right: .266667rem;
         }
-        a {
-            display: inline-block;
+        span {
             color: #666;
-            font-size: 12px;
+            font-size: .32rem;
         }
     }
 }
@@ -462,39 +413,39 @@ export default {
 .evaluate {
     width: 100%;
     background-color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: .266667rem;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     .evaluate-head {
         width: 100%;
-        height: 43px;
-        line-height: 43px;
-        padding-left: 10px;
-        font-size: 15px;
+        height: 1.146667rem;
+        line-height: 1.146667rem;
+        padding-left: .266667rem;
+        font-size: .4rem;
         font-weight: 500;
         border-bottom: 1px solid #f0f0f0;
         span {
-            width: 100px;
+            width: 2.666667rem;
             height: 100%;
         }
     }
     .evaluate-tag {
         width: 100%;
-        height: 80px;
-        padding-left: 10px;
+        height: 2.133333rem;
+        padding-left: .266667rem;
         span {
             display: block;
             max-width: 100%;
-            height: 23px;
+            height: .613333rem;
             border-radius: 10px;
             float: left;
-            margin-right: 5px;
-            margin-top: 10px;
+            margin-right: .133333rem;
+            margin-top: .266667rem;
             a {
                 display: block;
-                height: 23px;
-                padding: 0 13px;
-                line-height: 23px;
+                height: .613333rem;
+                padding: 0 .346667rem;
+                line-height: .613333rem;
                 text-align: center;
-                font-size: 12px;
+                font-size: .32rem;
             }
         }
         .tag-posi {
@@ -512,16 +463,16 @@ export default {
     }
     .evaluate-content {
         width: 100%;
-        padding-bottom: 10px;
+        padding-bottom: .266667rem;
         .comment-list {
             width: 100%;
             .comment-item-info {
                 width: 100%;
-                height: 30px;
+                height: .8rem;
                 display: flex;
                 .comment-item-icon {
                     width: 10%;
-                    height: 30px;
+                    height: .8rem;
                     position: relative;
                     img {
                         position: absolute;
@@ -529,19 +480,19 @@ export default {
                         left: 50%;
                         margin-left: -12px;
                         margin-top: -12px;
-                        width: 25px;
-                        height: 25px;
+                        width: .666667rem;
+                        height: .666667rem;
                         border-radius: 50%;
                     }
                 }
                 .comment-item-author {
                     width: 90%;
-                    height: 30px;
+                    height: .8rem;
                     .name {
                         width: 100%;
                         height: 100%;
-                        line-height: 30px;
-                        font-size: 14px;
+                        line-height: .8rem;
+                        font-size: .373333rem;
                         color: #333;
                         font-weight: 600;
                     }
@@ -549,31 +500,32 @@ export default {
             }
             .comment-item-content {
                 width: 100%;
-                padding: 10px; // height: 35px;
+                padding: .266667rem; 
                 color: #333;
-                margin-bottom: 20px;
+                margin-bottom: .533333rem;
                 .content {
                     width: 100%;
-                    height: 30px;
-                    line-height: 16px;
+                    height: .8rem;
+                    line-height:.426667rem;
                     display: -webkit-box;
                     -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
+                    font-size: .32rem;
                 }
             }
             .more-content {
                 width: 100%;
-                height: 25px;
+                height: .666667rem;
                 p {
-                    width: 90px;
-                    height: 24px;
+                    width: 2.4rem;
+                    height: .64rem;
                     margin: 0 auto;
-                    font-size: 12px;
+                    font-size: .32rem;
                     border: 1px solid #fd9596;
                     text-align: center;
                     color: #ff0300;
-                    line-height: 24px;
+                    line-height: .64rem;
                     border-radius: 5px;
                 }
             }
@@ -581,82 +533,19 @@ export default {
     }
 }
 
-.location {
-    width: 100%;
-    height: 150px;
-    background-color: #fff;
-    padding-left: 10px;
-    .location-head {
-        width: 100%;
-        height: 44px;
-        border-bottom: 1px solid #f0f0f0;
-        font-size: 15px;
-        line-height: 44px;
-        color: #333;
-        font-weight: 500;
-    }
-    .shopinfo {
-        width: 100%;
-        height: 30px;
-        .location-shop {
-            width: 100%;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            i {
-                font-size: 16px;
-                color: #ff0000;
-            }
-            .shopsname {
-                font-size: 16px;
-                padding: 0 5px;
-            }
-            .distanceNum {
-                font-size: 13px;
-                color: #999;
-            }
-        }
-    }
-    .shopmap {
-        width: 100%;
-        .site {
-            width: 100%;
-            height: 25px;
-            font-size: 13px;
-            line-height: 25px;
-        }
-        .checkshop {
-            width: 100%;
-            height: 25px;
-            margin-top: 15px;
-            p {
-                width: 90px;
-                height: 24px;
-                font-size: 12px;
-                margin: 0 auto;
-                border: 1px solid #fd9596;
-                text-align: center;
-                color: #ff0300;
-                line-height: 24px;
-                border-radius: 5px;
-            }
-        }
-    }
-}
-
 .goodsinfo {
     width: 100%;
-    margin-top: 10px;
+    margin-top: .266667rem;
     background-color: #fff;
-    padding-left: 10px;
+    padding-left: .266667rem;
     .goodsinfo-head {
         width: 100%;
-        height: 44px;
+        height: 1.173333rem;
         border-bottom: 1px solid #f0f0f0;
-        margin-bottom: 5px;
+        margin-bottom: .133333rem;
         p {
-            line-height: 44px;
-            font-size: 15px;
+            line-height: 1.173333rem;
+            font-size: .266667rem;
             color: #333;
         }
     }
@@ -666,12 +555,13 @@ export default {
             width: 100%;
             li {
                 width: 100%;
-                height: 35px;
-                line-height: 35px;
-                margin-bottom: 5px;
+                height: .933333rem;
+                line-height: .933333rem;
+                margin-bottom: .133333rem;
                 color: #999;
+                font-size: .333333rem;
                 span {
-                    font-size: 13px;
+                    font-size: .346667rem;
                     color: #333;
                 }
             }
@@ -682,8 +572,8 @@ export default {
 .goon,
 .bottom {
     width: 100%;
-    height: 40px;
-    padding: 10px;
+    height: 1.066667rem;
+    padding: .266667rem;
     span {
         border-top: 1px solid #ccc;
         width: 24%;
@@ -695,27 +585,26 @@ export default {
         text-align: center;
         border: none;
         color: #ccc;
-        font-size: 13px;
+        font-size: .346667rem;
     }
 }
 
 .bottom {
-    margin-bottom: 50px;
+    margin-bottom: 1.333333rem;
 }
 
 .pictureinfo {
     width: 100%;
-    min-height: 300px;
     background-color: #fff;
     ul {
         width: 100%;
         li {
             width: 100%;
-            height: 330px;
-            margin-bottom: 5px;
+            height: 8.8rem;
+            margin-bottom: .133333rem;
             img {
                 width: 100%;
-                height: 330px;
+                height: 8.8rem;
                 margin: auto;
             }
         }
@@ -724,73 +613,73 @@ export default {
 
 .hot-advice {
     width: 100%;
-    height: 253px;
-    padding-left: 10px;
+    height: 6.746667rem;
+    padding-left: .266667rem;
     background-color: #fff;
-    margin-top: 10px;
+    margin-top: .266667rem;
     .hot-advice-title {
         width: 100%;
-        height: 43px;
+        height: 1.146667rem;
         border-bottom: 1px solid #f0f0f0;
         p {
-            line-height: 43px;
-            font-size: 15px;
+            line-height: 1.146667rem;
+            font-size: .4rem;
             color: #333;
         }
     }
     .hot-advice-goods {
         width: 100%;
-        height: 210px;
-        padding-top: 15px;
+        height: 5.6rem;
+        padding-top: .4rem;
         overflow-x: auto;
         ul {
             width: 200%;
             height: 100%;
             display: flex;
             li {
-                width: 125px;
+                width: 3.333333rem;
                 height: 100%;
-                margin-right: 10px;
+                margin-right: .266667rem;
                 position: relative;
                 img {
-                    width: 125px;
-                    height: 125px;
+                    width: 3.333333rem;
+                    height: 3.333333rem;
                 }
                 .sales {
                     display: block;
                     position: absolute;
-                    bottom: 70px;
+                    bottom: 1.866667rem;
                     right: 0px;
-                    width: 59px;
-                    height: 20px;
-                    font-size: 12px;
+                    width: 1.573333rem;
+                    height:.533333rem;
+                    font-size: .32rem;
                     text-align: center;
-                    line-height: 20px;
+                    line-height:.533333rem;
                     color: #ffffff;
                     background-color: rgba(51, 51, 51, 0.7);
                 }
                 p {
                     width: 100%;
-                    height: 25px;
-                    line-height: 25px;
-                    font-size: 14px;
+                    height: .666667rem;
+                    line-height: .666667rem;
+                    font-size: .373333rem;
                     color: #333333;
-                    padding-left: 10px;
+                    padding-left: .266667rem;
                 }
                 .item {
                     width: 100%;
-                    height: 25px;
+                    height: .666667rem;
                     display: flex;
                     justify-content: space-between;
                     span {
-                        padding-left: 10px;
-                        font-size: 14px;
-                        line-height: 24px;
+                        padding-left: .266667rem;
+                        font-size: .373333rem;
+                        line-height: .64rem;
                         color: #ff0000;
                     }
                     img {
-                        width: 22px;
-                        height: 22px;
+                        width: .586667rem;
+                        height: .586667rem;
                     }
                 }
             }

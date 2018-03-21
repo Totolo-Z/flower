@@ -8,7 +8,7 @@ import cacheInSession from './localCache/cacheInSession';
 Vue.use(Vuex);
 
 const initState = {
-  token: cacheInLocalStorage.get('token'),
+  token: cacheInSession.get('token'),
   goodsList: cacheInLocalStorage.get('goodsList') || [],
 };
 

@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div class="cartHead">
@@ -8,6 +9,14 @@
       <span>转入收藏夹</span>
       <span>删除</span>
     </div>
+
+
+    <!-- <table>
+      <tr>
+        <th></th>.
+      </tr>
+    </table> -->
+
     <div class="cartGoodsContent" v-for="(val,index) in shop" :key="index">
       <van-checkbox class="shopName">&nbsp;{{val.name}}</van-checkbox>
       <van-checkbox v-for="(item, index2) in val.goodsList" :key="index2">
@@ -182,7 +191,6 @@ export default {
     }
   }
 }
-
 .tatolMoney {
   background-color: #fff;
   width: 100%;
@@ -218,4 +226,3 @@ export default {
   }
 }
 </style>
-

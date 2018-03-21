@@ -20,7 +20,6 @@ import arealist from '../components/home/child/arealist.vue';//地区选择
 import search from '../components/home/child/search.vue';//搜索
 import carousel from '../components/goods/carousel.vue';   // 商品详情
 import evaluate from '../components/goods/evaluate.vue';//评价列表
-import shopinfo from '../components/goods/shopinfo.vue';//店铺地址详情
 import inshop from '../components/goods/inshop.vue';//进入店铺详情
 import goodslist from '../components/goods/goodslist.vue';//商品展示
 
@@ -39,8 +38,6 @@ import ordinary from '../components/category/child/ordinary.vue';//普通店家
 
 
 import find from '../components/find/find.vue';//发现
-import advice from '../components/find/child/advice.vue';//推荐
-import live from '../components/find/child/live.vue';//直播
 import todayfocus from '../components/find/child/todayfocus.vue';//今日聚焦详情
 import pictureinfo from '../components/find/child/pictureinfo.vue';//今日聚焦图片详情
 import flowerwiki from '../components/find/child/flowerwiki.vue';//鲜花百科
@@ -55,23 +52,14 @@ import checkstand from '../components/cart/child/checkstand.vue';//收银台
 import mine from '../components/mine/mine.vue';//我的
 import register from '../components/mine/child/register.vue';//注册
 import forgetpassword from '../components/mine/child/forgetpassword.vue';//忘记密码
-import findpassword from '../components/mine/child/findpassword.vue';//找回密码
 import membercenter from '../components/mine/child/membercenter.vue';//会员中心
-import setup from '../components/mine/child/setup.vue';//设置
-import mycollection from '../components/mine/child/mycollection.vue';//我的收藏
-import seachSimilarity from '../components/mine/child/seachSimilarity.vue';//我的收藏里的找相似
-import myfootprint from '../components/mine/child/myfootprint.vue';//我的足迹
 import myorder from '../components/mine/child/myorder.vue';//我的订单
-import myintegral from '../components/mine/child/myintegral.vue';//我的积分
 import allorder from '../components/mine/child/allorder.vue';//全部订单
 import obligation from '../components/mine/child/obligation.vue';//待付款
 import notyetshipped from '../components/mine/child/notyetshipped.vue';//待发货
 import waitforreceiving from '../components/mine/child/waitforreceiving.vue';//待收货
 import evaluation from '../components/mine/child/evaluation.vue';//待评价
 import evaluationofgoods from '../components/mine/child/evaluationofgoods.vue';//评价商品
-import mybalance from '../components/mine/child/mybalance.vue';//我的余额
-import mygarden from '../components/mine/child/mygarden.vue';//我的花园
-import mydistributor from '../components/mine/child/mydistributor.vue';//我的分销商 
 import mycoupon from '../components/mine/child/mycoupon.vue';//我的优惠券
 import service from '../components/mine/child/service.vue';//客服与帮助
 import addressmanagement from '../components/mine/child/addressmanagement.vue';//收货地址管理
@@ -180,20 +168,7 @@ export default new Router({
     {
       path: '/find',
       component: find,
-      children: [
-        {
-          path: '/',
-          redirect: '/advice',
-        },
-        {
-          path: '/advice',
-          component: advice,
-        },
-        {
-          path: '/live',
-          component: live,
-        },
-      ]
+      
     },
     {
       path: '/cart',
@@ -212,44 +187,12 @@ export default new Router({
       component: register,
     },
     {
-      path: '/setup',
-      component: setup,
-    },
-    {
       path: '/forgetpassword',
       component: forgetpassword,
     },
     {
-      path: '/findpassword',
-      component: findpassword,
-    },
-    {
-      path: '/mycollection',
-      component: mycollection,
-    },
-    {
-      path: '/seachSimilarity',
-      component: seachSimilarity,
-    },
-    {
-      path: '/myfootprint',
-      component: myfootprint,
-    },
-    {
       path: '/evaluationofgoods',
       component: evaluationofgoods,
-    },
-    {
-      path: '/mybalance',
-      component: mybalance,
-    },
-    {
-      path: '/mygarden',
-      component: mygarden,
-    },
-    {
-      path: '/mydistributor',
-      component: mydistributor,
     },
     {
       path: '/mycoupon',
@@ -302,10 +245,6 @@ export default new Router({
       ]
     },
     {
-      path: '/myintegral',
-      component: myintegral,
-    },
-    {
       path: '/arealist',
       component: arealist,
     },
@@ -321,10 +260,6 @@ export default new Router({
     {
       path: '/evaluate/:evaluateId',
       component: evaluate,
-    },
-    {
-      path: '/shopinfo/:shopinfoId',
-      component: shopinfo,
     },
     {
       path: '/goodslist/:goodslistId',

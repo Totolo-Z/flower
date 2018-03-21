@@ -2,34 +2,10 @@
     <div>
         <!-- 会员头像 -->
         <div class="memberCenterIcon">
-            <router-link to="/setup">
-                <i class="iconfont">&#xe605;</i>
-            </router-link>
             <div class="memberIconInfo">
                 <img :src="memberIcon.imgSrc">
                 <p class="memberName">{{memberIcon.memberName}}</p>
                 <p class="level">[普通会员]</p>
-            </div>
-        </div>
-        <!-- 收藏足迹积分 -->
-        <div class="myCollect">
-            <div class="myCollectItem">
-                <p class="myCollectNum">26</p>
-                <router-link to="/mycollection">
-                    <p>我的收藏</p>
-                </router-link>
-            </div>
-            <div class="myCollectItem">
-                <p class="myCollectNum">12</p>
-                <router-link to="/myfootprint">
-                    <p>我的足迹</p>
-                </router-link>
-            </div>
-            <div class="myCollectItem">
-                <p class="myCollectNum">26</p>
-                <router-link to="/myintegral">
-                    <p>我的积分</p>
-                </router-link>
             </div>
         </div>
         <!-- 我的订单  -->
@@ -77,27 +53,6 @@
         <div class="myList">
             <ul>
                 <li>
-                    <router-link to="/mybalance">
-                    <i class="iconfont myListLeft">&#xe6a4;</i>
-                    <span class="myListName">我的余额</span>
-                    <i class="iconfont myListRight">&#xe60a;</i>
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="mygarden">
-                    <i class="iconfont myListLeft">&#xe628;</i>
-                    <span class="myListName">我的花园</span>
-                    <i class="iconfont myListRight">&#xe60a;</i>
-                    </router-link>
-                </li>
-                <li>
-                    <router-link to="/mydistributor">
-                    <i class="iconfont myListLeft">&#xe503;</i>
-                    <span class="myListName">我的分销商</span>
-                    <i class="iconfont myListRight">&#xe60a;</i>
-                    </router-link>
-                </li>
-                <li>
                     <router-link to="/mycoupon">
                     <i class="iconfont myListLeft">&#xe63c;</i>
                     <span class="myListName">我的优惠券</span>
@@ -118,6 +73,10 @@
                     <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>
                 </li>
+                <li>
+                    <i class="iconfont myListLeft">&#xe6b2;</i>
+                    <span class="myListName" @click="exit">退出登录</span>
+                </li>
             </ul>
         </div>
     </div>
@@ -132,6 +91,21 @@ export default {
                 memberName: 'Jackson',
             }
         }
+    },
+    methods:{
+        exit(){
+            const url='http://192.168.0.126/api/user/public/logout';
+            this.$http.get(url,{
+                
+            }).then((res)=>{
+                if(res.data.code===1){
+                     this.$store.commit('change_token',)
+                }
+                console.log(res.data)
+               
+                // this.$router.push('/mine')
+            })
+        }
     }
 }
 </script>
@@ -143,16 +117,6 @@ export default {
     position: relative;
     background-color: #fffacd;
     border-bottom: 1px solid #f0f0f0;
-    a {
-        color: #333;
-        i {
-            position: absolute;
-            Right: 10px;
-            top: 8px;
-            font-size: 21px;
-            font-weight: 600;
-        }
-    }
     .memberIconInfo {
         width: 100%;
         height: 100%;
@@ -171,26 +135,6 @@ export default {
         .level {
             font-size: 12px;
             color: #999;
-        }
-    }
-}
-
-.myCollect {
-    width: 100%;
-    height: 44px;
-    background-color: #fff;
-    display: flex;
-    text-align: center;
-    .myCollectItem {
-        width: 33.33%;
-        height: 100%;
-        font-size: 12px;
-        line-height: 18px;
-        color: #999;
-        padding-top: 5px;
-        &:nth-child(2) {
-            border-left: 1px solid #f0f0f0;
-            border-right: 1px solid #f0f0f0;
         }
     }
 }
@@ -260,6 +204,7 @@ export default {
             font-size: 13px;
             padding-left: 10px;
             position: relative;
+             color: #333;
             a{
                 color: #333;
             }
@@ -276,22 +221,18 @@ export default {
                 right: 10px;
             }
             &:nth-child(1)>a>.myListLeft {
-                color: #12b7f5;
-            }
-            &:nth-child(2)>a>.myListLeft {
-                color: #fea356;
-            }
-            &:nth-child(3)>a>.myListLeft {
-                color: #5593fa;
-            }
-            &:nth-child(4)>a>.myListLeft {
                 color: #ff6666;
             }
-            &:nth-child(5)>a>.myListLeft {
+            &:nth-child(2)>a>.myListLeft {
                 color: #00d1a4;
             }
-            &:nth-child(6)>a>.myListLeft {
+            &:nth-child(3)>a>.myListLeft {
                 color: #ff6991;
+            }
+            &:nth-child(4)>.myListLeft {
+                color: #ff6991;
+                font-size: 18px;
+                font-weight: 500;
             }
         }
     }

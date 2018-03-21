@@ -6,11 +6,11 @@ import Vant from 'vant';
 import Mint from 'mint-ui';
 import { getMD5 } from '@/utils/md5';
 import Store from '@/store';
+
 import { priceFilter, sexFilter } from '@/utils/filters';
 import App from './App';
 
-Vue.config.productionTip = false
-
+Vue.config.productionTip = false;
 
 Vue.use(VueResource);
 Vue.use(Vant);
@@ -19,10 +19,11 @@ Vue.use(Mint);
 Vue.filter('SexState', sexFilter);
 Vue.filter('PriceFilter', priceFilter);
 
-
+import '../src/assets/js/flexible';
 import 'vant/lib/vant-css/index.css';
 import 'mint-ui/lib/style.css';
 import '../static/font/iconfont.css';
+
 import '../static/css/index.css';
 
 new Vue({

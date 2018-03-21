@@ -9,9 +9,6 @@
                 <i class="iconfont" @click="changeIcon=false" v-show="changeIcon">&#xe6af;</i>
                 <i class="iconfont" @click="changeIcon=true" v-show="!changeIcon">&#xe658;</i>
             </span>
-            <span class="filtrate" @click="show=!show">筛选
-                <i class="iconfont">&#xe672;</i>
-            </span>
             <div class="accordion" v-show="openContent">
                 <ul>
                     <li v-for="(item,index) in rank" :key="index" :class="{'active': activeIndex === index}" @click="activeIndex = index">
@@ -69,72 +66,6 @@
                 </li>
             </ul>
         </div>
-        <!-- 侧滑导航 -->
-        <div class="offcanvas" v-show="show">
-            <div class="search">
-                <input type="text" placeholder="搜索">
-            </div>
-            <div class="offcanvas-content">
-                <ul>
-                    <li class="offcanvas-title">
-                        品牌
-                    </li>
-                    <li>香奈儿</li>
-                    <li>迪奥</li>
-                    <li>汤姆福特</li>
-                    <li>圣罗兰</li>
-                    <li>纪梵希</li>
-                    <li>魅可</li>
-                </ul>
-                <ul>
-                    <li class="offcanvas-title">
-                        服务和折扣
-                    </li>
-                    <li>包邮</li>
-                    <li>速递</li>
-                    <li>折扣</li>
-                </ul>
-                <ul>
-                    <li class="offcanvas-title">
-                        价格区间
-                    </li>
-                    <li>
-                        <input type="text" placeholder="最低价">
-                        <span></span>
-                        <input type="text" placeholder="最高价">
-                    </li>
-                    <li>5-53 <br>25%的选择</li>
-                    <li>53-160 <br>55%的选择</li>
-                    <li>160-500 <br>20%的选择</li>
-                </ul>
-                <ul>
-                    <li class="offcanvas-title">
-                        适合对象
-                    </li>
-                    <li>爱人</li>
-                    <li>朋友/同事</li>
-                    <li>老师</li>
-                    <li>领导/长辈</li>
-                    <li>病人</li>
-                    <li>客户</li>
-                </ul>
-                <ul>
-                    <li class="offcanvas-title">
-                        适合节日
-                    </li>
-                    <li>情人节</li>
-                    <li>七夕</li>
-                    <li>圣诞节</li>
-                    <li>母亲节</li>
-                    <li>教师节</li>
-                    <li>感恩节</li>
-                </ul>
-                <div class="offcanvas-footer">
-                    <span>重置</span>
-                    <span>完成</span>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -145,7 +76,6 @@ export default {
             change: true,
             openContent: false,
             changeIcon: false,
-            show:false,
             goods: [
                 {
                     imgSrc: '../../../static/images/ca1.jpg',
@@ -225,12 +155,12 @@ export default {
 <style lang="less" scoped>
 .head {
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #fff;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-size: 13px;
+    font-size: .346667rem;
     color: #333;
     border-bottom: 1px solid #f0f0f0;
     position: relative;
@@ -239,7 +169,7 @@ export default {
         text-align: center;
         color: #f66;
         i {
-            font-size: 14px;
+            font-size: .373333rem;
         }
     }
     .sales {
@@ -248,48 +178,37 @@ export default {
         justify-content: space-around;
         align-items: center;
         i {
-            font-size: 17px;
-        }
-    }
-    .filtrate {
-        width: 22%;
-        height: 100%;
-        border-left: 1px solid #f0f0f0;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        i {
-            font-size: 14px;
+            font-size: .453333rem;
         }
     }
     .accordion {
         min-width: 100%;
-        height: 182px;
+        height:4.853333rem;
         background-color: #fff;
         position: absolute;
-        top: 37px;
+        top: .986667rem;
         z-index: 99;
         ul {
             width: 100%;
             height: 100%;
             li {
                 width: 100%;
-                height: 44px;
+                height: 1.173333rem;
                 border-top: 1px solid #f0f0f0;
-                line-height: 44px;
-                padding-left: 35px;
-                padding-right: 10px;
-                font-size: 13px;
+                line-height: 1.173333rem;
+                padding-left: .933333rem;
+                padding-right: .266667rem;
+                font-size: .346667rem;
                 color: #333;
             }
             .active {
                 color: #f66;
             }
             i {
-                font-size: 18px;
+                font-size: .48rem;
                 float: right;
-                margin-right: 10px;
-                line-height: 44px;
+                margin-right: .266667rem;
+                line-height: 1.173333rem;
                 color: #ff6666;
             }
         }
@@ -299,7 +218,6 @@ export default {
 
 .productShow {
     width: 100%;
-    height: 952px;
     background-color: #fff;
     .product {
         width: 100%;
@@ -311,98 +229,99 @@ export default {
             flex-wrap: wrap;
             li {
                 width: 50%;
-                height: 250px;
+                height: 6.666667rem;
                 text-align: center;
                 border-right: 1px solid #f0f0f0;
                 border-bottom: 1px solid #f0f0f0;
-                padding-top: 10px;
+                padding-top: .266667rem;
                 &:nth-child(even) {
                     border-right: none;
                 }
                 .icons {
-                    width: 154px;
-                    height: 154px;
+                    width: 4.106667rem;
+                    height: 4.106667rem;
                     margin: 0 auto;
                     position: relative;
                     img {
-                        width: 154px;
-                        height: 154px;
+                        width: 4.106667rem;
+                        height: 4.106667rem;
                     }
                     .sales {
                         position: absolute;
-                        width: 59px;
-                        height: 20px;
-                        right: 0px;
-                        bottom: 0px;
-                        font-size: 12px;
+                        width: 1.573333rem;
+                        height:.533333rem;
+                        right: 2px;
+                        bottom: .053333rem;
+                        font-size: .32rem;
                         text-align: center;
-                        line-height: 20px;
+                        line-height:.533333rem;
                         color: #ffffff;
                         background-color: rgba(51, 51, 51, 0.7);
                     }
                 }
                 .title {
-                    width: 154px;
-                    height: 30px;
-                    line-height: 30px;
+                    width: 4.106667rem;
+                    height: .8rem;
+                    line-height: .8rem;
                     margin: 0 auto;
-                    font-size: 14px;
+                    font-size: .373333rem;
                     color: #333333;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                 }
                 .districtPost {
-                    width: 154px;
-                    height: 20px;
+                    width: 4.106667rem;
+                    height: .533333rem;
                     margin: 0 auto;
                     display: flex;
                     justify-content: space-between;
                     .postStatus {
-                        width: 30px;
-                        height: 16px;
+                        width: .8rem;
+                        height:.426667rem;
                         background-color: #ffa800;
-                        border-radius: 3px;
-                        line-height: 16px;
+                        border-radius: .08rem;
+                        line-height:.426667rem;
                         color: #fff;
+                        font-size: .32rem;
                     }
                     .district {
-                        font-size: 12px;
+                        font-size: .32rem;
                         color: #999
                     }
                 }
                 .item {
-                    width: 154px;
-                    height: 35px;
+                    width: 4.106667rem;
+                    height: .933333rem;
                     margin: 0 auto;
                     display: flex;
                     justify-content: space-between;
                     span {
-                        font-size: 15px;
-                        line-height: 30px;
+                        font-size: .4rem;
+                        line-height:.8rem;
                         color: #ff0000;
                     }
                     img {
-                        width: 28px;
-                        height: 29px;
+                        width: .746667rem;
+                        height: .773333rem;
                     }
                 }
             }
             .more {
                 width: 100%;
-                height: 45px;
+                height: 1.2rem;
                 background-color: #ffffff;
                 text-align: center;
-                margin-bottom: 10px;
+                margin-bottom: .266667rem;
                 p {
-                    line-height: 30px;
+                    line-height: .8rem;
                     margin: 0px;
-                    font-size: 14px;
+                    font-size: .373333rem;
                     color: #666666;
                 }
                 img {
-                    width: 9px;
-                    height: 8px;
+                    width:.24rem;
+                    height: .213333rem;
                     vertical-align: top;
                 }
             }
@@ -415,174 +334,73 @@ export default {
     background-color: #fff;
     li {
         width: 100%;
-        height: 115px;
+        height:3.333333rem;
         border-top: 1px solid #f0f0f0;
         display: flex;
         .imgInfo {
-            width: 115px;
+            width: 3.066667rem;
             height: 100%;
             position: relative;
             img {
-                position: absolute;
-                width: 90px;
-                height: 90px;
-                top: 50%;
-                left: 50%;
-                margin-left: -45px;
-                margin-top: -45px;
+                width: 2.4rem;
+                height: 2.4rem;
+                transform: translate(.306667rem,.266667rem);
             }
             .salesVolume {
                 position: absolute;
-                right: 13px;
-                bottom: 13px;
-                width: 45px;
-                height: 18px;
+                right: .39rem;
+                bottom: .69rem;
+                width: 1.2rem;
+                height: .48rem;
                 background-color: rgba(51, 51, 51, 0.5);
                 color: #fff;
                 text-align: center;
-                line-height: 18px;
+                line-height: .48rem;
+                font-size: .32rem;
             }
         }
         .shopInfo {
             width: 65%;
             height: 100%;
-            padding-top: 10px;
+            padding-top: .266667rem;
             .commodity {
-                font-size: 15px;
+                font-size: .4rem;
                 color: #333;
             }
             .district {
-                font-size: 12px;
+                font-size: .32rem;
                 color: #999;
-                line-height: 24px;
+                line-height: .64rem;
             }
             .postStatus {
-                font-size: 12px;
-                width: 30px;
-                height: 16px;
-                line-height: 16px;
-                border-radius: 3px;
+                font-size: .32rem;
+                width: .8rem;
+                height: .426667rem;
+                line-height: .426667rem;
+                border-radius: 5px;
                 text-align: center;
                 background-color: #ffa800;
                 color: #fff;
             }
             .priceItem {
                 width: 100%;
-                height: 28px;
-                line-height: 28px;
+                height:.746667rem;
+                line-height:.746667rem;
                 display: flex;
                 justify-content: space-between;
                 .price {
                     color: #f00;
-                    font-size: 15px;
+                    font-size: .4rem;
                     font-weight: 600;
                 }
                 img {
-                    width: 28px;
-                    height: 28px;
+                    width: .746667rem;
+                    height: .746667rem;
                 }
             }
         }
     }
 }
 
-.offcanvas {
-    width: 280px;
-    height: 100%;
-    background-color: #fff;
-    position: absolute;
-    right: 0px;
-    top: 38px;
-    z-index: 110;
-    .search {
-        width: 100%;
-        height: 32px;
-
-        input {
-            width: 100%;
-            height: 100%;
-            background-color: #f5f5f5;
-        }
-    }
-    .offcanvas-content {
-        width: 100%;
-        ul {
-            width: 100%;
-            height: 120px;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            text-align: center;
-            font-size: 12px;
-            .offcanvas-title {
-                width: 100%;
-                height: 32px;
-                background-color: #fff;
-                padding-left: 10px;
-                line-height: 32px;
-                text-align: left;
-                color: #999;
-            }
-            li {
-                width: 82px;
-                height: 35px;
-                background-color: #f5f5f5;
-                line-height: 35px;
-                color: #333;
-                border-radius: 5px;
-            }
-            &:nth-child(2) {
-                height: 76px;
-            }
-            &:nth-child(3) {
-                li {
-                    &:nth-child(2) {
-                        width: 95%;
-                        position: relative;
-                        display: flex;
-                        justify-content: space-around;
-                        span{
-                            position: absolute;
-                            width: 25px;
-                            height: 2px;
-                            background-color: #c8c8c8;    
-                            margin-top:15px;                       
-                        }
-                        input{
-                            width: 95px;
-                            height: 25px;
-                            border-radius: 5px;
-                            margin-top:5px;
-                            text-align: center;
-                        }
-                    }
-                    &:nth-child(3),
-                    &:nth-child(4),
-                    &:nth-child(5){
-                        line-height: 17px;
-                    }
-                }
-            }
-        }
-        .offcanvas-footer{
-            width: 100%;
-            height: 40px;
-            display: flex;
-            text-align: center;
-            line-height: 40px;
-            font-size: 15px;
-            color:#fff;
-            span{
-                width: 50%;
-                height: 100%;
-                background-color:#fd9596 ;
-                &:last-child{
-                    background-color: #e94f4d;
-                }
-            }
-        }
-    }
-}
 </style>
 

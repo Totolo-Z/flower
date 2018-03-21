@@ -41,7 +41,7 @@ export default {
         return {
             swiper: [
                 {
-                    imgSrc: '../../../../static/images/p1.jpg'
+                    imgSrc: '../../../../static/images/x1.jpg'
                 },
                 {
                     imgSrc: '../../../../static/images/p2.jpg'
@@ -140,47 +140,38 @@ export default {
 
 
 <style lang="less" scoped>
-.mint-swipe {
-    width: 100%;
-    height: 157px;
-    img {
-        width: 100%;
-        height: 157px;
-    }
-}
-.flowerCategory {
+.flowerCategory{
     width: 100%;
     background-color: #fff;
-    ul {
+    ul{
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        li {
+        li{
             width: 25%;
-            height: 0.8rem;
+            height: 2.253333rem;
             text-align: center;
-            padding-top: 0.1rem;
-            img {
-                width: 0.44rem;
-                height: 0.44rem;
+            padding-top:.266667rem;
+            img{
+                width: 1.173333rem;
+                height: 1.173333rem;
             }
-            p {
-                font-size: 0.12rem;
-                color: #666;
+            p{
+                font-size: .32rem;
+                color:#666;
             }
         }
     }
 }
 .productShow {
     width: 100%;
-    height: 952px;
     background-color: #fff;
-    margin-top: 10px;
+    margin-top: .266667rem; 
     .product {
         width: 100%;
         height: 100%;
-        margin-bottom: 50px;
+        margin-bottom: 2.666667rem;
         ul {
             width: 100%;
             height: 100%;
@@ -188,61 +179,62 @@ export default {
             flex-wrap: wrap;
             li {
                 width: 50%;
-                height: 238px;
+                height: 6.346667rem;
                 text-align: center;
                 border-right: 1px solid #f0f0f0;
                 border-bottom: 1px solid #f0f0f0;
-                padding-top: 10px;
+                padding-top: .266667rem;
                 &:nth-child(even) {
                     border-right: none;
                 }
                 .icons {
-                    width: 154px;
-                    height: 154px;
+                    width: 4.106667rem;
+                    height: 4.106667rem;
                     margin: 0 auto;
                     position: relative;
                     img {
-                        width: 154px;
-                        height: 154px;
+                        width: 4.106667rem;
+                        height: 4.106667rem;
                     }
                     .sales {
                         position: absolute;
-                        width: 59px;
-                        height: 20px;
+                        width: 1.573333rem;
+                        height: .533333rem;
                         right: 0px;
                         bottom: 0px;
-                        font-size: 12px;
+                        font-size: .32rem;
                         text-align: center;
-                        line-height: 20px;
+                        line-height: .533333rem;
                         color: #ffffff;
                         background-color: rgba(51, 51, 51, 0.7);
                     }
                 }
                 p {
-                    width: 154px;
-                    height: 30px;
-                    line-height: 30px;
-                    margin: 0 auto;
-                    font-size: 14px;
+                    width: 4.106667rem;
+                    height: .8rem;
+                    line-height: .8rem;
+                    margin:0 auto;
+                    font-size: .373333rem;
                     color: #333333;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+                    text-align: left;
                 }
                 .item {
-                    width: 154px;
-                    height: 40px;
+                    width: 4.106667rem;
+                    height: 1.066667rem;
                     margin: 0 auto;
                     display: flex;
                     justify-content: space-between;
                     span {
-                        font-size: 15px;
-                        line-height: 30px;
+                        font-size: .4rem;
+                        line-height: .8rem;
                         color: #ff0000;
                     }
                     img {
-                        width: 30px;
-                        height: 31px;
+                        width: .8rem;
+                        height:.813333rem;
                     }
                 }
             }

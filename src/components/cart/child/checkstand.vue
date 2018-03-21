@@ -20,11 +20,6 @@
                     <img src="../../../../static/images/weixin_xuanzhong.png" v-show="!show">
                     <van-radio name="1" v-model="radio" @click="clickIcon">微信支付</van-radio>
                 </div>
-                <div class="unionPay">
-                    <img src="../../../../static/images/yinlian_weixuan.png" v-show="hide">
-                    <img src="../../../../static/images/yinlian_xuanzhong.png" v-show="!hide">
-                    <van-radio name="2" v-model="radio" @click="clickPay">银联支付</van-radio>
-                </div>
             </div>
         </div>
         <button @click="pay()">支付</button>

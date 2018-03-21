@@ -7,18 +7,20 @@
       <div class="title">会员登录</div>
     </div>
 
-    <div class="userName">
-      <input type="text" placeholder="请输入用户名/手机号" v-model="user.username">
-      <i class="iconfont" @click="clearMsg('username')">&#xe615;</i>
+    <div class="loginBox">
+      <form name="login" id="login">
+        <div class="userName">
+          <input type="text" oninput="if(value.length>11)value=value.slice(0,11)" placeholder="请输入用户名/手机号" v-model="user.username">
+          <i class="iconfont" @click="clearMsg('username')">&#xe615;</i>
+        </div>
+        <div class="password">
+          <input type="password" placeholder="请输入密码" v-model="user.password" oninput="if(value.length>12)value=value.slice(0,11)">
+          <i class="iconfont" @click="clearMsg('password')">&#xe615;</i>
+        </div>
+        <input type="button" value="登录" class="login" @click="login()">
+      </form>
     </div>
-    <div class="password">
-      <input type="password" placeholder="请输入密码" v-model="user.password">
-      <i class="iconfont" @click="clearMsg('password')">&#xe615;</i>
-    </div>
-    <!-- 登录 -->
-    <button class="login">
-        <input type="submit" value="登录" class="actlogin" @click="actlogin()">
-    </button>
+
     <div class="loginRegister">
       <div class="autoLogin">
         <input type="checkbox">自动登录
@@ -36,7 +38,7 @@
     <div class="otherLogin">
       <p>第三方登录</p>
       <div class="otherLoginIcon">
-        <router-link to="">
+        <router-link to="/">
           <img src="../../../static/images/denglu_weixin.png">
         </router-link>
         <router-link to="">
@@ -58,24 +60,33 @@ export default {
       },
     };
   },
-  mounted() {
-    
-  },
+  
   methods: {
     clearMsg(str) {
       this.user[str] = '';
     },
-    actlogin() {
-      this.$http.post('http://www.huahudie.cc/mobile/webapi/login/actLogin', {
-          username:'user.username',
-          password:'user.password'
-      },{emulateJSON:true}).then((res)=>{
-        if(res.body.error==0){
-          router.push('/membercenter')
-        }else{
-          Toast('用户名或密码错误');
+    login() {
+      var reg = /^((13|14|15|17|18)[0-9]\d{8})$/ //手机验证正则
+      var phoneNum = this.user.username;
+      if (!phoneNum) { //未输入手机号
+        Toast('请输入手机号');
+        return;
+      } else if (!reg.test(phoneNum)) {//手机号不合法
+        Toast('您输入的手机号不合法，请重新输入');
+        return;
+      }
+      const url = "http://192.168.0.126/api/user/public/login";
+      this.$http.post(url, {
+        username: this.user.username,
+        password: this.user.password,
+      }, { emulateJSON: true }).then((res) => {
+        if (res.data.code === 1) {
+          this.$store.commit('change_token',res.data)
+          this.$router.push('/membercenter')
+        } else {
+          Toast(res.body.msg)
         }
-      }).catch()
+      })
     }
   }
 }
@@ -85,26 +96,26 @@ export default {
 <style lang="less" scoped>
 .head {
   width: 100%;
-  height: 38px;
+  height: 1.013333rem;
   background-color: #ff6666;
   color: #fff;
   position: relative;
-  line-height: 38px;
-  margin-bottom: 10px;
+  line-height: 1.013333rem;
+  margin-bottom: .266667rem;
   a {
     color: #fff;
     i {
-      width: 20px;
+      width: .533333rem;
       height: 100%;
-      left: 10px;
-      font-size: 20px;
+      left: .266667rem;
+      font-size: .533333rem;
       position: absolute;
     }
   }
   .title {
-    width: 60px;
+    width: 1.6rem;
     height: 100%;
-    font-size: 15px;
+    font-size: .4rem;
     margin: 0 auto;
   }
 }
@@ -112,25 +123,26 @@ export default {
 .userName,
 .password {
   width: 100%;
-  height: 44px;
-  margin-bottom: 10px;
+  height: 1.173333rem;
+  margin-bottom: .266667rem;
   position: relative;
   border: none;
   background-color: #fff;
   input {
-    width: 98%;
-    height: 100%;
-    background-color: #fff;
+    width: 90%;
+    height: 85%;
     margin: 0 auto;
-    margin-left: 5px;
+    margin-left: .133333rem;
+    font-size: .32rem;
   }
   i {
-    width: 15px;
-    height: 15px;
-    font-size: 15px;
-    line-height: 17px;
-    right: 5px;
-    top: 15px;
+    background-color: #fff;
+    width: .4rem;
+    height: .4rem;
+    font-size: .4rem;
+    line-height: .453333rem;
+    right: .266667rem;
+    top: .4rem;
     position: absolute;
     color: #ccc;
   }
@@ -149,36 +161,35 @@ export default {
 }
 
 .password {
-  margin-bottom: 30px;
+  margin-bottom: .8rem;
 }
 
 .login {
   width: 90%;
-  height: 40px;
-  border-radius: 10px;
+  height: 1.066667rem;
+  border-radius: .266667rem;
   text-align: center;
-  line-height: 40px;
-  font-size: 17px;
+  line-height: 1.066667rem;
+  font-size: .453333rem;
   background-color: #e94f4d;
-  margin-left: 18px;
- input {
-   width: 100%;
-   color: #fff;
-  }
+  margin-left: .48rem;
+  color: #fff;
 }
+
 
 .loginRegister {
   width: 100%;
-  height: 32px;
-  line-height: 32px;
+  height: .853333rem;
+  line-height: .853333rem;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 .533333rem;
   color: #666;
+  font-size: .32rem;
   .autoLogin {
     input {
-      width: 10px;
-      height: 10px;
+      width: .266667rem;
+      height: .266667rem;
       border: 1px solid #666;
     }
   }
@@ -192,30 +203,30 @@ export default {
 
 .otherLogin {
   width: 100%;
-  height: 200px;
-  padding-top: 15px;
+  height: 5.333333rem;
+  padding-top: .4rem;
   p {
     width: 100%;
-    font-size: 12px;
-    height: 25px;
-    line-height: 25px;
+    font-size: .32rem;
+    height: .666667rem;
+    line-height: .666667rem;
     text-align: center;
     color: #999;
   }
   .otherLoginIcon {
     width: 70%;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: .8rem;
     display: flex;
     justify-content: space-around;
     a {
       display: block;
-      width: 44px;
-      height: 44px;
+      width: 1.173333rem;
+      height: 1.173333rem;
 
       img {
-        width: 44px;
-        height: 44px;
+        width: 1.173333rem;
+        height: 1.173333rem;
       }
     }
   }
