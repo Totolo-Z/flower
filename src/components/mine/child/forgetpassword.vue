@@ -87,7 +87,7 @@ export default {
         confirm_password: this.user.confirm
       }, { emulateJSON: true }).then((res) => {
         if(res.data.code===1){
-            this.$router.push('/mine')
+            this.$router.push('/login')
         }else{
             Toast(res.body.msg);
         }

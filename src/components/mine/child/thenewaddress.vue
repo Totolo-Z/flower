@@ -7,10 +7,10 @@
         <div class="editAddress">
             <ul>
                 <li>
-                    收货人 <input type="text">
+                    收货人 <input type="text" v-model="consignee">
                 </li>
                 <li>
-                    联系电话<input type="tel" name="user_mobile">
+                    联系电话<input type="tel" v-model="mobile">
                 </li>
                 <li>
                     所在地区<input type="text">
@@ -30,20 +30,32 @@
 
 <script>
 import { Toast } from 'mint-ui';
+import common from '../../common/common.js';
 export default {
     data() {
         return {
-
+            consignee:'',
+            mobile:'',
         }
     },
     methods: {
-        commit() {
-            Toast({
-                message: '提交成功',
-                position: 'middle',
-                duration: 5000
-            });
-        }
+        commit(){
+            this.$http.post(`${common.apihost}api/home/address/editAddress`,{
+                params:{
+                    
+                }
+            }).then((res)=>{
+                this.$store.commit('change_token',res.data.data.token)
+                console.log(res)
+            })
+        },
+        // commit() {
+        //     Toast({
+        //         message: '提交成功',
+        //         position: 'middle',
+        //         duration: 5000
+        //     });
+        // }
     }
 }
 </script>

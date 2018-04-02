@@ -15,7 +15,7 @@
         <!-- 商品展示 -->
         <div class="productShow">
             <ul>
-                <li v-for='(val,index) in catGoods' :key='index' @click="goCarousel(val.id)">
+                <li v-for='(val,index) in catGoods' :key='index' @click="goCarousel(val.goods_id)">
                     <div class="icons">
                         <img :src="val.goods_thumb">
                         <span class="sales">销量{{val.sales}}</span>
@@ -39,8 +39,7 @@
 import common from '../../common/common.js';
 export default {
     data() {
-        return {
-            
+        return {        
             catGoods:[],
             categorylist: [],
         };
@@ -60,7 +59,7 @@ export default {
             this.$router.push({ path:`/goodslist/${id}`})
         },
         goCarousel(id) {
-            this.$router.push({ name: 'carousel', params: { carouselId: id } })
+            this.$router.push({ path:`/carousel/${id}`})
         },
         categoryListData() {
             this.$http.get(`${common.apihost}api/home/category/catMain`, {

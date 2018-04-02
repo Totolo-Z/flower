@@ -59,8 +59,6 @@ export default {
             },
         };
     },
-    mounted() {
-    },
     methods: {
         clearMsg(phone) {
             this.user.phone = '';

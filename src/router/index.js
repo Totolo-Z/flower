@@ -130,7 +130,6 @@ export default new Router({
         },
         {
           path: '/shop',
-          // name:shop,
           component: shop,
         },
         {

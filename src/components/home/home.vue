@@ -74,7 +74,7 @@ export default {
     indexData(){
       this.$http.get(`${common.apihost}api/home/category/catNav`).then((res)=>{
         this.indexList=res.body.data
-        console.log(res.body.data)
+        // console.log(res.body.data)
       })
     },
     goInhand(id){

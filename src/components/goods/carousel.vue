@@ -1,109 +1,77 @@
 <template>
     <div>
-        <div v-for="(val,index) in carouselList" :key="index">
-            <!-- 产品图片 -->
-            <div class="pic">
-                <div class="picinfo">
-                    <div class="picIcon">
-                        <i class="iconfont" @click="$router.back()">&#xe50d;</i>
-                    </div>
-                    <img :src="val.goods_img">
-                    <span class="picSales">销量{{shopPic.sales}}</span>
+        <!-- 产品图片 -->
+        <div class="shop-info">
+            <div class="shop-pic">
+                <div class="picIcon">
+                    <i class="iconfont" @click="$router.back()">&#xe50d;</i>
+                </div>
+                <img :src="carouselList.goods_img">
+                <span class="picSales">销量</span>
+            </div>
+            <div class="item">
+                <p class="name">{{carouselList.goods_name}}</p>
+                <p class="price">￥{{carouselList.shop_price}}</p>
+            </div>
+        </div>
+        <!-- 店铺信息 -->
+        <div class="shopMsg">
+            <div class="shopinfo">
+                <div class="icon">
+                    <img :src="shop.imgSrc">
                 </div>
                 <div class="item">
-                    <div class="name">
-                        {{val.goods_name}}
-                    </div>
-                    <p class="price">￥{{shopPic.price}}</p>
+                    <h3 class="title">{{shop.title}}</h3>
+                    <p class="grade">信誉等级:
+                        <span class="star">★ ★ ★ ★</span>
+                    </p>
+                    <p class="safe">安全认证: <img src="../../../static/images/pinpaidianjia1.png"></p>
+                    <p class="postageinfo">全店满180元包邮，偏远地区除外，港澳台地区不包邮</p>
                 </div>
             </div>
-            <!-- 店铺信息 -->
-            <div class="shopMsg">
-                <div class="shopinfo">
-                    <div class="icon">
-                        <img :src="shop.imgSrc">
-                    </div>
-                    <div class="item">
-                        <h3 class="title">{{shop.title}}</h3>
-                        <p class="grade">信誉等级:
-                            <span class="star">★ ★ ★ ★</span>
-                        </p>
-                        <p class="safe">安全认证: <img src="../../../static/images/pinpaidianjia1.png"></p>
-                        <p class="postageinfo">全店满180元包邮，偏远地区除外，港澳台地区不包邮</p>
-                    </div>
-                </div>
-                <div class="say">
-                    <img src="../../../static/images/dianpu.png">
-                    <span @click="goInshop(0)">进入店铺</span>
-                </div>
+            <div class="say">
+                <img src="../../../static/images/dianpu.png">
+                <span @click="goInshop(0)">进入店铺</span>
             </div>
-            <!-- 宝贝评价 -->
-            <div class="evaluate">
-                <div class="evaluate-head">
-                    <span>宝贝评价</span> (236)
-                </div>
-                <div class="evaluate-content">
-                    <div class="comment-list">
-                        <div class="comment-item-info">
-                            <div class="comment-item-icon">
-                                <img :src="evaluate.imgIcon">
-                            </div>
-                            <div class="comment-item-author">
-                                <p class="name">{{evaluate.name}}</p>
-                            </div>
+        </div>
+        <!-- 宝贝评价 -->
+        <div class="evaluate">
+            <div class="evaluate-head">
+                <span>宝贝评价</span>
+            </div>
+            <div class="evaluate-content">
+                <div class="comment-list">
+                    <div class="comment-item-info">
+                        <div class="comment-item-icon">
+                            <img :src="evaluate.imgIcon">
                         </div>
-                        <div class="comment-item-content">
-                            <span class="content">{{evaluate.content}}</span>
+                        <div class="comment-item-author">
+                            <p class="name">{{evaluate.name}}</p>
                         </div>
-                        <div class="more-content">
-                            <router-link to="/evaluate/1">
-                                <p>查看全部评价</p>
-                            </router-link>
-                        </div>
+                    </div>
+                    <div class="comment-item-content">
+                        <span class="content">{{evaluate.content}}</span>
+                    </div>
+                    <div class="more-content">
+                        <router-link to="/evaluate/1">
+                            <p>查看全部评价</p>
+                        </router-link>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 商品详情 -->
-            <div class="goodsinfo">
-                <div class="goodsinfo-head">
-                    <p>商品详情</p>
-                </div>
-                <div class="goosinfo-conten">
-                    <ul v-for="(val,index) in goodsinfo" :key='index'>
-                        <li class="flowerName">
-                            <span>【品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌】</span>{{val.flowerName}}</li>
-                        <li class="floweParten">
-                            <span>【适合对象】</span>{{val.floweParten}}</li>
-                        <li class="flowerScene">
-                            <span>【适合场景】</span>{{val.flowerScene}}</li>
-                        <li class="flowerNum">
-                            <span>【鲜花朵数】</span>{{val.flowerNum}}</li>
-                        <li class="flowerSize">
-                            <span>【鲜花规格】</span>{{val.flowerSize}}</li>
-                        <li class="vase">
-                            <span>【是否含花瓶】</span>{{val.vase}}</li>
-                    </ul>
-                </div>
+        <!-- 商品详情 -->
+        <div class="goodsinfo">
+            <div class="goodsinfo-head">
+                <p>商品详情</p>
             </div>
-            <div class="goon">
-                <span></span>
-                <span class="item">继续拖动,查看图文详情</span>
-                <span></span>
-            </div>
-            <!-- 图片详情 -->
-            <div class="pictureinfo">
-                <ul>
-                    <li v-for="(val,index) in pictureinfo" :key="index">
-                        <img :src='val.picImg'>
-                    </li>
-                </ul>
-            </div>
-            <div class="bottom">
-                <span></span>
-                <span class="item">已经到底了</span>
-                <span></span>
-            </div>
+            <div class="goosinfo-conten" v-html="carouselList.goods_desc"></div>
+        </div>
+        <div class="bottom">
+            <span></span>
+            <span class="item">已经到底了</span>
+            <span></span>
         </div>
     </div>
 </template>
@@ -114,13 +82,6 @@ export default {
     data() {
         return {
             carouselList: [],
-            shopPic: {
-                imgPic: '../../../static/images/x1.jpg',
-                name: '恒爱真久,爱你一生,最浪漫的事，就是与你一起慢慢变老',
-                price: '299.00',
-                sales: '60',
-            }
-            ,
             shop:
             {
                 imgSrc: '../../../../static/images/m2.jpg',
@@ -131,28 +92,7 @@ export default {
                 imgIcon: '../../../static/images/qx.jpg',
                 name: '小雪人',
                 content: '首先值得肯定的是他们家的服务，是我遇见的服务态度最好的一家！因为第一次送花闹了点小插曲，但是客服很有耐心的帮我调解，最后花店重新把花抱回去重新插过了，第二次明显比第一次好了很多！花很新鲜，总的来说值得购买，下次还会来'
-            },
-            goodsinfo: [
-                {
-                    flowerName: '花有独钟',
-                    floweParten: '爱人、恋人、生日、婚礼',
-                    flowerScene: '爱意表达、生日、婚礼、求婚现场',
-                    flowerNum: '99朵红玫瑰',
-                    flowerSize: '44*88(直径×高)',
-                    vase: '不含花瓶',
-                }
-            ],
-            pictureinfo: [
-                {
-                    picImg: '../../../static/images/x1.jpg',
-                },
-                {
-                    picImg: '../../../static/images/x1.jpg',
-                },
-                {
-                    picImg: '../../../static/images/x1.jpg',
-                }
-            ],
+            },  
         };
     },
     mounted() {
@@ -165,12 +105,10 @@ export default {
         carouselData() {
             this.$http.get(`${common.apihost}api/home/goods/detail`, {
                 params: {
-                    gid:this.$route.params.carouselId,
-                    // gid: goods_id,
+                    gid: this.$route.params.carouselId,
                 }
             }).then((res) => {
-                this.carouselList = res.body.data
-                console.log(res)
+                this.carouselList = res.body.data.goods
             })
         }
     },
@@ -178,29 +116,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.pic {
+.shop-info {
     width: 100%;
-    height: 10.933333rem;
-    background-color: #fff;
-    .picinfo {
+    .shop-pic {
         width: 100%;
         height: 8.533333rem;
         position: relative;
-        .picIcon {
-            position: absolute;
-            width: .8rem;
-            height: .8rem;
-            background-color: rgba(51, 51, 51, 0.3);
-            top: .266667rem;
-            left: .266667rem;
-            text-align: center;
-            line-height: .8rem;
-            border-radius: 50%;
-            i {
-                font-size: .666667rem;
-                color: #fff;
-            }
-        }
         img {
             width: 100%;
             height: 8.533333rem;
@@ -218,25 +139,40 @@ export default {
             color: #ffffff;
             background-color: rgba(51, 51, 51, 0.7);
         }
+        .picIcon {
+            width: .8rem;
+            height: .8rem;
+            background-color: rgba(51, 51, 51, 0.3);
+            position: absolute;
+            top: .266667rem;
+            left: .266667rem;
+            text-align: center;
+            line-height: .8rem;
+            border-radius: 50%;
+            i {
+                font-size: .666667rem;
+                color: #fff;
+            }
+        }
     }
+
     .item {
         width: 100%;
-        height: 2.373333rem;
         padding-left: .266667rem;
+        background-color: #fff;
         .name {
-            height: 1.333333rem;
-            line-height: .666667rem;
-            font-size: .453333rem;
+            line-height: .9rem;
+            font-size: .4rem;
         }
         .price {
             width: 100%;
-            height: 1.013333rem;
-            line-height: .96rem;
-            font-size: .48rem;
+            line-height: .65rem;
+            font-size: .42rem;
             color: #ff0000;
         }
     }
 }
+
 
 .shopMsg {
     margin-top: .133333rem;
@@ -272,9 +208,6 @@ export default {
                 line-height: .8rem;
                 color: #333;
             }
-            .name {
-                width: 100%;
-            }
             .grade {
                 .star {
                     color: #ffa200;
@@ -297,16 +230,6 @@ export default {
                 white-space: nowrap;
                 font-size: .32rem;
                 color: #999999;
-            }
-            .distance {
-                height: .426667rem;
-                line-height: .426667rem;
-                color: #999999;
-                img {
-                    width: 10px;
-                    height: .346667rem;
-                    vertical-align: middle;
-                }
             }
         }
     }
@@ -341,10 +264,6 @@ export default {
         font-size: .4rem;
         font-weight: 500;
         border-bottom: 1px solid #f0f0f0;
-        span {
-            width: 2.666667rem;
-            height: 100%;
-        }
     }
     .evaluate-content {
         width: 100%;
@@ -430,35 +349,26 @@ export default {
         margin-bottom: .133333rem;
         p {
             line-height: 1.173333rem;
-            font-size: .266667rem;
+            font-size: .4rem;
             color: #333;
         }
     }
-    .goosinfo-conten {
+    .goosinfo-conten{
         width: 100%;
-        ul {
-            width: 100%;
-            li {
-                width: 100%;
-                height: .933333rem;
-                line-height: .933333rem;
-                margin-bottom: .133333rem;
-                color: #999;
-                font-size: .333333rem;
-                span {
-                    font-size: .346667rem;
-                    color: #333;
-                }
-            }
+        font-size: .16rem;
+        img{
+            width: 10.533333rem;
+            height: 4rem;
         }
     }
 }
 
-.goon,
+
 .bottom {
     width: 100%;
     height: 1.066667rem;
     padding: .266667rem;
+    margin-bottom: 1.333333rem;
     span {
         border-top: 1px solid #ccc;
         width: 23%;
@@ -472,10 +382,6 @@ export default {
         color: #ccc;
         font-size: .346667rem;
     }
-}
-
-.bottom {
-    margin-bottom: 1.333333rem;
 }
 
 .pictureinfo {

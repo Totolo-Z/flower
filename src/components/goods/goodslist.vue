@@ -43,7 +43,7 @@
         <!-- 商品列表2  -->
         <div>
             <ul class="shopContent" v-show="changeIcon" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-                <li v-for="(item,index) in goodsList" :key="index">
+                <li v-for="(item,index) in goodsList" :key="index" @click="goCarousel(item.goods_id)">
                     <div class="imgInfo">
                         <img :src="item.goods_thumb">
                         <span class="salesVolume">销量{{item.sale}}</span>
