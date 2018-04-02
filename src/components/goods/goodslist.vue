@@ -21,45 +21,39 @@
         <!-- 商品列表 -->
         <div class="productShow" v-show="!changeIcon">
             <div class="product">
-                <ul>
-                    <li v-for="(val,index) in goods" :key="index">
-                        <router-link :to="/carousel/+index">
+                <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+                    <li v-for="(val,index) in goodsList" :key="index" @click="goCarousel(val.goods_id)">                     
                             <div class="icons">
-                                <img :src="val.imgSrc">
-                                <span class="sales">销量{{val.sales}}</span>
+                                <img :src="val.goods_thumb">
+                                <span class="sales">销量{{val.sale}}</span>
                             </div>
-                        </router-link>
-                        <p class="title">{{val.title}}</p>
+                        <p class="title">{{val.goods_name}}</p>
                         <div class="districtPost">
-                            <span class="postStatus">{{val.postStatus}}</span>
-                            <span class="district">{{val.district}}</span>
+                            <span class="postStatus">包邮</span>
+                            <span class="district">{{val.city}}</span>
                         </div>
                         <div class="item">
-                            <span class="price">￥{{val.price}}</span>
+                            <span class="price">￥{{val.shop_price}}</span>
                             <img src="../../../static/images/tianjia_changgui.png">
                         </div>
                     </li>
-                    <div class="more">
-                        <p>查看更多</p>
-                        <img src="../../../static/images/more.png">
-                    </div>
                 </ul>
             </div>
         </div>
         <!-- 商品列表2  -->
         <div>
-            <ul class="shopContent" v-show="changeIcon">
-                <li v-for="(item,index) in goods" :key="index">
+            <ul class="shopContent" v-show="changeIcon" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+                <li v-for="(item,index) in goodsList" :key="index">
                     <div class="imgInfo">
-                        <img :src="item.imgSrc">
-                        <span class="salesVolume">销量{{item.sales}}</span>
+                        <img :src="item.goods_thumb">
+                        <span class="salesVolume">销量{{item.sale}}</span>
                     </div>
                     <div class="shopInfo">
-                        <h5 class="commodity">{{item.title}}</h5>
-                        <p class="district">{{item.district}}</p>
-                        <p class="postStatus">{{item.postStatus}}</p>
+                        <p class="commodity">{{item.goods_name}}</p>
+                        <p class="district">{{item.city}}</p>
+                        <p class="postStatus">包邮</p>
                         <div class="priceItem">
-                            <span class="price">￥{{item.price}}</span>
+                            <span class="price">￥{{item.shop_price}}</span>
                             <img src="../../../static/images/tianjia_changgui.png">
                         </div>
                     </div>
@@ -70,83 +64,43 @@
 </template>
 
 <script>
+import common from '../common/common.js';
+import { InfiniteScroll } from 'mint-ui';
 export default {
     data() {
         return {
             change: true,
             openContent: false,
             changeIcon: false,
-            goods: [
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '深圳',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '广州',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '上海',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '北京',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '深圳',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '深圳',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '深圳',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-                {
-                    imgSrc: '../../../static/images/ca1.jpg',
-                    sales: '62',
-                    title: '只要有花可开，就不允许生命与黯淡为伴',
-                    district: '深圳',
-                    postStatus: '包邮',
-                    price: '299.00',
-                },
-            ],
             rank: ['综合排序', '信用', '价格由高到低', '价格由低到高'],
             activeIndex: 0,
+            goodsList: [],
+            pageIndex: 1,
         }
     },
+    mounted() {
+        this.goodsData()
+    },
     methods: {
+        goCarousel(id){
+            this.$router.push({path:`/carousel/${id}`})
+        },
+        goodsData() {
+            this.$http.get(`${common.apihost}api/home/goods/index`, {
+                params: {
+                    cid: this.$route.params.goodslistId,
+                    p: this.pageIndex,
+                }
+            }).then((res) => { 
+                this.goodsList = this.goodsList.concat(res.body.data);
+                this.loading = false;            
+            })
+        },
+        loadMore() {
+            this.loading = true;
+            this.pageIndex++;
+            this.goodsData();
+        },
     },
 }
 </script>
@@ -183,7 +137,7 @@ export default {
     }
     .accordion {
         min-width: 100%;
-        height:4.853333rem;
+        height: 4.853333rem;
         background-color: #fff;
         position: absolute;
         top: .986667rem;
@@ -219,6 +173,7 @@ export default {
 .productShow {
     width: 100%;
     background-color: #fff;
+    margin-bottom: 1.333333rem;
     .product {
         width: 100%;
         height: 100%;
@@ -249,17 +204,18 @@ export default {
                     .sales {
                         position: absolute;
                         width: 1.573333rem;
-                        height:.533333rem;
-                        right: 2px;
-                        bottom: .053333rem;
+                        height: .533333rem;
+                        right: 0px;
+                        bottom: 0px;
                         font-size: .32rem;
                         text-align: center;
-                        line-height:.533333rem;
+                        line-height: .533333rem;
                         color: #ffffff;
                         background-color: rgba(51, 51, 51, 0.7);
                     }
                 }
                 .title {
+                    text-align: left;
                     width: 4.106667rem;
                     height: .8rem;
                     line-height: .8rem;
@@ -278,10 +234,10 @@ export default {
                     justify-content: space-between;
                     .postStatus {
                         width: .8rem;
-                        height:.426667rem;
+                        height: .426667rem;
                         background-color: #ffa800;
                         border-radius: .08rem;
-                        line-height:.426667rem;
+                        line-height: .426667rem;
                         color: #fff;
                         font-size: .32rem;
                     }
@@ -298,31 +254,13 @@ export default {
                     justify-content: space-between;
                     span {
                         font-size: .4rem;
-                        line-height:.8rem;
+                        line-height: .8rem;
                         color: #ff0000;
                     }
                     img {
                         width: .746667rem;
                         height: .773333rem;
                     }
-                }
-            }
-            .more {
-                width: 100%;
-                height: 1.2rem;
-                background-color: #ffffff;
-                text-align: center;
-                margin-bottom: .266667rem;
-                p {
-                    line-height: .8rem;
-                    margin: 0px;
-                    font-size: .373333rem;
-                    color: #666666;
-                }
-                img {
-                    width:.24rem;
-                    height: .213333rem;
-                    vertical-align: top;
                 }
             }
         }
@@ -332,9 +270,10 @@ export default {
 .shopContent {
     width: 100%;
     background-color: #fff;
+    margin-bottom: 1.333333rem;
     li {
         width: 100%;
-        height:3.333333rem;
+        height: 3.333333rem;
         border-top: 1px solid #f0f0f0;
         display: flex;
         .imgInfo {
@@ -344,12 +283,12 @@ export default {
             img {
                 width: 2.4rem;
                 height: 2.4rem;
-                transform: translate(.306667rem,.266667rem);
+                transform: translate(.306667rem, .266667rem);
             }
             .salesVolume {
                 position: absolute;
-                right: .39rem;
-                bottom: .69rem;
+                right: .36rem;
+                bottom: .64rem;
                 width: 1.2rem;
                 height: .48rem;
                 background-color: rgba(51, 51, 51, 0.5);
@@ -364,6 +303,7 @@ export default {
             height: 100%;
             padding-top: .266667rem;
             .commodity {
+                text-align: left;
                 font-size: .4rem;
                 color: #333;
             }
@@ -384,8 +324,8 @@ export default {
             }
             .priceItem {
                 width: 100%;
-                height:.746667rem;
-                line-height:.746667rem;
+                height: .746667rem;
+                line-height: .746667rem;
                 display: flex;
                 justify-content: space-between;
                 .price {
@@ -401,6 +341,5 @@ export default {
         }
     }
 }
-
 </style>
 

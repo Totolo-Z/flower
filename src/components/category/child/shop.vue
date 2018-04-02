@@ -6,16 +6,14 @@
      <!-- 店铺信息 -->
         <div class="shop">
             <ul>
-                <li v-for="(val,index) in shop" :key="index">
+                <li v-for="(val,index) in shopList" :key="index">
                     <div class="icon">
-                        <img :src="val.imgSrc">
+                        <img :src="val.logo">
                     </div>
                     <div class="item">
-                        <h3 class="title">{{val.title}}</h3>
-                        <p class="name">会员名字: {{val.name}}</p>
-                        <p class="grade">信誉等级:<span class="star"> {{val.star}}</span></p>
+                        <h3 class="title">{{val.supplier_name}}</h3>
+                        <p class="grade">信誉等级:<span class="star">★★★★</span></p>
                         <p class="safe">安全认证: <img src="../../../../static/images/pinpaidianjia1.png"></p>
-                        <p class="distance"><i class="iconfont">&#xe68b;</i>  距离: <span class="far">{{val.far}}公里</span></p>
                     </div>
                     <div class="say">
                         <img src="../../../../static/images/dianpu.png">
@@ -28,47 +26,28 @@
 </template>
 
 <script>
+import common from '../../common/common.js';
 export default {
   data(){
     return{
-        shop:[
-                {
-                    imgSrc:'../../../../static/images/m2.jpg',
-                    title:'小蝶鲜花花坊',
-                    name:'小蝶儿',
-                    star:'★★★★',
-                    far:'36.6',
-                },
-                {
-                    imgSrc:'../../../../static/images/m3.jpg',
-                    title:'小蝶鲜花花坊',
-                    name:'小蝶儿',
-                    star:'★★★★',
-                    far:'36.6',
-                },
-                {
-                    imgSrc:'../../../../static/images/m4.jpg',
-                    title:'小蝶鲜花花坊',
-                    name:'小蝶儿',
-                    star:'★★★★',
-                    far:'36.6',
-                },
-                {
-                    imgSrc:'../../../../static/images/m5.jpg',
-                    title:'小蝶鲜花花坊',
-                    name:'小蝶儿',
-                    star:'★★★★',
-                    far:'36.6',
-                },
-                {
-                    imgSrc:'../../../../static/images/m6.jpg',
-                    title:'小蝶鲜花花坊',
-                    name:'小蝶儿',
-                    star:'★★★★',
-                    far:'36.6',
-                },
-            ]
+        shopList:[],
     }
+  },
+  mounted(){
+      this.shopData()
+  },
+  methods:{
+     shopData(){
+         this.$http.get(`${common.apihost}api/home/category/getSupplier`,{
+             params:{
+                 sid:1,
+                 p:2
+             }
+         }).then((res)=>{
+             this.shopList=res.body.msg
+             console.log(res.body.msg)
+         })
+     }
   }
 }
 </script>
@@ -108,13 +87,13 @@ export default {
             .item {
                 width: 50%;
                 height: 100%;
-                padding-left:.133333rem;
+                padding-left:.4rem;
                 font-size: .32rem;
-                line-height: .4rem;
+                line-height: .6rem;
                 color: #999;
                 .title{     
                     font-size: .4rem;
-                    line-height: .666667rem;
+                    line-height: 1rem;
                     color:#333;
                 }
                 .name{

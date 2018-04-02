@@ -14,7 +14,7 @@
           <i class="iconfont" @click="clearMsg('username')">&#xe615;</i>
         </div>
         <div class="password">
-          <input type="password" placeholder="请输入密码" v-model="user.password" oninput="if(value.length>12)value=value.slice(0,11)">
+          <input type="password" placeholder="请输入密码" v-model="user.password" oninput="if(value.length>12)value=value.slice(0,11)" >
           <i class="iconfont" @click="clearMsg('password')">&#xe615;</i>
         </div>
         <input type="button" value="登录" class="login" @click="login()">
@@ -39,10 +39,10 @@
       <p>第三方登录</p>
       <div class="otherLoginIcon">
         <router-link to="/">
-          <img src="../../../static/images/denglu_weixin.png">
+          <img src="../../../../static/images/denglu_weixin.png">
         </router-link>
         <router-link to="">
-          <img src="../../../static/images/denglu_qq.png">
+          <img src="../../../../static/images/denglu_qq.png">
         </router-link>
       </div>
     </div>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import common from '../../common/common.js';
 import { Toast } from 'mint-ui';
 export default {
   data() {
@@ -75,13 +76,13 @@ export default {
         Toast('您输入的手机号不合法，请重新输入');
         return;
       }
-      const url = "http://192.168.0.126/api/user/public/login";
-      this.$http.post(url, {
+      this.$http.post(`${common.apihost}api/user/public/login`, {
         username: this.user.username,
         password: this.user.password,
       }, { emulateJSON: true }).then((res) => {
         if (res.data.code === 1) {
-          this.$store.commit('change_token',res.data)
+          this.$store.commit('change_token',res.data.data.token)
+          // console.log(res)
           this.$router.push('/membercenter')
         } else {
           Toast(res.body.msg)

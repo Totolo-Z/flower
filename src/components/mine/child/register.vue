@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="head">
-            <router-link to="/mine">
+            <router-link to="/login">
                 <i class="iconfont">&#xe50d;</i>
             </router-link>
             用户注册

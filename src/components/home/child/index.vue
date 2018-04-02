@@ -63,15 +63,6 @@
             </div>
         </div>
         <div class="footer">
-            <div class="user">
-                <span>wx_874976</span>|
-                <span>
-                    <router-link to="/mine">
-                        退出
-                    </router-link>
-                </span>|
-                <span>回顶部</span>
-            </div>
             <div class="icon">
                 <img src="../../../../static/images/shouji_weixuanzhong.png">
                 <img src="../../../../static/images/shouji_xuanzhong.png">
@@ -150,6 +141,7 @@ export default {
             goods: [
                 {
                     id: 1,
+                    name:'小蝶鲜花花坊',
                     imgSrc: '../../../../static/images/m1.jpg',
                     sales: '62',
                     title: '只要有花可开，就不允许生命与黯淡为伴',
@@ -494,20 +486,6 @@ export default {
     border-bottom: 1px solid #cccccc;
     text-align: center;
     margin-top: .533333rem;
-    .user {
-        height: .533333rem;
-        padding-top: .266667rem;
-        color: #999999;
-        font-size: .32rem;
-        span {
-            margin: 0 .2rem;
-            line-height: .533333rem;
-            a {
-                display: inline-block;
-                color: #999;
-            }
-        }
-    }
     .icon {
         margin-top: .8rem;
         width: 100%;

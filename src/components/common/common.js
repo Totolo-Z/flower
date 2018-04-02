@@ -1,3 +1,3 @@
 export default{
-    apihost:'http://www.huahudie.cc/'
+    apihost:'http://192.168.0.126/'
 }

@@ -19,24 +19,22 @@
   </div>
 </template>
 
-
-
 <style lang="less" scoped>
 .head{
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #ff6666;
     color:#fff;
     text-align: center;
-    font-size: 15px;
-    line-height: 38px;
+    font-size: .4rem;
+    line-height:1.013333rem;
     position: relative; 
     a{
         color:#fff;
         i{
         position: absolute;
-        left: 10px;
-        font-size: 20px;
+        left: .266667rem;
+        font-size: .533333rem;
      }
     }
 }
@@ -44,13 +42,13 @@
     width: 100%;
     .orderCategory{
         width: 100%;
-        height: 44px;
+        height: 1.173333rem;
         background-color: #fff;
-        line-height: 44px;
+        line-height: 1.173333rem;
         display: flex;
         justify-content: space-around;
         border-bottom: 1px solid #f0f0f0;
-        font-size: 14px;
+        font-size: .373333rem;
        
         li{
             a{

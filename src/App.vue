@@ -32,7 +32,7 @@
         </li>
 
         <li>
-            <router-link to="/mine">
+            <router-link to="login">
             <img src="../static/images/my.png">
             <p>我的</p>
           </router-link>

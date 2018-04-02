@@ -26,12 +26,6 @@ import goodslist from '../components/goods/goodslist.vue';//商品展示
 
 import category from '../components/category/category.vue';//分类
 import hand from '../components/category/child/hand.vue';  // 手捧鲜花
-import giftbox from '../components/category/child/giftbox.vue'; // 礼盒鲜花
-import business from '../components/category/child/business.vue';//商务鲜花
-import cake from '../components/category/child/cake.vue';//蛋糕预定
-import potting from '../components/category/child/potting.vue';//绿植盆栽
-import gift from '../components/category/child/gift.vue';//创意礼品
-import pack from '../components/category/child/pack.vue';//包装辅料
 import shop from '../components/category/child/shop.vue';//品牌店家
 import ordinary from '../components/category/child/ordinary.vue';//普通店家
 
@@ -49,7 +43,8 @@ import confirmorder from '../components/cart/child/confirmorder.vue';//确认订
 import checkstand from '../components/cart/child/checkstand.vue';//收银台
 
 
-import mine from '../components/mine/mine.vue';//我的
+
+import login from '../components/mine/child/login.vue';//登录
 import register from '../components/mine/child/register.vue';//注册
 import forgetpassword from '../components/mine/child/forgetpassword.vue';//忘记密码
 import membercenter from '../components/mine/child/membercenter.vue';//会员中心
@@ -68,6 +63,7 @@ import fixAddress from '../components/mine/child/fixAddress.vue';//修改地址
 
 
 export default new Router({
+  mode:'history',
   routes: [
     {
       path: '/',
@@ -86,7 +82,7 @@ export default new Router({
           component: index,
         },
         {
-          path: '/inhand',
+          path: 'inhand/:inhandId',
           component: inhand,
         },
         {
@@ -124,39 +120,17 @@ export default new Router({
       component: category,
       children: [
         {
-          path: '/',
-          redirect: '/hand',
+          path:'/',
+          redirect:'hand/1',
         },
         {
-          path: '/hand',
+          path: 'hand/:handId',
+          name:hand,
           component: hand,
         },
         {
-          path: '/giftbox',
-          component: giftbox,
-        },
-        {
-          path: '/business',
-          component: business,
-        },
-        {
-          path: '/cake',
-          component: cake,
-        },
-        {
-          path: '/potting',
-          component: potting,
-        },
-        {
-          path: '/gift',
-          component: gift,
-        },
-        {
-          path: '/pack',
-          component: pack,
-        },
-        {
           path: '/shop',
+          // name:shop,
           component: shop,
         },
         {
@@ -175,8 +149,8 @@ export default new Router({
       component: cart,
     },
     {
-      path: '/mine',
-      component: mine,
+      path: '/login',
+      component: login,
     },
     {
       path: '/membercenter',
@@ -254,7 +228,6 @@ export default new Router({
     },
     {
       path: '/carousel/:carouselId',
-      name: 'carousel',
       component: carousel,
     },
     {
@@ -263,7 +236,6 @@ export default new Router({
     },
     {
       path: '/goodslist/:goodslistId',
-      name: 'goodslist',
       component: goodslist,
     },
     {

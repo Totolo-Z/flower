@@ -10,40 +10,39 @@
         </div>
         <!-- 我的订单  -->
         <div class="myOrderGoods">
-            <div class="allOrders">
-                <span class="myorder">
-                    <router-link to="/myorder">
+            <router-link to="/myorder">
+                <div class="allOrders">
+                    <span class="myorder">
                         我的订单
-                    </router-link>
-                </span>
-                <span class="allOrder">
-                    <router-link to="/allorder">全部订单
+                    </span>
+                    <span class="allOrder">
+                        全部订单
                         <i class="iconfont">&#xe60a;</i>
-                    </router-link>
-                </span>
-            </div>
+                    </span>
+                </div>
+            </router-link>
             <div class="goodsState">
                 <div class="goodsStateinfo">
                     <router-link to="/obligation">
-                    <img src="../../../../static/images/daifukuan.png">
+                        <img src="../../../../static/images/daifukuan.png">
                     </router-link>
                     <p>待付款</p>
                 </div>
                 <div class="goodsStateinfo">
                     <router-link to="/notyetshipped">
-                    <img src="../../../../static/images/daifahuo.png">
+                        <img src="../../../../static/images/daifahuo.png">
                     </router-link>
                     <p>待发货</p>
                 </div>
                 <div class="goodsStateinfo">
                     <router-link to="/waitforreceiving">
-                    <img src="../../../../static/images/daishouhuo.png">
+                        <img src="../../../../static/images/daishouhuo.png">
                     </router-link>
                     <p>待收货</p>
                 </div>
                 <div class="goodsStateinfo">
                     <router-link to="/evaluation">
-                    <img src="../../../../static/images/daipinjia.png">
+                        <img src="../../../../static/images/daipinjia.png">
                     </router-link>
                     <p>待评价</p>
                 </div>
@@ -54,28 +53,28 @@
             <ul>
                 <li>
                     <router-link to="/mycoupon">
-                    <i class="iconfont myListLeft">&#xe63c;</i>
-                    <span class="myListName">我的优惠券</span>
-                    <i class="iconfont myListRight">&#xe60a;</i>
+                        <i class="iconfont myListLeft">&#xe63c;</i>
+                        <span class="myListName">我的优惠券</span>
+                        <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>
                 </li>
                 <li>
                     <router-link to="/service">
-                    <i class="iconfont myListLeft">&#xe720;</i>
-                    <span class="myListName">客服与帮助</span>
-                    <i class="iconfont myListRight">&#xe60a;</i>
+                        <i class="iconfont myListLeft">&#xe720;</i>
+                        <span class="myListName">客服与帮助</span>
+                        <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>
                 </li>
                 <li>
                     <router-link to="/addressmanagement">
-                    <i class="iconfont myListLeft">&#xe68b;</i>
-                    <span class="myListName">收货地址管理</span>
-                    <i class="iconfont myListRight">&#xe60a;</i>
+                        <i class="iconfont myListLeft">&#xe68b;</i>
+                        <span class="myListName">收货地址管理</span>
+                        <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>
                 </li>
                 <li>
                     <i class="iconfont myListLeft">&#xe6b2;</i>
-                    <span class="myListName" @click="exit">退出登录</span>
+                    <span class="myListName" @click.stop="loginout">退出登录</span>
                 </li>
             </ul>
         </div>
@@ -83,28 +82,31 @@
 </template>
 
 <script>
+import common from '../../common/common.js';
+import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
             memberIcon: {
                 imgSrc: '../../../../static/images/qx.jpg',
                 memberName: 'Jackson',
+
             }
         }
     },
-    methods:{
-        exit(){
-            const url='http://192.168.0.126/api/user/public/logout';
-            this.$http.get(url,{
-                
-            }).then((res)=>{
-                if(res.data.code===1){
-                     this.$store.commit('change_token',)
+
+    methods: {
+        loginout() {
+            this.$http.post(`${common.apihost}api/user/public/logout`,
+                {},
+                { 'headers': { 'XX-Token': this.$store.state.token } }
+
+            ).then((res) => {
+                if (res.data.code === 1) {
+                    Toast(res.body.msg)
+                    this.$router.push('/login')
                 }
-                console.log(res.data)
-               
-                // this.$router.push('/mine')
-            })
+            }).catch()
         }
     }
 }
@@ -113,7 +115,7 @@ export default {
 <style lang="less" scoped>
 .memberCenterIcon {
     width: 100%;
-    height: 160px;
+    height: 4.266667rem;
     position: relative;
     background-color: #fffacd;
     border-bottom: 1px solid #f0f0f0;
@@ -121,104 +123,102 @@ export default {
         width: 100%;
         height: 100%;
         text-align: center;
-        padding-top: 11px;
+        padding-top: .293333rem;
         img {
-            width: 90px;
-            height: 90px;
+            width: 2.4rem;
+            height: 2.4rem;
             border-radius: 50%;
         }
         .memberName {
-            font-size: 16px;
-            line-height: 26px;
+            font-size: .426667rem;
+            line-height: .693333rem;
             color: #333;
         }
         .level {
-            font-size: 12px;
+            font-size: .32rem;
             color: #999;
         }
     }
 }
 
 .myOrderGoods {
-    margin-top: 10px;
+    margin-top: .266667rem;
     width: 100%;
-    height: 110px;
+    height: 2.933333rem;
     background-color: #fff;
     .allOrders {
         width: 100%;
-        height: 44px;
+        height: 1.173333rem;
         border-bottom: 1px solid #f0f0f0;
-        line-height: 44px;
+        line-height: 1.173333rem;
         display: flex;
         justify-content: space-between;
-        padding: 0 10px;
-        a {
-            color: #333;
-        }
+        padding: 0 .266667rem;
         .myOrder {
-            font-size: 13px;
+            font-size: .346667rem;
             color: #333;
         }
         .allOrder {
-            font-size: 12px;
+            font-size: .32rem;
             a {
                 color: #999;
                 i {
-                    font-size: 14px;
-                    line-height: 20px;
+                    font-size: .373333rem;
+                    line-height: .533333rem;
                 }
             }
         }
     }
     .goodsState {
         width: 100%;
-        height: 66px;
+        height: 1.76rem;
         display: flex;
         justify-content: space-around;
         .goodsStateinfo {
             height: 100%;
             text-align: center;
-            padding-top: 15px;
-            line-height: 18px;
+            padding-top: .4rem;
+            line-height: .48rem;
+            font-size: .32rem;
             img {
-                width: 21px;
-                height: 17px;
+                width: .56rem;
+                height: .453333rem;
             }
         }
     }
 }
 
 .myList {
-    margin-top: 10px;
+    margin-top: .266667rem;
     width: 100%;
-    height: 307px;
+    height: 8.186667rem;
     background-color: #fff;
     ul {
         width: 100%;
         height: 100%;
         li {
             width: 100%;
-            height: 40px;
+            height: 1.066667rem;
             border-bottom: 1px solid #f0f0f0;
-            line-height: 40px;
-            font-size: 13px;
-            padding-left: 10px;
+            line-height: 1.066667rem;
+            font-size: .346667rem;
+            padding-left: .266667rem;
             position: relative;
-             color: #333;
-            a{
+            color: #333;
+            a {
                 color: #333;
             }
             &:last-child {
                 border: none;
             }
             .myListLeft {
-                font-size: 20px;
+                font-size: .533333rem;
             }
             .myListRight {
                 position: absolute;
-                font-size: 15px;
+                font-size: .4rem;
                 color: #999;
-                right: 10px;
+                right: .266667rem;
             }
             &:nth-child(1)>a>.myListLeft {
                 color: #ff6666;
@@ -231,7 +231,7 @@ export default {
             }
             &:nth-child(4)>.myListLeft {
                 color: #ff6991;
-                font-size: 18px;
+                font-size: .48rem;
                 font-weight: 500;
             }
         }

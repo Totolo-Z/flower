@@ -20,10 +20,8 @@
           <router-link to="/index">
             <li :class="{'active': $route.path == '/index'}">首页</li>
           </router-link>
-          <router-link to="/inhand">
-            <li :class="{'active': $route.path == '/inhand'}">手捧鲜花</li>
-          </router-link>
-          <router-link to="/giftlist">
+            <li v-for="(item,index) in indexList" :key="index" @click="goInhand(item.cat_id)">{{item.cat_name}}</li>
+          <!-- <router-link to="/giftlist">
             <li :class="{'active': $route.path == '/giftlist'}">礼盒鲜花</li>
           </router-link>
           <router-link to="/businesslist">
@@ -40,7 +38,7 @@
           </router-link>
           <router-link to="/packlist">
             <li :class="{'active': $route.path == '/packlist'}">包装辅料</li>
-          </router-link>
+          </router-link> -->
           <router-link to="/shoplist">
             <li :class="{'active': $route.path == '/shoplist'}">品牌店家</li>
           </router-link>
@@ -52,11 +50,12 @@
 </template>
 
 <script>
-
+import common from '../common/common.js';
 export default {
   data() {
     return {
       tabHide: true,
+      indexList:[]
     };
   },
 
@@ -68,6 +67,20 @@ export default {
   //     }
   //   },
   // },
+  mounted(){
+    this.indexData()
+  },
+  methods:{
+    indexData(){
+      this.$http.get(`${common.apihost}api/home/category/catNav`).then((res)=>{
+        this.indexList=res.body.data
+        console.log(res.body.data)
+      })
+    },
+    goInhand(id){
+      this.$router.push({path:`/home/inhand/${id}`})
+    }
+  }
 };
 </script>
 

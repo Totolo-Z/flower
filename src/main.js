@@ -1,9 +1,10 @@
 
 import Vue from 'vue';
 import router from './router';
-import VueResource from 'vue-resource'
+import VueResource from 'vue-resource' 
 import Vant from 'vant';
 import Mint from 'mint-ui';
+import FastClick from 'fastclick';
 import { getMD5 } from '@/utils/md5';
 import Store from '@/store';
 
@@ -11,6 +12,8 @@ import { priceFilter, sexFilter } from '@/utils/filters';
 import App from './App';
 
 Vue.config.productionTip = false;
+FastClick.attach(document.body);
+
 
 Vue.use(VueResource);
 Vue.use(Vant);
