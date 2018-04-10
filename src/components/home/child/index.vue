@@ -1,15 +1,13 @@
 <template>
     <div>
         <subcomment :commentId='swiper'></subcomment>
-        <!-- 通告 -->
-        <div class="annunciate">
-            <img src="../../../../static/images/laba.png">
-            <marquee direction="left" scrolldelay='20'>2018年情人节花束即日起可提前预定了！</marquee>
+        <!-- 搜索 -->
+        <div class="search">
+            <van-search placeholder="请输入商品名称" v-model="value" />
         </div>
-       
         <!-- 精品 -->
         <div class="products">
-            <h3>节日精品</h3>
+            <h3>今日推荐</h3>
             <div class="goodGoods">
                 <ul>
                     <li v-for="(val,index) in product" :key="index">
@@ -83,6 +81,7 @@
             </div>
             <p>© 2015-2017 花蝴蝶商城 版权所有，并保留所有权利。</p>
         </div>
+        <navcomponent> </navcomponent>
     </div>
 </template>
 
@@ -90,9 +89,11 @@
 <script>
 import { Toast } from 'mint-ui';
 import subcomponent from '../../subcomponents/subcomponent.vue';
+import navcomponent from '../../subcomponents/navcomponent.vue';
 export default {
     data() {
         return {
+            value:'',
             swiper: [
                 {
                     imgSrc: '../../../../static/images/x1.jpg'
@@ -243,7 +244,8 @@ export default {
         }
     },
     components: {
-        subcomment: subcomponent
+        subcomment: subcomponent,
+        navcomponent
     },
 }
 </script>
@@ -251,33 +253,18 @@ export default {
 
 <style lang="less" scoped>
 
-.annunciate {
+.search{
     width: 100%;
-    height:.746667rem;
-    line-height: .746667rem;
-    background-color: #ffffff;
-    margin-bottom: .066667rem;
-    img {
-        width: 3%;
-        height: .28rem;
-        vertical-align: middle;
-        margin-left: .266667rem;
-    }
-    marquee {
-        width: 94%;
-        float: right;
-        font-size: .266667rem ;
-        font-weight: 500;
-        color: #ff6666;
-        line-height: .746667rem;
-    }
+    height: .8rem;
+    background-color: yellow;
+    margin-bottom: .133333rem;
 }
 
 .products {
     width: 100%;
     height: 5.733333rem;
     background-color: #ffffff;
-    margin-top: .266667rem;
+    margin-top:.3rem;
     h3 {
         font-size: .453333rem;
         text-align: center;

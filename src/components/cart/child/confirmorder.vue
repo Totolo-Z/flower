@@ -7,7 +7,7 @@
         <!-- 地址 -->
         <div class="orderAddress">
             <div class="imgIcon">
-                <img src="../../../../static/images/addicon.png">
+                 <img src="../../../../static/images/addicon.png"> 
             </div>
             <div class="customerInfo">
                 <div class="nameNumber">

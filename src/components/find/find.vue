@@ -2,7 +2,7 @@
   <div>
     <div class="findHead"> 发 现</div>
     <!-- 今日聚焦 -->
-     <div class="findToday">
+    <div class="findToday">
       <div class="focus">
         <span>今日聚焦</span>
         <router-link to="/todayfocus">
@@ -11,14 +11,12 @@
       </div>
       <div class="pic">
         <ul>
-          <li v-for="(val,index) in focus" :key="index">
-            <router-link :to="/pictureinfo/+index">
-              <img :src="val.imgSrc">
-            </router-link>
+          <li v-for="(val,index) in focus" :key="index" @click="goPictureinfo(val.id)">
+            <img :src="val.img">
           </li>
         </ul>
       </div>
-    </div> 
+    </div>
     <!-- 鲜花百科 -->
     <div class="encyclopedia">
       <div class="flower">
@@ -29,54 +27,47 @@
       </div>
       <div class="pic">
         <ul>
-          <li v-for="(item,index) in picList" :key="index">
-            <router-link :to="/flowerinfo/+index">
-              <img :src="item.src">
-              <p>{{item.name}}</p>
-            </router-link>
+          <li v-for="(item,index) in ency" :key="index" @click="goFlowerinfo(item.id)">
+            <img :src="item.img">
+            <p>{{item.post_title}}</p>
           </li>
         </ul>
       </div>
     </div>
-     
-    </div>
+    <navcomponent></navcomponent>
   </div>
 </template>
 
 <script>
+import common from '../common/common.js';
+import navcomponent from '../subcomponents/navcomponent.vue';
 export default {
   data() {
     return {
-      focus: [
-        {
-          imgSrc: '../../../static/images/t1.jpg',
-        },
-        {
-          imgSrc: '../../../static/images/t2.jpg',
-        },
-        {
-          imgSrc: '../../../static/images/t3.jpg',
-        },
-        {
-          imgSrc: '../../../static/images/t4.jpg',
-        }
-      ],
-      picList: [
-        {
-          src: '../../../static/images/x1.jpg',
-          name: '一抹淡淡的清香，是冬日里的小确幸',
-        },
-        {
-          src: '../../../static/images/p2.jpg',
-          name: '一抹淡淡的清香，是冬日里的小确幸',
-        },
-        {
-          src: '../../../static/images/n1.jpg',
-          name: '一抹淡淡的清香，是冬日里的小确幸',
-        }
-      ],
+      focus: [],
+      ency: [],
     }
-  }
+  },
+  mounted() {
+    this.discoverDate()
+  },
+  methods: {
+    goPictureinfo(id) {
+      this.$router.push({ path: `/pictureinfo/${id}` })
+    },
+    goFlowerinfo(id) {
+      this.$router.push({ path: `/flowerinfo/${id}` })
+    },
+    discoverDate() {
+      this.$http.get(`${common.apihost}api/home/discover/index`).then((res) => {
+        this.focus = res.body.data.focus
+        this.ency = res.body.data.ency
+      })
+    }
+  },
+  components: {
+   navcomponent
+  },
 }
 </script>
 
@@ -94,7 +85,7 @@ export default {
 
 .findToday {
   width: 100%;
-  height:3.6rem;
+  height: 3.6rem;
   background-color: #fff;
   .focus {
     width: 100%;
@@ -126,16 +117,16 @@ export default {
     overflow-x: auto;
     margin-top: .106667rem;
     ul {
-      width: 200%;
+      width: 170%;
       height: 100%;
       display: flex;
       li {
         width: 4rem;
-        height:2.293333rem;
+        height: 2.293333rem;
         margin-left: .133333rem;
         img {
           width: 100%;
-          height: 100%;
+          height: 2.293333rem;
         }
         &:first-child {
           padding-left: .133333rem;
@@ -152,13 +143,13 @@ export default {
   .flower {
     width: 100%;
     width: 100%;
-    height:.906667rem;
+    height: .906667rem;
     background-color: #fff;
     span {
       font-size: .4rem;
       line-height: .906667rem;
       color: #333;
-      padding-left:.266667rem;
+      padding-left: .266667rem;
     }
     a {
       display: block;
@@ -177,48 +168,46 @@ export default {
   }
   .pic {
     width: 100%;
-    margin-top:.106667rem;
-   ul{
-     width: 100%;
-     position: relative;
-     margin-bottom: 1.066667rem;
-     li{
-       width: 50%;
-       height: 4.5rem;
+    margin-top: .106667rem;
+    ul {
+      width: 100%;
+      position: relative;
+      margin-bottom: 1.066667rem;
+      li {
+        width: 50%;
+        height: 4.5rem;
         padding: 0 .266667rem;
         text-align: center;
-       img{
-         width: 4.453333rem;
-         height: 3.333333rem;
-       }
-       p{
-         font-size: .32rem;
-         height: .666667rem;
-         overflow: hidden;
-         text-overflow: ellipsis;
-         white-space: nowrap;
-         text-align: left;
-       }
-       &:nth-child(1){
-         width: 100%;
-         height: 5.133333rem;
-         padding: 0 .266667rem;
-         margin-bottom: .133333rem;
-         img{
-           width: 100%;
-           height: 4.453333rem;
-         }
-       }
-       &:nth-child(3){
-         position: absolute;
-         right: 0px;
-         bottom:0px;
-       }
-     }
-   }
+        img {
+          width: 4.453333rem;
+          height: 3.333333rem;
+        }
+        p {
+          font-size: .32rem;
+          height: .666667rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-align: left;
+        }
+        &:nth-child(1) {
+          width: 100%;
+          height: 5.133333rem;
+          padding: 0 .266667rem;
+          margin-bottom: .133333rem;
+          img {
+            width: 100%;
+            height: 4.453333rem;
+          }
+        }
+        &:nth-child(3) {
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+      }
+    }
   }
 }
-
-
 </style>
 

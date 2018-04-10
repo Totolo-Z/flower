@@ -18,6 +18,7 @@
 
 <script>
 import { Toast } from 'mint-ui';
+import common from '../../common/common.js';
 export default {
     data() {
         return {
@@ -31,11 +32,7 @@ export default {
     },
     methods: {
         commit() {
-            Toast({
-                message: '提交成功',
-                position: 'middle',
-                duration: 5000
-            });
+            this.$http.post(`${common.apihost}api/home/address/editAddress`)
         }
     }
 }

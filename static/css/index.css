@@ -136,3 +136,11 @@ button {
   cursor: pointer;
   -webkit-appearance: none;
 }
+.picker-items {
+  height: 1.173333rem;
+  background-color: pink;
+}
+.picker-items .picker-slot-wrapper {
+  height: 1.173333rem;
+  background-color: teal;
+}

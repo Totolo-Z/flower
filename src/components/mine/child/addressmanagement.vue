@@ -4,18 +4,15 @@
             <i class="iconfont" @click="$router.back()">&#xe50d;</i>
             收货地址管理
         </div>
-        <div class="userAddress">
-            <div class="imgStyle">
-                <img :src="addressList.src">
-            </div>
+        <div class="userAddress" v-for="(val,index) in addressList" :key="index">
+              <img src="val.../../../../static/images/addicon.png">  
             <div class="userInfo">
-                <span>{{addressList.name}}</span>
-                <span>{{addressList.phone}}</span>
+                <span>{{val.consignee}}</span>
+                <span>{{val.mobile}}</span>
                 <router-link to="/fixAddress">
                     <i class="iconfont advince">&#xe60a;</i>
                 </router-link>
-                <p>
-                    <i>【默认】</i>{{addressList.address}}</p>
+                <p>{{val.province}}{{val.city}}{{val.district}}{{val.address}}</p>
             </div>
         </div>
         <router-link to="/thenewaddress">
@@ -25,15 +22,24 @@
 </template>
 
 <script>
+import common from '../../common/common.js';
 export default {
     data() {
         return {
-            addressList: {
-                src: '../../../../static/images/addicon.png',
-                name: 'jackson',
-                phone: '13565256626',
-                address: '广东省深圳市宝安区西乡共和工业路',
-            }
+            addressList: [],
+        }
+    },
+    mounted() {
+        this.addressManage()
+    },
+    methods: {
+        addressManage() {
+            this.$http.get(`${common.apihost}api/home/address/index`,
+                {
+                    'headers': { 'XX-Token': this.$store.state.token }
+                }).then((res) => {
+                    this.addressList = res.body.data
+                })
         }
     }
 }
@@ -42,52 +48,52 @@ export default {
 <style lang="less" scoped>
 .head {
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #f66;
     text-align: center;
-    line-height: 38px;
-    font-size: 15px;
+    line-height: 1.013333rem;
+    font-size: .4rem;
     color: #fff;
     position: relative;
     i {
-        font-size: 20px;
+        font-size: .533333rem;
         position: absolute;
-        left: 10px;
+        left: .266667rem;
     }
 }
 
 .userAddress {
     width: 100%;
-    height: 75px;
+    height: 2.5rem;
     background-color: #fff;
-    .imgStyle {
-        width: 100%;
-        height: 15px;
-        img {
-            width: 100%;
-            height: 4px;
-        }
+    margin-bottom: .133333rem;
+
+    img {
+        width: 100%; 
+        height: .106667rem;
+        margin-top:0px;
     }
     .userInfo {
         width: 100%;
         color: #333;
         position: relative;
         span {
-            font-size: 13px;
-            line-height: 30px;
-            padding-left: 15px;
+            font-size: .346667rem;
+            line-height: .6rem;
+            padding-left: .4rem;
         }
         .advince {
             position: absolute;
-            right: 10px;
-            top: 20px;
-            font-size: 16px;
+            right: .266667rem;
+            top: .533333rem;
+            font-size: .426667rem;
             color: #ccc;
         }
         p {
-            font-size: 13px;
-            padding-left: 8px;
-            line-height: 25px;
+            font-size: .346667rem;
+            padding: 0rem .3rem;
+            line-height: .6rem;
+            -webkit-line-clamp: 2;
             i {
                 color: #e94f4d;
             }

@@ -45,6 +45,7 @@
 <script>
 import { numberLimit } from '@/utils/inputLimit';
 import { Toast } from 'mint-ui';
+import common from '../../common/common.js';
 export default {
     data() {
         return {
@@ -89,8 +90,7 @@ export default {
                 Toast('您输入的手机号不合法，请重新输入');
                 return;
             }
-            const url = 'http://192.168.0.126/api/user/Verification_Code/send';
-            this.$http.post(url, {
+            this.$http.post(`${common.apihost}api/user/Verification_Code/send`, {
                  username : this.user.phone ,
             }, { emulateJSON: true }).then((res) => {  
             }).catch();
@@ -107,8 +107,7 @@ export default {
             }, 10000);
         },
         submit(){
-            const url='http://192.168.0.126/api/user/public/register';
-            this.$http.post(url,{
+            this.$http.post(`${common.apihost}api/user/public/register`,{
                 username :this.user.phone,
                 verification_code:this.user.yanzheng,
                 password:this.user.password,

@@ -82,7 +82,6 @@ export default {
       }, { emulateJSON: true }).then((res) => {
         if (res.data.code === 1) {
           this.$store.commit('change_token',res.data.data.token)
-          // console.log(res)
           this.$router.push('/membercenter')
         } else {
           Toast(res.body.msg)

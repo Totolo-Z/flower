@@ -13,12 +13,10 @@
           </div>
           <div class="focus-container">
               <ul>
-                  <li v-for="(val,index) in imgContainer" :key="index">
-                      <router-link :to="/flowerinfo/+index">
-                      <img :src="val.imgSrc" >
-                      </router-link>
-                        <p class="imgItem">{{val.imgItem}}</p>
-                        <p class="imgtitle">{{val.imgtitle}}</p>
+                  <li v-for="(val,index) in flowerList" :key="index" @click="goFlowerinfo(val.id)">           
+                      <img :src="val.img" >
+                        <p class="imgItem">{{val.post_title}}</p>
+                        <p class="imgtitle">{{val.post_excerpt}}</p>
                   </li>
               </ul>
           </div>
@@ -26,36 +24,28 @@
   </div>
 </template>
 <script>
+import common from '../../common/common.js';
 export default {
   data(){
       return{
-        imgContainer:[
-            {
-                imgSrc:'../../../static/images/m8.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/m7.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/p2.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/n3.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/m6.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            }
-        ]
+           flowerList:[]
+      }
+  },
+  mounted(){
+      this.flowerListData()
+  },
+  methods:{
+      goFlowerinfo(id){
+          this.$router.push({path:`/flowerinfo/${id}`})
+      },
+      flowerListData(){
+          this.$http.get(`${common.apihost}api/home/discover/encyList`,{
+              params:{
+                  id:this.$route.params.flowerinfoId
+              }
+          }).then((res)=>{
+                this.flowerList=res.body.data
+          })
       }
   }
 }

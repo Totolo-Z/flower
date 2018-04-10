@@ -13,12 +13,10 @@
           </div>
           <div class="focus-container">
               <ul>
-                  <li v-for="(val,index) in imgContainer" :key="index">
-                      <router-link :to="/pictureinfo/+index">
-                      <img :src="val.imgSrc" >
-                      </router-link>
-                        <p class="imgItem">{{val.imgItem}}</p>
-                        <p class="imgtitle">{{val.imgtitle}}</p>
+                  <li v-for="(val,index) in focusList" :key="index" @click="goPictureinfo(val.id)">   
+                      <img :src="val.img" > 
+                        <p class="imgItem">{{val.post_title}}</p>
+                        <p class="imgtitle">{{val.post_excerpt}}</p>
                   </li>
               </ul>
           </div>
@@ -26,36 +24,28 @@
   </div>
 </template>
 <script>
+import common from '../../common/common.js';
 export default {
   data(){
       return{
-        imgContainer:[
-            {
-                imgSrc:'../../../static/images/t1.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/t2.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/t3.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/t4.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            },
-             {
-                imgSrc:'../../../static/images/t1.jpg',
-                imgItem:'张扬的夏季转瞬即逝，秋意正浓',
-                imgtitle:'不是花中偏爱菊,此花开尽再无花',
-            }
-        ]
+         focusList:[], 
+      }
+  },
+  mounted(){
+    this.focusListData()
+  },
+  methods:{
+      goPictureinfo(id){
+        this.$router.push({path:`/pictureinfo/${id}`})
+      },
+      focusListData(){
+          this.$http.get(`${common.apihost}api/home/discover/focusList`,{
+              params:{
+                  id:this.$route.params.pictureinfoId
+              }
+          }).then((res)=>{
+              this.focusList=res.body.data
+          })
       }
   }
 }
@@ -104,7 +94,6 @@ export default {
                 border-bottom: 1px solid #f0f0f0;
                 margin-bottom: .266667rem;
                 background-color: #fff;
-                
                 img{
                     width: 100%;
                     height: 6.666667rem;
@@ -117,6 +106,9 @@ export default {
                 .imgtitle{
                     font-size: .32rem;
                     color:#999;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
             }
         }

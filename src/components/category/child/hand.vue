@@ -7,7 +7,7 @@
         <div class="flowerCategory">
             <ul>
                 <li v-for="(item,index) in categorylist" :key="index" @click="goGoodslist(item.cat_id)">
-                    <img :src="item.cat_adimg_1">
+                    <img :src="item.cat_adimg_1" :onerror="moren">
                     <p>{{item.cat_name}}</p>
                 </li>
             </ul>
@@ -39,7 +39,8 @@
 import common from '../../common/common.js';
 export default {
     data() {
-        return {        
+        return { 
+            moren: 'this.src="' + require('../../../../static/images/moren.png') + '"'  ,       
             catGoods:[],
             categorylist: [],
         };

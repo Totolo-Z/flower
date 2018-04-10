@@ -30,6 +30,7 @@
 
 <script>
 import { Toast } from 'mint-ui';
+import common from '../../common/common.js';
 export default {
   data() {
     return {
@@ -60,8 +61,7 @@ export default {
     sendSecurityCode() {
       var reg = /^((13|14|15|17|18)[0-9]\d{8})$/;
       var phoneNum = this.user.phone;
-      const url = 'http://192.168.0.126/api/user/Verification_Code/send';
-      this.$http.post(url, {
+      this.$http.post(`${common.apihost}api/user/Verification_Code/send`, {
          username: this.user.phone,
       }, { emulateJSON: true }).then((res) => {
         console.log(res.data)
@@ -79,8 +79,7 @@ export default {
       }, 10000);
     },
     submit() {
-      const url = 'http://192.168.0.126/api/user/public/passwordReset';
-      this.$http.post(url, {
+      this.$http.post(`${common.apihost}api/user/public/passwordReset`, {
         username: this.user.phone,
         verification_code: this.user.yanzheng,
         password: this.user.newPass,

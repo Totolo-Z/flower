@@ -42,10 +42,12 @@
         </router-link>
       </div>
     </div>
+    <navcomponent> </navcomponent>
   </div>
 </template>
 
 <script>
+import navcomponent from '../subcomponents/navcomponent.vue';
 export default {
   data() {
     return {
@@ -83,6 +85,9 @@ export default {
     });
     return sum;
   },
+  components: {
+        navcomponent
+    },
 }
 </script>
 

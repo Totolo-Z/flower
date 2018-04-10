@@ -72,17 +72,20 @@
                         <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>
                 </li>
-                <li>
-                    <i class="iconfont myListLeft">&#xe6b2;</i>
-                    <span class="myListName" @click.stop="loginout">退出登录</span>
-                </li>
+                <div class="loginout">
+                    <button  @click.stop="loginout">
+                        退出登录
+                    </button>
+                </div>
             </ul>
         </div>
+        <navcomponent></navcomponent>
     </div>
 </template>
 
 <script>
 import common from '../../common/common.js';
+import navcomponent from '../../subcomponents/navcomponent.vue';
 import { Toast } from 'mint-ui';
 export default {
     data() {
@@ -108,6 +111,9 @@ export default {
                 }
             }).catch()
         }
+    },
+    components:{
+        navcomponent
     }
 }
 </script>
@@ -191,7 +197,7 @@ export default {
 .myList {
     margin-top: .266667rem;
     width: 100%;
-    height: 8.186667rem;
+    height: 8.7rem;
     background-color: #fff;
     ul {
         width: 100%;
@@ -207,9 +213,6 @@ export default {
             color: #333;
             a {
                 color: #333;
-            }
-            &:last-child {
-                border: none;
             }
             .myListLeft {
                 font-size: .533333rem;
@@ -229,12 +232,21 @@ export default {
             &:nth-child(3)>a>.myListLeft {
                 color: #ff6991;
             }
-            &:nth-child(4)>.myListLeft {
-                color: #ff6991;
-                font-size: .48rem;
-                font-weight: 500;
-            }
         }
+    }
+    .loginout {
+        margin: 1.066667rem auto;
+        background-color: #f66;
+        height: .933333rem;
+        border-radius: 10px;
+        width: 90%;
+        font-size: .42rem;
+        font-weight: 500;
+        text-align: center;
+        line-height: .933333rem;
+       button{
+           color:#fff;
+       }
     }
 }
 </style>

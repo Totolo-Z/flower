@@ -4,15 +4,17 @@
       <!-- 文章图片 -->
       <div class="pic">
         <div class="picIcon" @click="$router.back()">
-            <i class="iconfont">&#xe50d;</i>        
+          <i class="iconfont">&#xe50d;</i>
         </div>
-        <img :src="picIcon.imgSrc">
-        <p class="picture-item">{{picIcon.pictureItem}}</p>
+        <div>
+        <img  :src="essay.img">
+        </div>
+        <p class="picture-item">{{essay.post_title}}</p>
       </div>
       <!-- 文章内容 -->
-      <div class="essay" v-for="(val,index) in essay" :key="index">
-        <p class="essayContainer">{{val.essayContainer}}</p>
-      </div>
+     
+        <p class="essayContainer" v-html="essay.post_content"></p>
+      
       <div class="code">
         <img src="../../../../static/images/qrcode.png">
       </div>
@@ -22,52 +24,25 @@
 
 
 <script>
+import common from '../../common/common.js';
 export default {
   data() {
     return {
-      picIcon: 
-        {
-          imgSrc: '../../../../static/images/t1.jpg',
-          pictureItem: '张扬的夏季转瞬即逝，秋意正浓',
-        },
-      essay: [
-        {
-          essayContainer: '风轻轻拂然着我'
-        },
-        {
-          essayContainer: '情是多么的寂然'
-        },
-        {
-          essayContainer: '飘离的心'
-        },
-        {
-          essayContainer: '飞翔在爱的炫丽中支离破碎'
-        },
-        {
-          essayContainer: '枯黄的杏叶'
-        },
-        {
-          essayContainer: '随风舞动而落地'
-        },
-        {
-          essayContainer: '甘愿化为心守护'
-        },
-        {
-          essayContainer: '站在窗前'
-        },
-        {
-          essayContainer: '看着一切的孤寂'
-        },
-        {
-          essayContainer: '欢笑离我远去'
-        },
-        {
-          essayContainer: '一点一滴的触感'
-        },
-        {
-          essayContainer: '诉说着心中的悲伤'
-        },
-      ]
+     essay:[]
+    }
+  },
+  mounted(){
+    this.essayData()
+  },
+  methods: {
+    essayData() {
+      this.$http.get(`${common.apihost}api/home/discover/focusDetail`,{
+        params:{
+            id:this.$route.params.pictureinfoId,
+        }
+      }).then((res) => {
+        this.essay=res.body.data
+      })
     }
   }
 }
@@ -78,6 +53,7 @@ export default {
 .pictureinfo {
   width: 100%;
   position: relative;
+  background-color: #fff;
   .pic {
     width: 100%;
     height: 9.2rem;
@@ -109,17 +85,17 @@ export default {
       color: #333;
     }
   }
-    .author-name {
-      width: 100%;
-      padding-left: .266667rem;
-      .name {
-        font-size: .346667rem;
-        line-height: .613333rem;
-      }
-      .signatur {
-        font-size: .32rem;
-      }
+  .author-name {
+    width: 100%;
+    padding-left: .266667rem;
+    .name {
+      font-size: .346667rem;
+      line-height: .613333rem;
     }
+    .signatur {
+      font-size: .32rem;
+    }
+  }
   .essay {
     width: 100%;
     text-align: center;

@@ -7,17 +7,10 @@ Vue.use(Router)
 import home from '../components/home/home.vue';
 import index from '../components/home/child/index.vue';  // 首页
 import inhand from '../components/home/child/inhand.vue';//手捧鲜花
-import giftlist from '../components/home/child/giftlist.vue';//礼盒鲜花
-import businesslist from '../components/home/child/businesslist.vue';//商务鲜花
-import cakelist from '../components/home/child/cakelist.vue';//蛋糕预定
-import pottinglist from '../components/home/child/pottinglist.vue';//绿植盆栽
-import creativity from '../components/home/child/creativity.vue';//创意礼品
-import packlist from '../components/home/child/packlist.vue';//包装辅料
 import shoplist from '../components/home/child/shoplist.vue';//品牌店家
 
 
-import arealist from '../components/home/child/arealist.vue';//地区选择
-import search from '../components/home/child/search.vue';//搜索
+
 import carousel from '../components/goods/carousel.vue';   // 商品详情
 import evaluate from '../components/goods/evaluate.vue';//评价列表
 import inshop from '../components/goods/inshop.vue';//进入店铺详情
@@ -86,30 +79,6 @@ export default new Router({
           component: inhand,
         },
         {
-          path: '/giftlist',
-          component: giftlist,
-        },
-        {
-          path: '/businesslist',
-          component: businesslist,
-        },
-        {
-          path: '/cakelist',
-          component: cakelist,
-        },
-        {
-          path: '/pottinglist',
-          component: pottinglist,
-        },
-        {
-          path: '/creativity',
-          component: creativity,
-        },
-        {
-          path: '/packlist',
-          component: packlist,
-        },
-        {
           path: '/shoplist',
           component: shoplist,
         },
@@ -125,7 +94,6 @@ export default new Router({
         },
         {
           path: 'hand/:handId',
-          name:hand,
           component: hand,
         },
         {
@@ -217,14 +185,7 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/arealist',
-      component: arealist,
-    },
-    {
-      path: '/search',
-      component: search,
-    },
+  
     {
       path: '/carousel/:carouselId',
       component: carousel,
@@ -248,7 +209,6 @@ export default new Router({
     },
     {
       path: '/pictureinfo/:pictureinfoId',
-      name: 'pictureinfo',
       component: pictureinfo,
     },
     {
@@ -257,7 +217,6 @@ export default new Router({
     },
     {
       path: '/flowerinfo/:flowerinfoId',
-      name: 'flowerinfo',
       component: flowerinfo,
     },
     {

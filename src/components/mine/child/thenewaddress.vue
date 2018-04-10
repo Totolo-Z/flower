@@ -7,55 +7,77 @@
         <div class="editAddress">
             <ul>
                 <li>
-                    收货人 <input type="text" v-model="consignee">
+                    收货人: <input type="text" v-model="consignee" placeholder="请输入收货人姓名">
                 </li>
                 <li>
-                    联系电话<input type="tel" v-model="mobile">
+                    联系电话: <input type="number" class="number" oninput="if(value.length>11)value=value.slice(0,11)" v-model="mobile" placeholder="请输入手机号码">
                 </li>
                 <li>
-                    所在地区<input type="text">
+                    省份:
+                    <select @click="getProvinceSelect(shengId)" v-model="shengId">
+                        <option :value="item.region_id" v-for="(item,index) in getProvince" :key="index">{{item.region_name}}</option>
+                    </select>
                 </li>
                 <li>
-                    街道<input type="text">
+                    城市:
+                    <select @click="getCitySelect(shiId)" v-model="shiId">
+                        <option :value="item" v-for="(item,index) in getCity" :key="index">{{item.region_name}}</option>
+                    </select>
+                </li>
+                <li>
+                    区县:
+                </li>
+                <li>
+                    街道: <input type="text">
                 </li>
             </ul>
             <div class="mui-input-row mui-radio">
-                <label>设为默认地址</label>
-                <input name="radio1" type="radio">
+                设为默认地址<input name="radio1" type="radio">
             </div>
-            <button @click="commit()">提交</button>
+            <button>提交</button>
         </div>
     </div>
 </template>
 
 <script>
-import { Toast } from 'mint-ui';
 import common from '../../common/common.js';
 export default {
     data() {
         return {
-            consignee:'',
-            mobile:'',
+            consignee: '',
+            mobile: '',
+            shengId: '',
+            shiId: '',
+            getProvince: [],
+            getCity: [],
         }
     },
+    mounted() {
+        this. getProvinceSelect();
+        // this.getCitySelect()
+    },
     methods: {
-        commit(){
-            this.$http.post(`${common.apihost}api/home/address/editAddress`,{
-                params:{
-                    
-                }
-            }).then((res)=>{
-                this.$store.commit('change_token',res.data.data.token)
-                console.log(res)
+        getProvinceSelect() {
+            this.$http.get(`${common.apihost}api/home/address/getRegion`,
+                { 'headers': { 'XX-Token': this.$store.state.token } }
+            ).then((res) => {
+                this.getProvince = res.body.data
+                console.log(this.getProvince)
             })
         },
-        // commit() {
-        //     Toast({
-        //         message: '提交成功',
-        //         position: 'middle',
-        //         duration: 5000
-        //     });
-        // }
+        getCitySelect(myId) {
+            console.log(this.selected);
+            this.$http.get(`${common.apihost}api/home/address/getSubRegion`,
+                {
+                params:
+                    { id: myId }
+                },
+                { 'headers': { 'XX-Token': this.$store.state.token } }
+            ).then((res) => {
+                this.getCity = res.body.data
+                console.log(res.body)
+            })
+        }
     }
 }
 </script>
@@ -64,17 +86,17 @@ export default {
 <style lang="less" scoped>
 .head {
     width: 100%;
-    height: 38px;
+    height: 1.013333rem;
     background-color: #f66;
-    line-height: 38px;
+    line-height: 1.013333rem;
     text-align: center;
-    font-size: 15px;
+    font-size: .4rem;
     color: #fff;
     position: relative;
     i {
         position: absolute;
-        left: 10px;
-        font-size: 20px;
+        left: .266667rem;
+        font-size: .533333rem;
     }
 }
 
@@ -84,37 +106,54 @@ export default {
         width: 100%;
         li {
             width: 100%;
-            height: 44px;
-            line-height: 44px;
+            height: 1.173333rem;
+            line-height: 1.173333rem;
             background-color: #fff;
             border-bottom: 1px solid #f0f0f0;
-            padding-left: 10px;
-            font-size: 13px;
-            &:nth-child(5) {
-                margin-top: 10px;
+            padding-left: .266667rem;
+            font-size: .346667rem;
+            position: relative;
+            select {
+                width: 75%;
+                height: 30px;
+                padding-left: .266667rem;
+            }
+            i {
+                position: absolute;
+                right: .266667rem;
+            }
+            &:nth-child(7) {
+                margin-top: .266667rem;
+                padding-left: .266667rem;
             }
             input {
                 width: 85%;
-                height: 40px;
+                height: 1.066667rem;
                 border: none;
+            }
+            .number {
+                width: 80%;
+                height: 100%;
             }
         }
     }
     .mui-input-row {
-        margin-top: 10px;
+        margin-top: .266667rem;
         width: 100%;
-        height: 40px;
-        line-height: 40px;
+        height: 1.066667rem;
+        line-height: 1.066667rem;
         background-color: #fff;
+        padding-left: .266667rem;
+        font-size: .4rem;
     }
     button {
         width: 95%;
-        height: 40px;
+        height: 1.066667rem;
         background-color: #e94f4d;
-        border-radius: 5px;
-        margin-left: 9px;
-        margin-top: 40px;
-        font-size: 17px;
+        border-radius: .133333rem;
+        margin-left: .24rem;
+        margin-top: 1.066667rem;
+        font-size: .453333rem;
         color: #fff;
     }
 }

@@ -95,6 +95,11 @@ export default {
             },  
         };
     },
+    updated(){
+        const image = this.$el.goodsinfoconten.queryselectall('Img');
+        console.log(image)
+
+    },
     mounted() {
         this.carouselData()
     },

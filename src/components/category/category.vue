@@ -29,10 +29,12 @@
         <router-view></router-view>
       </div>
     </div>
+     <navcomponent> </navcomponent>
   </div>
 </template> 
 <script>
 import common from '../common/common.js';
+import navcomponent from '../subcomponents/navcomponent.vue';
 export default {
   data() {
     return {
@@ -57,7 +59,10 @@ export default {
     goHand(id){
       this.$router.push({path:`/category/hand/${id}`})
     }
-  }
+  },
+   components: { 
+        navcomponent
+    }
 }
 </script>
 

@@ -60,11 +60,13 @@
                 </li>
             </ul>
         </div>
+        <navcomponent> </navcomponent>
     </div>
 </template>
 
 <script>
 import common from '../common/common.js';
+import navcomponent from '../subcomponents/navcomponent.vue';
 import { InfiniteScroll } from 'mint-ui';
 export default {
     data() {
@@ -102,6 +104,9 @@ export default {
             this.goodsData();
         },
     },
+    components: { 
+        navcomponent
+    }
 }
 </script>
 
