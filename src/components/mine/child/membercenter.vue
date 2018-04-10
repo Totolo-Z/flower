@@ -73,7 +73,7 @@
                     </router-link>
                 </li>
                 <div class="loginout">
-                    <button  @click.stop="loginout">
+                    <button  @click.stop="loginout" :disabled="btnDisabled">
                         退出登录
                     </button>
                 </div>
@@ -87,27 +87,34 @@
 import common from '../../common/common.js';
 import navcomponent from '../../subcomponents/navcomponent.vue';
 import { Toast } from 'mint-ui';
+
 export default {
     data() {
         return {
             memberIcon: {
                 imgSrc: '../../../../static/images/qx.jpg',
                 memberName: 'Jackson',
-
-            }
-        }
+            },
+            btnDisabled: false,
+        };
     },
 
     methods: {
         loginout() {
+            this.btnDisabled = true;
+            setTimeout(() => {
+                this.btnDisabled = false;
+            }, 3000);
             this.$http.post(`${common.apihost}api/user/public/logout`,
                 {},
                 { 'headers': { 'XX-Token': this.$store.state.token } }
 
             ).then((res) => {
+                this.btnDisabled = false;
                 if (res.data.code === 1) {
-                    Toast(res.body.msg)
-                    this.$router.push('/login')
+                    this.$router.push('/login');
+                } else {
+                    Toast(res.body.msg);
                 }
             }).catch()
         }

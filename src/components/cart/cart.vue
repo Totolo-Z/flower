@@ -10,7 +10,7 @@
       <span>删除</span>
     </div>
 
-    <div class="cartGoodsContent" v-for="(val,index) in shop" :key="index">
+    <!-- <div class="cartGoodsContent" v-for="(val,index) in shop" :key="index">
       <van-checkbox class="shopName">&nbsp;{{val.name}}</van-checkbox>
       <van-checkbox v-for="(item, index2) in val.goodsList" :key="index2">
         <div class="conten">
@@ -24,6 +24,24 @@
           <van-stepper v-model="item.value" />
         </div>
       </van-checkbox>
+    </div> -->
+
+     <!--商家  -->
+    <div class="cartGoodsContent" v-for="(item,index) in shop" :key="index">
+      <!--商品  -->
+      <div v-for="(item2, index2) in item.goodsList" :key="index2">
+       <van-checkbox  v-model="item2.value">&nbsp;{{item.name}}</van-checkbox>  
+        <div class="conten">
+          <div class="imgInfo">
+            <img :src="item2.imgSrc">
+          </div>
+          <div class="goodsRight">
+            <h4>{{item2.title}}</h4>
+            <p class="price">￥{{item2.price}}</p>
+          </div>
+          <van-stepper v-model="item2.value" />
+        </div>
+      </div>
     </div>
 
     <div class="tatolMoney">

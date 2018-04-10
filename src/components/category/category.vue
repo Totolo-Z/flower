@@ -10,7 +10,7 @@
     <div class="layout"> 
       <div class="sideBar" v-show="tabHide">
         <ul>
-          <li v-for="(item,index) in navlist" :key="index" :class="{'active':selectIndex===item.id}" @click="goHand(item.cat_id)">
+          <li v-for="(item,index) in navlist" :key="index" :class="{'active':selectIndex === item.cat_id}" @click="goHand(item.cat_id)">
               <span>{{item.cat_name}}</span>
           </li>
           <li>
@@ -57,6 +57,7 @@ export default {
       })
     },
     goHand(id){
+      this.selectIndex = id;
       this.$router.push({path:`/category/hand/${id}`})
     }
   },

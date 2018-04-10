@@ -12,6 +12,7 @@ import { priceFilter, sexFilter } from '@/utils/filters';
 import App from './App';
 
 Vue.config.productionTip = false;
+
 FastClick.attach(document.body);
 
 

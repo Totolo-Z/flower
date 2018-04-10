@@ -14,13 +14,13 @@
                 </li>
                 <li>
                     省份:
-                    <select @click="getProvinceSelect(shengId)" v-model="shengId">
+                    <select @click="getCitySelect(1)" v-model="shengId">
                         <option :value="item.region_id" v-for="(item,index) in getProvince" :key="index">{{item.region_name}}</option>
                     </select>
                 </li>
                 <li>
                     城市:
-                    <select @click="getCitySelect(shiId)" v-model="shiId">
+                    <select @click="getCitySelect(2)" v-model="shiId">
                         <option :value="item" v-for="(item,index) in getCity" :key="index">{{item.region_name}}</option>
                     </select>
                 </li>
@@ -41,6 +41,8 @@
 
 <script>
 import common from '../../common/common.js';
+import { Toast } from 'mint-ui';
+
 export default {
     data() {
         return {
@@ -50,22 +52,31 @@ export default {
             shiId: '',
             getProvince: [],
             getCity: [],
+            getCounty: [],
         }
     },
     mounted() {
-        this. getProvinceSelect();
-        // this.getCitySelect()
+        this.getProvinceSelect();
     },
     methods: {
         getProvinceSelect() {
             this.$http.get(`${common.apihost}api/home/address/getRegion`,
                 { 'headers': { 'XX-Token': this.$store.state.token } }
             ).then((res) => {
-                this.getProvince = res.body.data
-                console.log(this.getProvince)
+                if (res.data.code === 1) {
+                    this.getProvince = res.body.data;
+                } else {
+                    Toast(res.data.msg);
+                }
             })
         },
-        getCitySelect(myId) {
+        getCitySelect(type) {
+            var myId = '';
+            if (type === 1) { // 获取市
+                myId = this.shengId;
+            } else if (type === 2) {  // 获取区
+                myId = this.shiId;
+            }
             console.log(this.selected);
             this.$http.get(`${common.apihost}api/home/address/getSubRegion`,
                 {
@@ -74,8 +85,16 @@ export default {
                 },
                 { 'headers': { 'XX-Token': this.$store.state.token } }
             ).then((res) => {
-                this.getCity = res.body.data
-                console.log(res.body)
+                console.log(res.data);
+                if (res.data.code === 1) {
+                    if (type === 1) {  // 市
+                        this.getCity = res.body.data;
+                    } else if (type === 2) {  // 区
+                        this.getCounty = res.body.data;
+                    }
+                } else {
+                    Toast(res.data.msg);
+                }
             })
         }
     }
