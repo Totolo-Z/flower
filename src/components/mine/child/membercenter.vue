@@ -98,7 +98,6 @@ export default {
             btnDisabled: false,
         };
     },
-
     methods: {
         loginout() {
             this.btnDisabled = true;
@@ -107,9 +106,8 @@ export default {
             }, 3000);
             this.$http.post(`${common.apihost}api/user/public/logout`,
                 {},
-                { 'headers': { 'XX-Token': this.$store.state.token } }
-
-            ).then((res) => {
+                { 'headers': { 'XX-Token': this.$store.state.token } },
+                {emulateJSON:true}).then((res) => {
                 this.btnDisabled = false;
                 if (res.data.code === 1) {
                     this.$router.push('/login');

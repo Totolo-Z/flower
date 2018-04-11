@@ -21,20 +21,23 @@
                 <li>
                     城市:
                     <select @click="getCitySelect(2)" v-model="shiId">
-                        <option :value="item" v-for="(item,index) in getCity" :key="index">{{item.region_name}}</option>
+                        <option :value="item.region_id" v-for="(item,index) in getCity" :key="index">{{item.region_name}}</option>
                     </select>
                 </li>
                 <li>
                     区县:
+                    <select  @click="getCitySelect(2)" >
+                        <option :value="item.region_id" v-for="(item,index) in getCounty" :key="index">{{item.region_name}}</option>
+                    </select>
                 </li>
                 <li>
-                    街道: <input type="text">
+                    街道: <input type="text" v-model="street">
                 </li>
             </ul>
             <div class="mui-input-row mui-radio">
                 设为默认地址<input name="radio1" type="radio">
             </div>
-            <button>提交</button>
+            <button @click="commit">提交</button>
         </div>
     </div>
 </template>
@@ -48,6 +51,7 @@ export default {
         return {
             consignee: '',
             mobile: '',
+            street:'',
             shengId: '',
             shiId: '',
             getProvince: [],
@@ -77,24 +81,26 @@ export default {
             } else if (type === 2) {  // 获取区
                 myId = this.shiId;
             }
-            console.log(this.selected);
             this.$http.get(`${common.apihost}api/home/address/getSubRegion`,
-                {
-                params:
-                    { id: myId }
-                },
-                { 'headers': { 'XX-Token': this.$store.state.token } }
-            ).then((res) => {
-                console.log(res.data);
+            {
+                headers: { 'XX-Token': this.$store.state.token },
+                params:{ id: myId }
+            }).then((res) => {
                 if (res.data.code === 1) {
                     if (type === 1) {  // 市
                         this.getCity = res.body.data;
                     } else if (type === 2) {  // 区
                         this.getCounty = res.body.data;
                     }
-                } else {
-                    Toast(res.data.msg);
-                }
+                } 
+            })
+        },
+        commit(){
+            this.$http.post(`${common.apihost}api/home/address/addAddresss`,
+            {   
+                'headers': { 'XX-Token': this.$store.state.token }
+            },{emulateJSON:true}).then((res)=>{
+                console.log(res)
             })
         }
     }
