@@ -144,3 +144,7 @@ button {
   height: 1.173333rem;
   background-color: teal;
 }
+.mint-switch-input:checked + .mint-switch-core {
+  border-color: #e94f4d;
+  background-color: #e94f4d;
+}

@@ -67,7 +67,7 @@
                 </li>
                 <li>
                     <router-link to="/addressmanagement">
-                        <i class="iconfont myListLeft">&#xe68b;</i>
+                        <i class="iconfont myListLeft">&#xe61f;</i>
                         <span class="myListName">收货地址管理</span>
                         <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>

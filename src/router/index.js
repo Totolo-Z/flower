@@ -152,7 +152,7 @@ export default new Router({
       component: thenewaddress,
     },
     {
-      path: '/fixAddress',
+      path: '/fixAddress/:fixAddressId',
       component: fixAddress,
     },
     {

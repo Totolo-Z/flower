@@ -26,7 +26,7 @@
                 </li>
                 <li>
                     区县:
-                    <select  @click="getCitySelect(2)" >
+                    <select @click="getCitySelect(2)" v-model="district">
                         <option :value="item.region_id" v-for="(item,index) in getCounty" :key="index">{{item.region_name}}</option>
                     </select>
                 </li>
@@ -34,8 +34,9 @@
                     街道: <input type="text" v-model="street">
                 </li>
             </ul>
-            <div class="mui-input-row mui-radio">
-                设为默认地址<input name="radio1" type="radio">
+            <div class="switch">
+                设为默认地址
+                <mt-switch v-model="default_address"></mt-switch>
             </div>
             <button @click="commit">提交</button>
         </div>
@@ -51,9 +52,11 @@ export default {
         return {
             consignee: '',
             mobile: '',
-            street:'',
+            street: '',
             shengId: '',
             shiId: '',
+            district: '',
+            default_address: false,
             getProvince: [],
             getCity: [],
             getCounty: [],
@@ -82,26 +85,41 @@ export default {
                 myId = this.shiId;
             }
             this.$http.get(`${common.apihost}api/home/address/getSubRegion`,
-            {
-                headers: { 'XX-Token': this.$store.state.token },
-                params:{ id: myId }
-            }).then((res) => {
-                if (res.data.code === 1) {
-                    if (type === 1) {  // 市
-                        this.getCity = res.body.data;
-                    } else if (type === 2) {  // 区
-                        this.getCounty = res.body.data;
+                {
+                    headers: { 'XX-Token': this.$store.state.token },
+                    params: { id: myId }
+                }).then((res) => {
+                    if (res.data.code === 1) {
+                        if (type === 1) {  // 市
+                            this.getCity = res.body.data;
+                        } else if (type === 2) {  // 区
+                            this.getCounty = res.body.data;
+                        }
                     }
-                } 
-            })
+                })
         },
-        commit(){
-            this.$http.post(`${common.apihost}api/home/address/addAddresss`,
-            {   
-                'headers': { 'XX-Token': this.$store.state.token }
-            },{emulateJSON:true}).then((res)=>{
-                console.log(res)
-            })
+        commit() {
+            this.$http.post(`${common.apihost}api/home/address/addAddress`,
+                {},
+                {
+                    headers: { 'XX-Token': this.$store.state.token },
+                    params: {
+                        consignee: this.consignee,
+                        mobile: this.mobile,
+                        province: this.shengId,
+                        city: this.shiId,
+                        district: this.district,
+                        address: this.street,
+                        default_address: this.default_address ? 1 : 0
+                    }
+
+                },{emulateJSON:true}).then((res) => {
+                    if (res.data.code === 1) {
+                        this.$router.push('/addressmanagement')
+                    } else {
+                        Toast(res.body.msg);
+                    }
+                })
         }
     }
 }
@@ -162,7 +180,7 @@ export default {
             }
         }
     }
-    .mui-input-row {
+    .switch {
         margin-top: .266667rem;
         width: 100%;
         height: 1.066667rem;
@@ -170,6 +188,11 @@ export default {
         background-color: #fff;
         padding-left: .266667rem;
         font-size: .4rem;
+        display: flex;
+        justify-content: space-between;
+        .mint-switch {
+            margin-right: .3rem;
+        }
     }
     button {
         width: 95%;

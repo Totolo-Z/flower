@@ -5,14 +5,19 @@
             收货地址管理
         </div>
         <div class="userAddress" v-for="(val,index) in addressList" :key="index">
-              <img src="val.../../../../static/images/addicon.png">  
-            <div class="userInfo">
+            <div class="nameInfo">
                 <span>{{val.consignee}}</span>
                 <span>{{val.mobile}}</span>
-                <router-link to="/fixAddress">
-                    <i class="iconfont advince">&#xe60a;</i>
-                </router-link>
-                <p>{{val.province}}{{val.city}}{{val.district}}{{val.address}}</p>
+            </div>
+            <p>{{val.province}}{{val.city}}{{val.district}}{{val.address}}</p>
+            <div class="edit">
+                <span class="sign">{{val.default_address}}</span>
+                <div class="iconSign">
+                    <span @click="editAddress(val.address_id)">
+                        <i class="iconfont  advince">&#xe61f;</i>编辑</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span @click="deleteAddress(val.address_id)">
+                        <i class="iconfont delete">&#xe619;</i>删除</span>
+                </div>
             </div>
         </div>
         <router-link to="/thenewaddress">
@@ -33,13 +38,32 @@ export default {
         this.addressManage()
     },
     methods: {
+        editAddress(id) {
+            this.$router.push({ path: `/fixAddress/${id}` })
+        },
         addressManage() {
             this.$http.get(`${common.apihost}api/home/address/index`,
                 {
-                    'headers': { 'XX-Token': this.$store.state.token }
+                    headers: { 'XX-Token': this.$store.state.token },
                 }).then((res) => {
-                    this.addressList = res.body.data
-                })
+                    if (res.data.code === 1) {
+                        this.addressList = res.body.data
+                }
+            })     
+        },
+        deleteAddress(address_id){
+            this.$http.get(`${common.apihost}api/home/address/deleteAddress`,
+            {
+                headers: { 'XX-Token': this.$store.state.token },
+                params:{
+                    aid:address_id
+                }
+                }
+            ).then((res)=>{
+                if(res.data.code===1){
+                     this.addressManage()
+                }
+            })
         }
     }
 }
@@ -64,54 +88,69 @@ export default {
 
 .userAddress {
     width: 100%;
-    height: 2.5rem;
+    height: 2.8rem;
     background-color: #fff;
-    margin-bottom: .133333rem;
-
-    img {
-        width: 100%; 
-        height: .106667rem;
-        margin-top:0px;
-    }
-    .userInfo {
+    margin-top: .133333rem;
+    color: #333;
+    position: relative;
+    .nameInfo {
         width: 100%;
-        color: #333;
-        position: relative;
-        span {
-            font-size: .346667rem;
-            line-height: .6rem;
-            padding-left: .4rem;
+        height: .75rem;
+        line-height: .75rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 .4rem;
+        font-size: .346667rem;
+    }
+
+    .edit {
+        width: 100%;
+        height: .7rem;
+        line-height: .7rem;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #f0f0f0;
+        .sign {
+            color: #e94f4d;
+            font-size: .32rem;
+            padding-left: .4rem
         }
-        .advince {
-            position: absolute;
-            right: .266667rem;
-            top: .533333rem;
-            font-size: .426667rem;
-            color: #ccc;
-        }
-        p {
-            font-size: .346667rem;
-            padding: 0rem .3rem;
-            line-height: .6rem;
-            -webkit-line-clamp: 2;
-            i {
-                color: #e94f4d;
+        .iconSign {
+            width: 3.4rem;
+            font-size: .32rem;
+            a {
+                display: inline-block;
             }
+            i {
+                font-size: .45rem;
+            }
+        }
+    }
+
+    p {
+        font-size: .346667rem;
+        padding: 0rem .3rem;
+        line-height: .6rem;
+        -webkit-line-clamp: 2;
+        i {
+            color: #e94f4d;
         }
     }
 }
 
 button {
     width: 95%;
-    height: 40px;
+    height: 1.066667rem;
     background-color: #e94f4d;
     border-radius: 5px;
     color: #fff;
-    line-height: 40px;
-    font-size: 17px;
+    line-height: 1.066667rem;
+    font-size: .453333rem;
     text-align: center;
-    margin-left: 9px;
+    margin-left: .24rem;
     position: absolute;
-    bottom: 80px;
+    bottom: 2.133333rem;
 }
 </style>

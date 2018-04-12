@@ -6,12 +6,41 @@
         </div>
         <div class="userInfo">
             <ul>
-                <li>收&nbsp; 货 &nbsp;人&nbsp; {{userInfo.name}}</li>
-                <li>联系号码&nbsp; {{userInfo.phone}}</li>
-                <li>所在地区&nbsp; {{userInfo.area}}</li>
-                <li>街&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;道&nbsp; {{userInfo.street}}</li>
+                <li>
+                    收件人: &nbsp;<input type="text" v-model="consignee">{{addressShow.consignee}}
+                </li>
+                <li>
+                    联系电话: &nbsp;<input type="number" class="number" oninput="if(value.length>11)value=value.slice(0,11)" v-model="mobile">{{addressShow.mobile}}
+                </li>
+                <li>
+                    省份:
+                    <select @click="getCitySelect(1)" v-model="shengId">
+                        {{addressShow.province}}
+                        <option :value="item.region_id" v-for="(item,index) in getProvince" :key="index">{{item.region_name}}</option>
+                       
+                    </select>
+                </li>
+                <li>
+                    城市:
+                    <select @click="getCitySelect(2)" v-model="shiId">
+                        <option :value="item.region_id" v-for="(item,index) in getCity" :key="index">{{item.region_name}}</option>
+                    </select>
+                </li>
+                <li>
+                    区县:
+                    <select @click="getCitySelect(2)" v-model="district">{{addressShow.district}}
+                        <option :value="item.region_id" v-for="(item,index) in getCounty" :key="index">{{item.region_name}}</option>
+                    </select>
+                </li>
+                <li>
+                    街道: <input type="text" v-model="street">{{addressShow.address}}
+                </li>
             </ul>
-            <button @click="commit()">提交</button>
+            <div class="switch">
+                设为默认地址
+                <mt-switch v-model="default_address"></mt-switch>
+            </div>
+            <button @click="commitAddress">提交</button>
         </div>
     </div>
 </template>
@@ -22,17 +51,90 @@ import common from '../../common/common.js';
 export default {
     data() {
         return {
-            userInfo: {
-                name: 'jackson',
-                phone: '13548556626',
-                area: '广东省 深圳市',
-                street: '西乡共和工业路',
-            }
+            consignee: '',
+            mobile: '',
+            street: '',
+            shengId: '',
+            shiId: '',
+            district: '',
+            default_address: false,
+            getProvince: [],
+            getCity: [],
+            getCounty: [],
+            addressShow: {}
         }
     },
+    mounted() {
+        this.getProvinceSelect();
+        this.addressShowData()
+    },
     methods: {
-        commit() {
-            this.$http.post(`${common.apihost}api/home/address/editAddress`)
+        getProvinceSelect() {
+            this.$http.get(`${common.apihost}api/home/address/getRegion`,
+                { 'headers': { 'XX-Token': this.$store.state.token } }
+            ).then((res) => {
+                if (res.data.code === 1) {
+                    this.getProvince = res.body.data;
+                } else {
+                    Toast(res.data.msg);
+                }
+            })
+        },
+        getCitySelect(type) {
+            var myId = '';
+            if (type === 1) { // 获取市
+                myId = this.shengId;
+            } else if (type === 2) {  // 获取区
+                myId = this.shiId;
+            }
+            this.$http.get(`${common.apihost}api/home/address/getSubRegion`,
+                {
+                    headers: { 'XX-Token': this.$store.state.token },
+                    params: { id: myId }
+                }).then((res) => {
+                    if (res.data.code === 1) {
+                        if (type === 1) {  // 市
+                            this.getCity = res.body.data;
+                        } else if (type === 2) {  // 区
+                            this.getCounty = res.body.data;
+                        }
+                    }
+                })
+        },
+        addressShowData() {
+            this.$http.get(`${common.apihost}api/home/address/findAddress`,
+                {
+                    headers: { 'XX-Token': this.$store.state.token },
+                    params: {
+                        address_id: this.$route.params.fixAddressId
+                    }
+                }
+            ).then((res) => {
+                if (res.data.code === 1) {
+                    this.addressShow = res.body.data
+                    console.log(this.addressShow)
+                }
+            })
+        },
+        commitAddress() {
+            this.$http.post(`${common.apihost}api/home/address/editAddress`,
+                {},
+                {
+                    headers: { 'XX-Token': this.$store.state.token },
+                    params: {
+                        consignee: this.consignee,
+                        mobile: this.mobile,
+                        province: this.shengId,
+                        city: this.shiId,
+                        district: this.district,
+                        address: this.street,
+                        default_address: this.default_address ? 1 : 0,
+                        address_id: this.$route.params.fixAddressId
+                    }
+                },
+                { emulateJSON: true }).then((res) => {
+                    console.log(res)
+                })
         }
     }
 }
@@ -73,6 +175,25 @@ export default {
                 width: 90%;
                 position: absolute;
             }
+            select {
+                width: 75%;
+                height: 30px;
+                padding-left: .266667rem;
+            }
+        }
+    }
+    .switch {
+        margin-top: .266667rem;
+        width: 100%;
+        height: 1.066667rem;
+        line-height: 1.066667rem;
+        background-color: #fff;
+        padding-left: .266667rem;
+        font-size: .4rem;
+        display: flex;
+        justify-content: space-between;
+        .mint-switch {
+            margin-right: .3rem;
         }
     }
     button {
