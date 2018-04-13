@@ -10,8 +10,6 @@
         <p class="member">会员名: {{shopinfo.member}}</p>
         <p class="order">接单量: {{shopinfo.order}}</p>
         <p class="overbooking">下单量: {{shopinfo.overbooking}}</p>
-        <p class="distance">
-          <i class="iconfont">&#xe68b;</i>距离: {{shopinfo.distance}}</p>
       </div>
     </div>
 
@@ -83,9 +81,11 @@
         </div>
       </mt-tab-container-item>
     </mt-tab-container>
+    <navcomponent></navcomponent>
   </div>
 </template>
 <script>
+import navcomponent from '../subcomponents/navcomponent';
 export default {
   name: 'page-tab-container',
   data() {
@@ -99,7 +99,6 @@ export default {
         member: '小蝶儿',
         order: '5555',
         overbooking: '552',
-        distance: '56.33公里',
       },
       shopshow: [
         {
@@ -159,6 +158,9 @@ export default {
       ],
     }
   },
+  components: {
+    navcomponent
+  },
 }
 </script>
 
@@ -190,17 +192,11 @@ export default {
     }
     .member,
     .order,
-    .overbooking,
-    .distance {
+    .overbooking {
       width: 100%;
       font-size: .32rem;
       line-height: .6rem;
       color: #666;
-    }
-    .distance {
-      i {
-        font-size: .32rem;
-      }
     }
   }
 }
@@ -225,7 +221,6 @@ export default {
   color: #f66;
   border-bottom: 2px solid #f66;
   margin-bottom: 0px;
-
 }
 
 .shopShow {

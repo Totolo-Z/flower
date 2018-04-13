@@ -1,24 +1,26 @@
 <template>
     <div>
-        <subcomment :commentId='swiper'></subcomment>
+        <div class="homeBanner">
+            <img :src="bannerImg.cat_adimg_1">
+        </div>
         <!-- 分类 -->
-         <div class="flowerCategory">
-          <ul>
-              <li v-for="(item,index) in categorylist" :key="index" @click="goGoodslist(item.cat_id)">
-                  <img :src="item.cat_adimg_1">
-                  <p>{{item.cat_name}}</p>
-              </li>
-          </ul>
-      </div>
+        <div class="flowerCategory">
+            <ul>
+                <li v-for="(item,index) in categorylist" :key="index" @click="goGoodslist(item.cat_id)">
+                    <img :src="item.cat_adimg_1">
+                    <p>{{item.cat_name}}</p>
+                </li>
+            </ul>
+        </div>
         <!-- 商品展示 -->
         <div class="productShow">
             <div class="product">
                 <ul>
-                    <li v-for="(val,index) in flowerList" :key="index" @click="goCarousel(val.goods_id)"> 
-                            <div class="icons">
-                                <img :src="val.goods_thumb">
-                                <span class="sales">销量{{val.sales}}</span>
-                            </div>
+                    <li v-for="(val,index) in flowerList" :key="index" @click="goCarousel(val.goods_id)">
+                        <div class="icons">
+                            <img :src="val.goods_thumb">
+                            <span class="sales">销量{{val.sales}}</span>
+                        </div>
                         <p class="title">{{val.goods_name}}</p>
                         <div class="item">
                             <span class="price">￥{{val.shop_price}}</span>
@@ -33,93 +35,89 @@
 </template>
 
 <script>
-import subcomponent from '../../subcomponents/subcomponent';
 import navcomponent from '../../subcomponents/navcomponent.vue';
 import common from '../../common/common.js';
 export default {
     data() {
         return {
-            categorylist:{},
-            flowerList:[],
-             swiper: [
-                {
-                    imgSrc: '../../../../static/images/p1.jpg'
-                },
-                {
-                    imgSrc: '../../../../static/images/p2.jpg'
-                },
-                {
-                    imgSrc: '../../../../static/images/p3.jpg'
-                }
-            ],
+            categorylist: {},
+            flowerList: [],
+            bannerImg:[]
         }
     },
-    mounted(){
+    mounted() {
         this.categorylistData()
         this.flowerListData()
     },
-    watch:{
-        $route(){
+    watch: {
+        $route() {
             this.categorylistData(),
             this.flowerListData()
         }
     },
     methods: {
         goGoodslist(id) {
-            this.$router.push({path:`/goodslist/${id}`})
+            this.$router.push({ path: `/goodslist/${id}` })
         },
-        goCarousel(id){
-            this.$router.push({path:`/carousel/${id}`})
+        goCarousel(id) {
+            this.$router.push({ path: `/carousel/${id}` })
         },
-        categorylistData(){
-            this.$http.get(`${common.apihost}api/home/category/catMain`,{
-                params:{
-                    cid:this.$route.params.inhandId
+        categorylistData() {
+            this.$http.get(`${common.apihost}api/home/category/catMain`, {
+                params: {
+                    cid: this.$route.params.inhandId
                 }
-            }).then((res)=>{
-                this.categorylist=res.body.msg
+            }).then((res) => {
+                this.categorylist = res.body.data.data
+                this.bannerImg=res.body.data.img
             })
         },
-        flowerListData(){
-            this.$http.get(`${common.apihost}api/home/category/catGoods`,{
-                params:{
-                    cid:this.$route.params.inhandId
+        flowerListData() {
+            this.$http.get(`${common.apihost}api/home/category/catGoods`, {
+                params: {
+                    cid: this.$route.params.inhandId
                 }
-            }).then((res)=>{
-                this.flowerList=res.body.data
+            }).then((res) => {
+                this.flowerList = res.body.data
             })
         }
-        
+
     },
-    components: { 
-        subcomment: subcomponent,
+    components: {
         navcomponent
     }
 }
 </script>
 
 <style lang="less" scoped>
-
-.flowerCategory{
+.homeBanner{
+    width: 100%;
+    height: 4.186667rem;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+.flowerCategory {
     width: 100%;
     background-color: #fff;
-    ul{
+    ul {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        li{
+        li {
             width: 25%;
             height: 2.253333rem;
             text-align: center;
-            padding-top:.266667rem;
-            img{
+            padding-top: .266667rem;
+            img {
                 width: 1.173333rem;
                 height: 1.173333rem;
             }
-            p{
+            p {
                 font-size: .32rem;
-                color:#666;
+                color: #666;
             }
         }
     }
@@ -128,7 +126,7 @@ export default {
 .productShow {
     width: 100%;
     background-color: #fff;
-    margin-top: .266667rem; 
+    margin-top: .266667rem;
     .product {
         width: 100%;
         height: 100%;
@@ -174,7 +172,7 @@ export default {
                     width: 4.106667rem;
                     height: .8rem;
                     line-height: .8rem;
-                    margin:0 auto;
+                    margin: 0 auto;
                     font-size: .373333rem;
                     color: #333333;
                     overflow: hidden;
@@ -195,7 +193,7 @@ export default {
                     }
                     img {
                         width: .8rem;
-                        height:.813333rem;
+                        height: .813333rem;
                     }
                 }
             }

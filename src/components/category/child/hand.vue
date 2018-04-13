@@ -1,7 +1,7 @@
 <template>
     <div class="style">
         <div class="banner">
-            <img src="../../../../static/images/p4.jpg">
+            <img :src="bannerImg.cat_adimg_1">
         </div>
         <!-- 分类 -->
         <div class="flowerCategory">
@@ -43,6 +43,7 @@ export default {
             moren: 'this.src="' + require('../../../../static/images/moren.png') + '"'  ,       
             catGoods:[],
             categorylist: [],
+            bannerImg:[]
         };
     },
     mounted() {
@@ -68,7 +69,8 @@ export default {
                      cid:this.$route.params.handId
                 }      
             }).then((res) => {
-                this.categorylist = res.body.msg
+                this.categorylist = res.body.data.data
+                this.bannerImg=res.body.data.img  
             })
         },
         catGoodsData(){

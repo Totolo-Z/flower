@@ -26,7 +26,7 @@
                 </li>
                 <li>
                     区县:
-                    <select @click="getCitySelect(2)" v-model="district">
+                    <select  v-model="district">
                         <option :value="item.region_id" v-for="(item,index) in getCounty" :key="index">{{item.region_name}}</option>
                     </select>
                 </li>

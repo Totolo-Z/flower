@@ -9,20 +9,7 @@
             <p class="paymentPrice">￥ 299.00</p>
             <p class="paymentItem">商品名称:全国同城送花红玫瑰花康乃馨向日葵教师节礼盒鲜花速递</p>
         </div>
-        <div class="payway">
-            <div class="paywayTitle">
-                <i class="iconfont">&#xe691;</i>
-                <span>支付方式</span>
-            </div>
-            <div class="payInfo">
-                <div class="wechatPay">
-                    <img src="../../../../static/images/weixin_weixuan.png" v-show="show">
-                    <img src="../../../../static/images/weixin_xuanzhong.png" v-show="!show">
-                    <van-radio name="1" v-model="radio" @click="clickIcon">微信支付</van-radio>
-                </div>
-            </div>
-        </div>
-        <button @click="pay()">支付</button>
+        <button @click="pay()">微信支付</button>
     </div>
 </template>
 
@@ -31,9 +18,6 @@ import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
-            show: true,  
-            hide: true,
-            radio: '0',
         }
     },
     methods: {
@@ -92,45 +76,6 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-    }
-}
-
-.payway {
-    width: 100%;
-    height: 145px;
-    background-color: #fff;
-    margin-top: 10px;
-    .paywayTitle {
-        width: 100%;
-        height: 44px;
-        border-bottom: 1px solid #f0f0f0;
-        line-height: 44px;
-        padding-left: 10px;
-        font-size: 14px;
-        color: #333;
-        i {
-            font-size: 18px;
-            color: #ea279e;
-            margin-right: 5px;
-        }
-    }
-    .payInfo {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        div {
-            width: 50%;
-            height: 60px;
-            text-align: center;
-            padding-top: 15px;
-            img {
-                width: 35px;
-                height: 35px;
-            }
-            .van-radio{
-                width: 100%;
-            }
-        }
     }
 }
 

@@ -72,6 +72,8 @@
                         <i class="iconfont myListRight">&#xe60a;</i>
                     </router-link>
                 </li>
+                <li>服务时间 ：周一至周六 &nbsp;09:00-18:30</li>
+                <li>平台客户服务热线 : 400-1166-081</li>
                 <div class="loginout">
                     <button  @click.stop="loginout" :disabled="btnDisabled">
                         退出登录

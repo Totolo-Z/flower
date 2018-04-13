@@ -27,12 +27,12 @@
         <!-- 预售 -->
         <div class="presell">
             <h3>本周预售</h3>
-            <div class="banner" v-for="(val,index) in presell" :key="index">
-                <img :src="val.imgSrc">
-                <p class="title">{{val.title}}</p>
+            <div class="banner" v-for="(val,index) in presell" :key="index" @click="goAdversity(val.cat_id)">
+                <img :src="val.cat_adimg_1">
+                <p class="title">{{val.cat_name}}</p>
                 <div class="item">
-                    <span class="description">{{val.description}}</span>
-                    <span class="price">￥{{val.price | PriceFilter }}起</span>
+                    <span class="description">{{val.cat_desc}}</span>
+                    <span class="price">￥{{val.wx_price | PriceFilter }}起</span>
                 </div>
             </div>
         </div>
@@ -88,23 +88,14 @@
 
 <script>
 import { Toast } from 'mint-ui';
+import common from '../../common/common.js';
 import subcomponent from '../../subcomponents/subcomponent.vue';
 import navcomponent from '../../subcomponents/navcomponent.vue';
 export default {
     data() {
         return {
             value:'',
-            swiper: [
-                {
-                    imgSrc: '../../../../static/images/x1.jpg'
-                },
-                {
-                    imgSrc: '../../../../static/images/p2.jpg'
-                },
-                {
-                    imgSrc: '../../../../static/images/p3.jpg'
-                }
-            ],
+            swiper: [],
             product: [
                 {
                     imgSrc: '../../../../static/images/n1.jpg',
@@ -125,20 +116,7 @@ export default {
                     price: 23,
                 }
             ],
-            presell: [
-                {
-                    imgSrc: '../../../../static/images/banner (2).jpg',
-                    title: '包月鲜花',
-                    description: '春暖花开，美好如约而至！',
-                    price: 42,
-                },
-                {
-                    imgSrc: '../../../../static/images/banner (1).jpg',
-                    title: '单品鲜花',
-                    description: '一花一意，纯简之美',
-                    price: 250,
-                }
-            ],
+            presell: [],
             goods: [
                 {
                     id: 1,
@@ -200,7 +178,14 @@ export default {
             ]
         }
     },
+    mounted(){
+        this.swiperData();
+        this.adverstData()
+    },
     methods: {
+        goAdversity(id){
+            this.$router.push({path:`/adversitycarousel/${id}`})
+        },
         goCarousel(id) {
             this.$router.push({ name: 'carousel', params: { carouselId: id } })
         },
@@ -208,6 +193,20 @@ export default {
             // console.log(val);
             Toast('添加成功');
             this.$store.commit('addGoodsCar', val);
+        },
+        swiperData(){
+            this.$http.get(`${common.apihost}api/home/slides/Slides`).then((res)=>{
+                if(res.data.code===1){
+                    this.swiper=res.body.data
+                }
+            })
+        },
+        adverstData(){
+            this.$http.get(`${common.apihost}api/home/advert/index`).then((res)=>{
+                if(res.data.code===1){
+                    this.presell=res.body.data
+                }
+            })
         },
         pullMore() {
             this.goods.push

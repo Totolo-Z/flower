@@ -15,6 +15,7 @@ import carousel from '../components/goods/carousel.vue';   // 商品详情
 import evaluate from '../components/goods/evaluate.vue';//评价列表
 import inshop from '../components/goods/inshop.vue';//进入店铺详情
 import goodslist from '../components/goods/goodslist.vue';//商品展示
+import adversitycarousel from '../components/goods/adversitycarousel.vue';//广告详情
 
 
 import category from '../components/category/category.vue';//分类
@@ -185,7 +186,10 @@ export default new Router({
         }
       ]
     },
-  
+    {
+      path: '/adversitycarousel/:adversitycarouselId',
+      component: adversitycarousel,
+    },
     {
       path: '/carousel/:carouselId',
       component: carousel,

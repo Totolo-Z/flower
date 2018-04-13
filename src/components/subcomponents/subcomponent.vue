@@ -2,10 +2,8 @@
     <div>
         <div class="subcomponent">
             <mt-swipe :auto="4000">
-                <mt-swipe-item v-for="(val,index) in commentId" :key="index">
-                    <router-link :to="/carousel/+index">
-                        <img :src="val.imgSrc">
-                    </router-link>
+                <mt-swipe-item v-for="(val,index) in commentId" :key="index" >
+                        <img :src="val.image" @click="goCarousel(val.goods_id)">
                 </mt-swipe-item>
             </mt-swipe>
         </div>
@@ -28,9 +26,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-           
+    methods:{
+        goCarousel(id){
+            this.$router.push({path:`/carousel/${id}`})
         }
     },
     props:['commentId']
