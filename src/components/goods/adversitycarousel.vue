@@ -7,12 +7,12 @@
                     <li v-for="(val,index) in goodsList" :key="index">
                         <div class="icons">
                             <img :src="val.goods_img">
-                            <!-- <span class="sales">销量{{val.sale}}</span> -->
+                            <span class="sales">销量{{val.sales}}</span>
                         </div>
                         <p class="title">{{val.goods_name}}</p>
                         <div class="districtPost">
                             <span class="postStatus">包邮</span>
-                            <!-- <span class="district">{{val.city}}</span> -->
+                            <span class="district">{{val.city}}</span>
                         </div>
                         <div class="item">
                             <span class="price">￥{{val.shop_price}}</span>
@@ -22,10 +22,12 @@
                 </ul>
             </div>
         </div>
+        <navcomponent></navcomponent>
     </div>
 </template>
 
 <script>
+import navcomponent from '../subcomponents/navcomponent';
 import common from '../common/common.js';
 import { InfiniteScroll } from 'mint-ui';
 export default {
@@ -49,7 +51,6 @@ export default {
                 }
             ).then((res) => {
                 this.goodsList = res.body.data
-                console.log(res.body)
             })
         },
         loadMore() {
@@ -57,6 +58,9 @@ export default {
             this.pageIndex++;
             this.goodsListData();
         },
+    },
+    components: {
+        navcomponent
     }
 }
 </script>

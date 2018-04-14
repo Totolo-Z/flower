@@ -12,23 +12,6 @@
             <div class="evaluate-head">
                 <span>宝贝评价</span> (236)
             </div>
-            <div class="evaluate-tag">
-                <span class="tag-posi">
-                    <a href="#">花很新鲜(23)</a>
-                </span>
-                <span class="tag-posi">
-                    <a href="#">上门送货很快(52)</a>
-                </span>
-                <span class="tag-posi">
-                    <a href="#"> 包装挺好(56)</a>
-                </span>
-                <span class="tag-posi">
-                    <a href="#">质量不错(45)</a>
-                </span>
-                <span class="tag-neg">
-                    <a href="#">不新鲜(4)</a>
-                </span>
-            </div>
             <div class="evaluate-content" v-for="(val,index) in commentList" :key="index">
                 <div class="comment-list" >
                     <div class="comment-item-info">
@@ -140,42 +123,6 @@ export default {
         span {
             width: 2.666667rem;
             height: 100%;
-        }
-    }
-    .evaluate-tag {
-        width: 100%;
-        height: 2.133333rem;
-        padding-left: .266667rem;
-        background-color: #fff;
-        border-bottom: 1px solid #f0f0f0;
-        span {
-            display: block;
-            max-width: 100%;
-            height:.613333rem;
-            border-radius: 10px;
-            float: left;
-            margin-right: .133333rem;
-            margin-top: .266667rem;
-            a {
-                display: block;
-                height:.613333rem;
-                padding: 0 .346667rem;
-                line-height:.613333rem;
-                text-align: center;
-                font-size: .32rem;
-            }
-        }
-        .tag-posi {
-            background-color: #ffe0e0;
-            a {
-                color: #ff0300;
-            }
-        }
-        .tag-neg {
-            background-color: #f1f1f1;
-            a {
-                color: #999999;
-            }
         }
     }
     .evaluate-content {

@@ -22,11 +22,11 @@
         <div class="productShow" v-show="!changeIcon">
             <div class="product">
                 <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-                    <li v-for="(val,index) in goodsList" :key="index" @click="goCarousel(val.goods_id)">                     
-                            <div class="icons">
-                                <img :src="val.goods_thumb">
-                                <span class="sales">销量{{val.sale}}</span>
-                            </div>
+                    <li v-for="(val,index) in goodsList" :key="index">
+                        <div class="icons"  @click="goCarousel(val.goods_id)">
+                            <img :src="val.goods_thumb">
+                            <span class="sales">销量{{val.sale}}</span>
+                        </div>
                         <p class="title">{{val.goods_name}}</p>
                         <div class="districtPost">
                             <span class="postStatus">包邮</span>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="item">
                             <span class="price">￥{{val.shop_price}}</span>
-                            <img src="../../../static/images/tianjia_changgui.png">
+                            <img src="../../../static/images/tianjia_changgui.png" @click="addgoods">
                         </div>
                     </li>
                 </ul>
@@ -43,8 +43,8 @@
         <!-- 商品列表2  -->
         <div>
             <ul class="shopContent" v-show="changeIcon" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-                <li v-for="(item,index) in goodsList" :key="index" @click="goCarousel(item.goods_id)">
-                    <div class="imgInfo">
+                <li v-for="(item,index) in goodsList" :key="index">
+                    <div class="imgInfo"  @click="goCarousel(item.goods_id)">
                         <img :src="item.goods_thumb">
                         <span class="salesVolume">销量{{item.sale}}</span>
                     </div>
@@ -54,7 +54,7 @@
                         <p class="postStatus">包邮</p>
                         <div class="priceItem">
                             <span class="price">￥{{item.shop_price}}</span>
-                            <img src="../../../static/images/tianjia_changgui.png">
+                            <img src="../../../static/images/tianjia_changgui.png" @click="addgoods">
                         </div>
                     </div>
                 </li>
@@ -68,6 +68,7 @@
 import common from '../common/common.js';
 import navcomponent from '../subcomponents/navcomponent.vue';
 import { InfiniteScroll } from 'mint-ui';
+import { Toast } from 'mint-ui';
 export default {
     data() {
         return {
@@ -84,8 +85,8 @@ export default {
         this.goodsData()
     },
     methods: {
-        goCarousel(id){
-            this.$router.push({path:`/carousel/${id}`})
+        goCarousel(id) {
+            this.$router.push({ path: `/carousel/${id}` })
         },
         goodsData() {
             this.$http.get(`${common.apihost}api/home/goods/index`, {
@@ -93,9 +94,9 @@ export default {
                     cid: this.$route.params.goodslistId,
                     p: this.pageIndex,
                 }
-            }).then((res) => { 
+            }).then((res) => {
                 this.goodsList = this.goodsList.concat(res.body.data);
-                this.loading = false;            
+                this.loading = false;
             })
         },
         loadMore() {
@@ -103,8 +104,28 @@ export default {
             this.pageIndex++;
             this.goodsData();
         },
+        addgoods() {
+            if (!this.$store.state.token) {
+                this.$router.push('/login')
+            } else {
+                this.$http.post(`${common.apihost}api/home/cart/add`, 
+                {},
+                {   headers:{'XX-Token':this.$store.state.token},
+                    params: {
+                        goods_id: this.goodsList[1].goods_id,
+                        goods_number: 1
+                    }
+                }).then((res) => {
+                    if(res.data.code===1){
+                         Toast(res.data.msg);
+                    }else{
+                         Toast(res.data.msg);
+                    }
+                }).catch()
+            }
+        }
     },
-    components: { 
+    components: {
         navcomponent
     }
 }

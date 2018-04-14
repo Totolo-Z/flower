@@ -7,7 +7,7 @@
                     <i class="iconfont" @click="$router.back()">&#xe50d;</i>
                 </div>
                 <img :src="carouselList.goods_img">
-                <span class="picSales">销量</span>
+                <span class="picSales">销量 {{carouselList.sale}}</span>
             </div>
             <div class="item">
                 <p class="name">{{carouselList.goods_name}}</p>
@@ -73,6 +73,19 @@
             <span class="item">已经到底了</span>
             <span></span>
         </div>
+        <div class="goodsAction">
+            <router-link to="">
+                <img src="../../../static/images/dianpu.png">
+            </router-link>
+            <router-link to="">
+                <img src="../../../static/images/kefu.png">
+            </router-link>
+            <button class="goodsCat">加入购物篮</button>
+            <button class="goPay">
+                <router-link to="/cart">去结算</router-link>
+            </button>
+
+        </div>
     </div>
 </template>
 
@@ -92,7 +105,7 @@ export default {
                 imgIcon: '../../../static/images/qx.jpg',
                 name: '小雪人',
                 content: '首先值得肯定的是他们家的服务，是我遇见的服务态度最好的一家！因为第一次送花闹了点小插曲，但是客服很有耐心的帮我调解，最后花店重新把花抱回去重新插过了，第二次明显比第一次好了很多！花很新鲜，总的来说值得购买，下次还会来'
-            },  
+            },
         };
     },
     // updated(){
@@ -114,6 +127,7 @@ export default {
                 }
             }).then((res) => {
                 this.carouselList = res.body.data.goods
+                // console.log(res.body.data)
             })
         }
     },
@@ -177,8 +191,6 @@ export default {
         }
     }
 }
-
-
 .shopMsg {
     margin-top: .133333rem;
     width: 100%;
@@ -358,10 +370,10 @@ export default {
             color: #333;
         }
     }
-    .goosinfo-conten{
+    .goosinfo-conten {
         width: 100%;
         font-size: .16rem;
-        img{
+        img {
             width: 10.533333rem;
             height: 4rem;
         }
@@ -403,6 +415,48 @@ export default {
                 height: 8.8rem;
                 margin: auto;
             }
+        }
+    }
+}
+
+.goodsAction {
+    width: 100%;
+    height: 1.333333rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    border-top:1px solid #f0f0f0;
+    img {
+        width: .693333rem;
+        height: .8rem;
+        &:nth-child(2) {
+            width: .8rem;
+            height: .8rem;
+        }
+    }
+    .goodsCat {
+        width: 3.333333rem;
+        height: 85%;
+        background-color: #fd9596;
+        color: #fff;
+        border-radius: 8px;
+        font-size: .45rem;
+    }
+    .goPay {
+        width: 2.4rem;
+        height: 85%;
+        background-color: #e94f4d;
+        border-radius: 8px;
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            font-size: .45rem;
+            line-height: 1.066667rem;
         }
     }
 }

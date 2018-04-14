@@ -15,8 +15,8 @@
         <!-- 商品展示 -->
         <div class="productShow">
             <ul>
-                <li v-for='(val,index) in catGoods' :key='index' @click="goCarousel(val.goods_id)">
-                    <div class="icons">
+                <li v-for='(val,index) in catGoods' :key='index' >
+                    <div class="icons" @click="goCarousel(val.goods_id)">
                         <img :src="val.goods_thumb">
                         <span class="sales">销量{{val.sales}}</span>
                     </div>

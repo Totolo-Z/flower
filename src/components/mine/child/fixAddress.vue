@@ -185,17 +185,17 @@ export default {
 <style lang="less" scoped>
 .fixHead {
     width: 100%;
-    height: 38px;
-    line-height: 38px;
+    height: 1.013333rem;
+    line-height: 1.013333rem;
     background-color: #f66;
     text-align: center;
-    font-size: 15px;
+    font-size: .4rem;
     color: #fff;
     position: relative;
     i {
         position: absolute;
-        left: 10px;
-        font-size: 20px;
+        left: .266667rem;
+        font-size: .533333rem;
     }
 }
 
@@ -205,12 +205,12 @@ export default {
         width: 100%;
         li {
             width: 100%;
-            height: 44px;
-            line-height: 44px;
-            font-size: 13px;
+            height: 1.173333rem;
+            line-height: 1.173333rem;
+            font-size: .346667rem;
             color: #333;
             background-color: #fff;
-            padding-left: 10px;
+            padding-left: .266667rem;
             border-bottom: 1px solid #f0f0f0;
             input {
                 width: 80%;
@@ -218,7 +218,7 @@ export default {
             }
             select {
                 width: 75%;
-                height: 30px;
+                height:.8rem;
                 padding-left: .266667rem;
             }
         }

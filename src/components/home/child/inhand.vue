@@ -16,8 +16,8 @@
         <div class="productShow">
             <div class="product">
                 <ul>
-                    <li v-for="(val,index) in flowerList" :key="index" @click="goCarousel(val.goods_id)">
-                        <div class="icons">
+                    <li v-for="(val,index) in flowerList" :key="index">
+                        <div class="icons" @click="goCarousel(val.goods_id)">
                             <img :src="val.goods_thumb">
                             <span class="sales">销量{{val.sales}}</span>
                         </div>
