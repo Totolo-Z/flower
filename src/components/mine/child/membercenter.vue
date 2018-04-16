@@ -5,7 +5,6 @@
             <div class="memberIconInfo">
                 <img :src="memberIcon.imgSrc">
                 <p class="memberName">{{memberIcon.memberName}}</p>
-                <p class="level">[普通会员]</p>
             </div>
         </div>
         <!-- 我的订单  -->
@@ -146,10 +145,6 @@ export default {
             font-size: .426667rem;
             line-height: .693333rem;
             color: #333;
-        }
-        .level {
-            font-size: .32rem;
-            color: #999;
         }
     }
 }

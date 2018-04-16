@@ -35,7 +35,6 @@
                         </div>
                         <div class="shopContentInfo">
                             <h4>全国同城送花红玫瑰康乃馨向日葵春节礼盒鲜花速递</h4>
-                            <p>19朵混搭玫瑰Q版</p>
                             <span class="price">￥299.00</span>
                             <span class="shopNumber">x1</span>
                         </div>
@@ -50,7 +49,6 @@
                     <span>快递免邮</span>
                 </li>
                 <li>买家留言：<input type="text" placeholder="请输入您要给卖家的留言"></li>
-                <li>电话号码：<input type="number" placeholder="方便卖家与您联系"></li>
             </ul>
         </div>
         <div class="commitOrder">
@@ -169,11 +167,6 @@
             h4 {
                 font-size: 13px;
                 color: #333;
-            }
-            p {
-                font-size: 12px;
-                line-height: 35px;
-                color: #999;
             }
             .price {
                 font-size: 13px;

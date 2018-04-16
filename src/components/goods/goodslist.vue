@@ -34,7 +34,7 @@
                         </div>
                         <div class="item">
                             <span class="price">￥{{val.shop_price}}</span>
-                            <img src="../../../static/images/tianjia_changgui.png" @click="addgoods">
+                            <img src="../../../static/images/tianjia_changgui.png" @click="addgoods(val.goods_id)">
                         </div>
                     </li>
                 </ul>
@@ -104,7 +104,7 @@ export default {
             this.pageIndex++;
             this.goodsData();
         },
-        addgoods() {
+        addgoods(add) {
             if (!this.$store.state.token) {
                 this.$router.push('/login')
             } else {
@@ -112,7 +112,7 @@ export default {
                 {},
                 {   headers:{'XX-Token':this.$store.state.token},
                     params: {
-                        goods_id: this.goodsList[1].goods_id,
+                        goods_id:add,
                         goods_number: 1
                     }
                 }).then((res) => {

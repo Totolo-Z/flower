@@ -21,9 +21,11 @@
                 </li>
             </ul>
         </div>
+        <navcomponent> </navcomponent>
     </div>
 </template>
 <script>
+import navcomponent from '../../subcomponents/navcomponent.vue';
 export default {
     data() {
         return {
@@ -68,7 +70,10 @@ export default {
     },
     methods:{
         
-    }
+    },
+     components: {
+        navcomponent
+    },
 }
 </script>
 

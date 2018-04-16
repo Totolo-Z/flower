@@ -21,17 +21,6 @@
                 </div>
             </div>
             <div class="evaluation">
-                <div class="evaluationStar">
-                    <p>商品评分
-                        <i class="iconfont">&#xe635;&#xe635;&#xe635;&#xe635;&#xe635;</i>
-                    </p>
-                    <p>服务态度
-                        <i class="iconfont">&#xe635;&#xe635;&#xe635;&#xe635;&#xe635;</i>
-                    </p>
-                    <p>发货速度
-                        <i class="iconfont">&#xe635;&#xe635;&#xe635;&#xe635;&#xe635;</i>
-                    </p>
-                </div>
                 <div class="inputEvaluation">
                     <div class="inputItem">
                    <textarea placeholder="输入评价" rows="10"></textarea>
@@ -137,21 +126,6 @@ export default {
     .evaluation {
         width: 100%;
         height: 305px;
-        .evaluationStar {
-            width: 100%;
-            height: 105px;
-            p {
-                width: 100%;
-                height: 35px;
-                line-height: 35px;
-                font-size: 12px;
-                color: #333;
-                i {
-                    font-size: 19px;
-                    line-height: 35px;
-                }
-            }
-        }
         .inputEvaluation {
             width: 100%;
             margin-top:15px;
